@@ -1,9 +1,9 @@
 {
   "name": "tslib-boilerplate",
   "version": "0.0.1",
-  "description": "The base template for libraries made in typescript",
+  "description": "Javascript SDK library for integrating 35up into your web shop",
   "scripts": {
-    "build": "rollup --config",
+    "build": "rollup --config rollup.config.esm.js && rollup --config rollup.config.iife.js",
     "lint": "eslint --ext .js,.ts .",
     "test": "jest --passWithNoTests",
     "test:watch": "npm test -- --watch",
@@ -11,17 +11,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caseable/tslib-boilerplate.git"
+    "url": "git+https://github.com/caseable/js-sdk.git"
   },
   "keywords": [
     "bootstrap"
   ],
-  "author": "caseable GmbH <it@caseable.com>",
+  "author": "35up GmbH <it@35up.com>",
   "license": "UNLICENCED",
   "bugs": {
-    "url": "https://github.com/caseable/tslib-boilerplate/issues"
+    "url": "https://github.com/caseable/js-sdk/issues"
   },
-  "homepage": "https://github.com/caseable/tslib-boilerplate#readme",
+  "homepage": "https://github.com/caseable/js-sdk#readme",
   "dependencies": {
     "tslib": "^2.0.0"
   },
@@ -30,6 +30,7 @@
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@caseable/eslint-config-35up-base": "0.0.4",
+    "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "@rollup/plugin-typescript": "^5.0.2",
     "@types/chai": "^4.2.11",
@@ -47,10 +48,12 @@
     "jest": "^26.1.0",
     "jest-fetch-mock": "^3.0.3",
     "rollup": "^2.22.1",
+    "rollup-plugin-terser": "^6.1.0",
     "sinon": "^9.0.2",
     "sinon-chai": "^3.5.0",
     "typescript": "^3.9.7"
   },
-  "main": "build/tslib-boilerplate.esm.js",
+  "main": "build/35up-js-sdk.js",
+  "module": "build/35up-js-sdk.esm.js",
   "types": "src"
 }
