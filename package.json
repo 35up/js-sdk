@@ -1,0 +1,56 @@
+{
+  "name": "tslib-boilerplate",
+  "version": "0.0.1",
+  "description": "The base template for libraries made in typescript",
+  "scripts": {
+    "build": "rollup --config",
+    "lint": "eslint --ext .js,.ts .",
+    "test": "jest --passWithNoTests",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caseable/tslib-boilerplate.git"
+  },
+  "keywords": [
+    "bootstrap"
+  ],
+  "author": "caseable GmbH <it@caseable.com>",
+  "license": "UNLICENCED",
+  "bugs": {
+    "url": "https://github.com/caseable/tslib-boilerplate/issues"
+  },
+  "homepage": "https://github.com/caseable/tslib-boilerplate#readme",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@caseable/eslint-config-35up-base": "0.0.4",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "@rollup/plugin-typescript": "^5.0.2",
+    "@types/chai": "^4.2.11",
+    "@types/chai-string": "^1.4.2",
+    "@types/jest": "^26.0.5",
+    "@types/sinon": "^9.0.4",
+    "@types/sinon-chai": "^3.2.4",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.1.0",
+    "chai": "^4.2.0",
+    "chai-string": "^1.5.0",
+    "eslint": "^7.5.0",
+    "jest": "^26.1.0",
+    "jest-fetch-mock": "^3.0.3",
+    "rollup": "^2.22.1",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0",
+    "typescript": "^3.9.7"
+  },
+  "main": "build/tslib-boilerplate.esm.js",
+  "types": "src"
+}
