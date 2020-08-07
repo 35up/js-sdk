@@ -1,7 +1,3 @@
-export function hello(what: string): void {
-  console.log('hello ', what);
+export function hello(what: string): string {
+  return `hello ${what}`;
 }
-
-export const me = 'dev';
-
-hello(me);

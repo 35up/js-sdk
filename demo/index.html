@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>35up Integration Demo</title>
+</head>
+<body>
+<h1>Shopping cart</h1>
+<div id="cart-wrapper">
+
+</div>
+<script type="text/javascript" src="../build/35up-js-sdk.js"></script>
+<script>
+    const container = document.getElementById('cart-wrapper');
+    container.innerText = window.thirtyFiveUp.hello("Friend");
+</script>
+</body>
+</html>
