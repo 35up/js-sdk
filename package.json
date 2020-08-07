@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Javascript SDK library for integrating 35up into your web shop",
   "scripts": {
-    "build": "rollup --config rollup.config.iife.js && rollup --config rollup.config.js",
+    "build": "rollup --config rollup.config.js",
     "lint": "eslint --ext .js,.ts .",
     "test": "jest --passWithNoTests",
     "test:watch": "npm test -- --watch",

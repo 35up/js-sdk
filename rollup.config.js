@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
 
-export default {
+export default [{
   input: './src/index.ts',
   output: [
     {file: pkg.module, format: 'es'},
@@ -16,6 +16,12 @@ export default {
       plugins: [terser()],
     },
     {file: pkg.browser, format: 'umd', name: 'thirtyFiveUp'},
+    {
+      file: pkg.browser.replace(/.js$/, '.min.js'),
+      format: 'umd',
+      name: 'thirtyFiveUp',
+      plugins: [terser()],
+    },
   ],
   external: Object.keys(pkg.dependencies || {}),
   plugins: [
@@ -23,4 +29,16 @@ export default {
     nodeResolve({browser: true}),
     typescript(),
   ],
-};
+},
+{
+  input: './src/index.ts',
+  output: [
+    {file: 'build/35up-js-sdk.js', format: 'iife', name: 'thirtyFiveUp'},
+  ],
+  plugins: [
+    commonjs(),
+    nodeResolve({browser: true}),
+    typescript(),
+    terser(),
+  ],
+}];
