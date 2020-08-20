@@ -1,18 +1,15 @@
 {
   "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "useBuiltIns": "entry",
-        "corejs": 3,
-        "targets": {"node":  "12"}
-      }
-    ],
-    ["@babel/preset-typescript"]
+    "@babel/preset-typescript"
   ],
   "plugins": [
     ["@babel/plugin-proposal-class-properties", {
       "loose": true
-    }]
+    }],
+    ["@babel/plugin-transform-runtime",
+      {
+        "corejs": 3
+      }
+    ]
   ]
 }

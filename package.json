@@ -23,14 +23,17 @@
   },
   "homepage": "https://github.com/caseable/js-sdk#readme",
   "dependencies": {
+    "@babel/runtime-corejs3": "^7.11.2",
     "nanoid": "^3.1.12",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-typescript": "^7.10.4",
+    "@babel/runtime": "^7.11.2",
     "@caseable/eslint-config-35up-base": "0.0.4",
+    "@rollup/plugin-babel": "^5.2.0",
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "@rollup/plugin-typescript": "^5.0.2",
