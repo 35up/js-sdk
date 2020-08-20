@@ -1,7 +1,6 @@
 import typescript from '@rollup/plugin-typescript';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 // eslint-disable-next-line import/extensions
 import pkg from './package.json';
@@ -26,10 +25,9 @@ export default [{
   ],
   external: Object.keys(pkg.dependencies || {}),
   plugins: [
-    babel({ babelHelpers: 'runtime' }),
+    typescript(),
     commonjs(),
     nodeResolve({browser: true}),
-    typescript(),
   ],
 },
 {
@@ -38,10 +36,9 @@ export default [{
     {file: 'build/35up-js-sdk.js', format: 'iife', name: 'thirtyFiveUp'},
   ],
   plugins: [
-    babel({ babelHelpers: 'runtime' }),
+    typescript(),
     commonjs(),
     nodeResolve({browser: true}),
-    typescript(),
     terser(),
   ],
 }];
