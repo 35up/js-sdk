@@ -1,32 +1,32 @@
-import { InputParameters } from '../types';
+import { InputParameters, TObject } from '../types';
 
-function isObject(a) {
-  return (!!a) && (a.constructor === Object);
+
+function isObject(value: unknown): value is TObject {
+  return (!!value) && (value.constructor === Object);
 }
 
-function flattenInput(input: Record<string, unknown>, keyPrefix = '')
-:Array<[string, string]> {
+function flattenInput(
+  input: TObject,
+  keyPrefix = '',
+): Array<[string, string]> {
   let result: Array<[string, string]> = [];
 
-  Object.entries(input).forEach((entry) => {
-    const key = `${keyPrefix}${entry[0]}`;
+  Object.entries(input).forEach(([ prop, value ]) => {
+    const key = `${keyPrefix}${prop}`;
 
-    if (isObject(entry[1])) {
-      const subArrays = flattenInput(
-        entry[1] as Record<string, unknown>,
-        `${key}.`,
-      );
+    if (isObject(value)) {
+      const subArrays = flattenInput(value, `${key}.`);
       result = [...result, ...subArrays];
-    } else if (Array.isArray(entry[1])) {
-      if (entry[0] === 'age') {
-        const from = encodeURIComponent(entry[1][0]);
-        const to = encodeURIComponent(entry[1][1]);
+    } else if (Array.isArray(value)) {
+      if (prop === 'age') {
+        const from = encodeURIComponent(value[0]);
+        const to = encodeURIComponent(value[1]);
         result.push([key, `${from}-${to}`]);
       } else {
-        result.push([key, entry[1].map(encodeURIComponent).join(',')]);
+        result.push([key, value.map(encodeURIComponent).join(',')]);
       }
     } else {
-      result.push([key, encodeURIComponent(String(entry[1]))]);
+      result.push([key, encodeURIComponent(String(value))]);
     }
   });
 
@@ -34,8 +34,8 @@ function flattenInput(input: Record<string, unknown>, keyPrefix = '')
 }
 
 export function makeSearchParams(input: InputParameters): string {
-  return flattenInput(input).reduce((acc, entry) => (
-    `${acc ? `${acc}&` : ''}${entry[0]}=${entry[1]}`
-  ), '');
+  return flattenInput(input)
+    .map(([ key, value ]) => (`${key}=${value}`))
+    .join('&');
 }
 

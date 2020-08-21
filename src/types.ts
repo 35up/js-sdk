@@ -1,5 +1,5 @@
-type mixed = boolean | string | number | Record<string, unknown>;
-type lang = 'de' | 'en' | 'fr' | string;
+export type TObject = Record<string, unknown>;
+type mixed = boolean | string | number | TObject;
 
 type BaseProduct = {
   title: string;
@@ -8,8 +8,7 @@ type BaseProduct = {
   color?: string;
   category?: string;
   tag?: mixed
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [x: string]: any;
+  [x: string]: unknown;
 }
 
 type Customer = {
@@ -18,14 +17,13 @@ type Customer = {
   postcode?: number;
   city?: string;
   country?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [x: string]: any;
+  [x: string]: unknown;
 }
 
 export type InputParameters = {
   partner: string;
   session: string;
-  lang?: lang;
+  lang?: string;
   country?: string;
   limit?: number;
   baseProduct: BaseProduct;
