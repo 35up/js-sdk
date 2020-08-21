@@ -1,7 +1,7 @@
 type mixed = boolean | string | number | Record<string, unknown>;
 type lang = 'de' | 'en' | 'fr' | string;
 
-interface BaseProduct {
+type BaseProduct = {
   title: string;
   price?: number;
   value?: number;
@@ -12,7 +12,7 @@ interface BaseProduct {
   [x: string]: any;
 }
 
-interface Customer {
+type Customer = {
   age?: number | [number, number];
   gender?: string;
   postcode?: number;
@@ -22,7 +22,7 @@ interface Customer {
   [x: string]: any;
 }
 
-export interface InputParameters {
+export type InputParameters = {
   partner: string;
   session: string;
   lang?: lang;
