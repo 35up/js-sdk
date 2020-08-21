@@ -20,11 +20,11 @@ describe('service - recommendations', () => {
         },
         customer: {
           age: [20, 30],
-          city: 'Berlin',
+          cities: ['Berlin', 'Frankfurt am Main'],
         },
       };
 
-      const expected = 'partner=partner-7&session=sess-12&lang=en&limit=10&baseProduct.title=Cocobolo%20desk&baseProduct.category=Furniture&baseProduct.extra.foo=ba-da%20boo%5E%3F&customer.age=20-30&customer.city=Berlin';
+      const expected = 'partner=partner-7&session=sess-12&lang=en&limit=10&baseProduct.title=Cocobolo%20desk&baseProduct.category=Furniture&baseProduct.extra.foo=ba-da%20boo%5E%3F&customer.age=20-30&customer.cities=Berlin,Frankfurt%20am%20Main';
 
       expect(makeSearchParams(input)).to.equal(expected);
     });

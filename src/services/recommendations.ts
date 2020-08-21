@@ -17,10 +17,16 @@ function flattenInput(input: Record<string, unknown>, keyPrefix = '')
         `${key}.`,
       );
       result = [...result, ...subArrays];
-    } else if (Array.isArray(entry[1]) && entry[1].length === 2) {
-      result.push([key, `${entry[1][0]}-${entry[1][1]}`]);
+    } else if (Array.isArray(entry[1])) {
+      if (entry[0] === 'age') {
+        const from = encodeURIComponent(entry[1][0]);
+        const to = encodeURIComponent(entry[1][1]);
+        result.push([key, `${from}-${to}`]);
+      } else {
+        result.push([key, entry[1].map(encodeURIComponent).join(',')]);
+      }
     } else {
-      result.push([key, String(entry[1])]);
+      result.push([key, encodeURIComponent(String(entry[1]))]);
     }
   });
 
@@ -28,10 +34,8 @@ function flattenInput(input: Record<string, unknown>, keyPrefix = '')
 }
 
 export function makeSearchParams(input: InputParameters): string {
-  return flattenInput(input).reduce((acc, entry) => {
-    const encodedKey = encodeURIComponent(entry[0]);
-    const encodedValue = encodeURIComponent(entry[1]);
-    return `${acc ? `${acc}&` : ''}${encodedKey}=${encodedValue}`;
-  }, '');
+  return flattenInput(input).reduce((acc, entry) => (
+    `${acc ? `${acc}&` : ''}${entry[0]}=${entry[1]}`
+  ), '');
 }
 
