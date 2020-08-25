@@ -19,6 +19,11 @@ function flattenInput(
       result = [...result, ...subArrays];
     } else if (Array.isArray(value)) {
       if (prop === 'age') {
+        if (value.length !== 2) {
+          console.warn(
+            `age range expects 2 values. Received: ${value.length}`,
+          );
+        }
         const from = encodeURIComponent(value[0]);
         const to = encodeURIComponent(value[1]);
         result.push([key, `${from}-${to}`]);
