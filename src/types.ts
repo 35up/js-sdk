@@ -1,7 +1,7 @@
 export type TObject = Record<string, unknown>;
 type mixed = boolean | string | number | TObject;
 
-type BaseProduct = {
+export type BaseProduct = {
   title: string;
   price?: number;
   value?: number;

@@ -1,4 +1,7 @@
-import { InputParameters, TObject } from '../types';
+import { HttpError } from '@caseable/http-client';
+import { InputParameters, TObject, BaseProduct } from '../types';
+import { get } from './api/methods';
+import { Result } from '../utils/result';
 
 
 function isObject(value: unknown): value is TObject {
@@ -39,3 +42,14 @@ export function makeSearchParams(input: InputParameters): string {
     .join('&');
 }
 
+export async function getProductRecommendations(
+  params: InputParameters,
+): Promise<Result<BaseProduct, HttpError>> {
+  const inputParams = makeSearchParams(params);
+  try {
+    const recommendations = await get(`/recommendations${inputParams}`);
+    return [null, recommendations];
+  } catch (e) {
+    return [e, null];
+  }
+}
