@@ -25,9 +25,9 @@ export default [{
   ],
   external: Object.keys(pkg.dependencies || {}),
   plugins: [
+    typescript(),
     commonjs(),
     nodeResolve({browser: true}),
-    typescript(),
   ],
 },
 {
@@ -36,9 +36,9 @@ export default [{
     {file: 'build/35up-js-sdk.js', format: 'iife', name: 'thirtyFiveUp'},
   ],
   plugins: [
+    typescript(),
     commonjs(),
     nodeResolve({browser: true}),
-    typescript(),
     terser(),
   ],
 }];
