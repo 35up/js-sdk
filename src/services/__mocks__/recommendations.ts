@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 
-const productRecommendations = jest.requireActual('../product-recommendations');
+const productRecommendations = jest.requireActual('../recommendations');
 
 export const getProductRecommendations = sinon.stub(
   productRecommendations,

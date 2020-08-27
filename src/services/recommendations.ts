@@ -1,5 +1,5 @@
 import { HttpError } from '@caseable/http-client';
-import { InputParameters, TObject, BaseProduct } from '../types';
+import { InputParameters, TObject, ProductRecommendations } from '../types';
 import { get } from './api/methods';
 import { Result } from '../utils/result';
 
@@ -44,10 +44,10 @@ export function makeSearchParams(input: InputParameters): string {
 
 export async function getProductRecommendations(
   params: InputParameters,
-): Promise<Result<BaseProduct, HttpError>> {
+): Promise<Result<ProductRecommendations, HttpError>> {
   const inputParams = makeSearchParams(params);
   try {
-    const recommendations = await get(`/recommendations${inputParams}`);
+    const recommendations = await get(`/recommendations?${inputParams}`);
     return [null, recommendations];
   } catch (e) {
     return [e, null];
