@@ -1,6 +1,8 @@
 import { InputParameters, ProductRecommendations } from '../types';
 
-export const getMockRecommendations = (params: InputParameters): ProductRecommendations => ({
+export const getMockRecommendations = (
+  params: InputParameters,
+): ProductRecommendations => ({
   sku: 'caseable/HCI60XX114014XXAPIP60',
   vendor: {
     id: 'caseable',

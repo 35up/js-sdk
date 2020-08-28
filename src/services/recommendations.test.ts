@@ -85,20 +85,20 @@ describe('service - recommendations', () => {
     });
 
     it('returns recommendations', async () => {
-      const [ err, res ] = await getProductRecommendations(input);
+      const recommendations = await getProductRecommendations(input);
 
-      expect(res).to.deep.equal(productRecommendations);
-      expect(err).to.be.null;
+      expect(recommendations.data).to.deep.equal(productRecommendations);
+      expect(recommendations.error).to.be.null;
     });
 
     it('returns err when request fails', async () => {
       const error = new Error('fail');
       fetch.mockReject(error);
 
-      const [ err, res ] = await getProductRecommendations(input);
+      const recommendations = await getProductRecommendations(input);
 
-      expect(res).to.be.null;
-      expect(err).to.be.equal(error);
+      expect(recommendations.data).to.be.null;
+      expect(recommendations.error).to.be.equal(error);
     });
   });
 });
