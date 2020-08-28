@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import { get, post, put, patch } from './methods';
 
 
-const PRODUCTS_API = 'https://products.35up.com/';
+const { PRODUCTS_API } = process.env;
 
 async function testMethod(method, methodName): Promise<void> {
   await method('');
