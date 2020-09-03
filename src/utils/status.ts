@@ -24,4 +24,4 @@ export const makeFail = <U extends Error = Error>(
     status: STATUS.FAIL,
     data: null,
     error,
-});
+  });
