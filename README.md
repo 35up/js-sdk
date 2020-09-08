@@ -19,13 +19,12 @@ In this case all the API will be available from the global object
 
 ## Requirements
 
-Http-client depends on the [Fetch API]. If you support older browsers which may
-not yet provide these natively (e.g. IE), consider including a global polyfill
-in your bundled application, such as [fetch].
+SDK library uses following javascript API and features, please make sure you have them polyfilled if you support older browsers:
+ - [Fetch API]
+ - [Object.entries]
 
 
 <!-- LINKS -->
 
 [Fetch API]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
-[fetch]: https://github.com/github/fetch
-
+[Object.entries]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
