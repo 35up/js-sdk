@@ -1,20 +1,7 @@
 import { nanoid } from 'nanoid';
-import { SDKConfiguration, SDKInitializationConfiguration } from './types';
+import { SDKInitializationConfiguration } from './types';
+import { ThirtyFiveUp } from './thirty-five-up';
 
-
-const configurationKey = Symbol('configuration');
-
-export class ThirtyFiveUp {
-  [configurationKey]: SDKConfiguration;
-
-  constructor(configuration: SDKConfiguration) {
-    this[configurationKey] = configuration;
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  getProductRecommendations(): void {
-  }
-}
 
 export function initialise(
   configuration: SDKInitializationConfiguration,

@@ -31,9 +31,11 @@ export type SDKConfiguration = SDKInitializationConfiguration & {
 }
 
 export type RecommendationParameters = {
-  limit?: number;
   baseProduct: BaseProduct;
   customer?: Customer;
+  lang?: string;
+  country?: string;
+  limit?: number;
 }
 
 export type Logo = {

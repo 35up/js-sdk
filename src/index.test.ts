@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import { initialise, ThirtyFiveUp } from './index';
+import { initialise } from './index';
+import { ThirtyFiveUp } from './thirty-five-up';
 
 
 describe('initialise', () => {
