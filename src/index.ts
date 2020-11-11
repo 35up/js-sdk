@@ -1,16 +1,14 @@
 import { nanoid } from 'nanoid';
+import { SDKConfiguration, SDKInitializationConfiguration } from './types';
 
 
-const partnerIdKey = Symbol('partnerId');
-const sessionIdKey = Symbol('sessionId');
+const configurationKey = Symbol('configuration');
 
 export class ThirtyFiveUp {
-  [partnerIdKey]: string;
-  [sessionIdKey]: string;
+  [configurationKey]: SDKConfiguration;
 
-  constructor(partnerId: string, sessionId: string) {
-    this[partnerIdKey] = partnerId;
-    this[sessionIdKey] = sessionId;
+  constructor(configuration: SDKConfiguration) {
+    this[configurationKey] = configuration;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -18,7 +16,16 @@ export class ThirtyFiveUp {
   }
 }
 
-export function initialise(partnerId: string, sessionId?: string)
-: ThirtyFiveUp {
-  return new ThirtyFiveUp(partnerId, sessionId || nanoid());
+export function initialise(
+  configuration: SDKInitializationConfiguration,
+): ThirtyFiveUp {
+  // Not everybody using this uses typescript
+  if (!('partner' in configuration)) {
+    throw new TypeError('Cannot initialize the 35up SDK without a partner ID');
+  }
+
+  return new ThirtyFiveUp({
+    ...configuration,
+    session: configuration.session ?? nanoid(),
+  });
 }

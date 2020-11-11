@@ -19,11 +19,15 @@ type Customer = {
   [x: string]: unknown;
 }
 
-export type SDKConfiguration = {
+export type SDKInitializationConfiguration = {
   partner: string;
-  session: string;
+  session?: string;
   lang?: string;
   country?: string;
+}
+
+export type SDKConfiguration = SDKInitializationConfiguration & {
+  session: string;
 }
 
 export type RecommendationParameters = {
