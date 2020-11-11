@@ -1,5 +1,4 @@
-export type TObject = Record<string, unknown>;
-type mixed = boolean | string | number | TObject;
+type mixed = boolean | string | number | Record<string, unknown>;
 
 export type BaseProduct = {
   title: string;
@@ -20,11 +19,14 @@ type Customer = {
   [x: string]: unknown;
 }
 
-export type InputParameters = {
+export type SDKConfiguration = {
   partner: string;
   session: string;
   lang?: string;
   country?: string;
+}
+
+export type RecommendationParameters = {
   limit?: number;
   baseProduct: BaseProduct;
   customer?: Customer;
@@ -73,7 +75,7 @@ export type Delivery = {
   timeMax?: number;
 }
 
-export type ProductRecommendations = {
+export type ProductRecommendation = {
   sku: string;
   vendor: Vendor;
   name: string;

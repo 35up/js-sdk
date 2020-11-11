@@ -4,17 +4,27 @@ import {
   makeSuccess,
   RemoteData,
 } from '@caseable/tslib-frontend-utils';
-import { InputParameters, TObject, ProductRecommendations } from '../types';
+import {
+  ProductRecommendation,
+  RecommendationParameters,
+  SDKConfiguration,
+} from '../types';
 import { get } from './api/methods';
 
 
+export type RemoteRecommendations = RemoteData<
+  ProductRecommendation[],
+  HttpError
+>;
+type Params = SDKConfiguration & RecommendationParameters;
 
-function isObject(value: unknown): value is TObject {
-  return (!!value) && (value.constructor === Object);
+
+function isObject(value: unknown): value is Record<string, unknown> {
+  return !!value && value instanceof Object;
 }
 
 function flattenInput(
-  input: TObject,
+  input: Record<string, unknown>,
   keyPrefix = '',
 ): Array<[string, string]> {
   let result: Array<[string, string]> = [];
@@ -22,10 +32,7 @@ function flattenInput(
   Object.entries(input).forEach(([ prop, value ]) => {
     const key = `${keyPrefix}${prop}`;
 
-    if (isObject(value)) {
-      const subArrays = flattenInput(value, `${key}.`);
-      result = [...result, ...subArrays];
-    } else if (Array.isArray(value)) {
+    if (Array.isArray(value)) {
       if (prop === 'age') {
         if (value.length !== 2) {
           console.warn(
@@ -38,6 +45,9 @@ function flattenInput(
       } else {
         result.push([key, value.map(encodeURIComponent).join(',')]);
       }
+    } else if (isObject(value)) {
+      const subArrays = flattenInput(value, `${key}.`);
+      result = [...result, ...subArrays];
     } else {
       result.push([key, encodeURIComponent(String(value))]);
     }
@@ -46,18 +56,19 @@ function flattenInput(
   return result;
 }
 
-export function makeSearchParams(input: InputParameters): string {
+export function makeSearchParams(input: Params): string {
   return flattenInput(input)
     .map(([ key, value ]) => (`${key}=${value}`))
     .join('&');
 }
 
 export async function getProductRecommendations(
-  params: InputParameters,
-): Promise<RemoteData<ProductRecommendations, HttpError>> {
-  const inputParams = makeSearchParams(params);
+  params: Params,
+): Promise<RemoteRecommendations> {
   try {
-    const recommendations = await get(`/recommendations?${inputParams}`);
+    const recommendations: ProductRecommendation[] = await get(
+      `/recommendations?${makeSearchParams(params)}`,
+    );
     return makeSuccess(recommendations);
   } catch (e) {
     return makeFail(e);

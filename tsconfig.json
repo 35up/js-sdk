@@ -5,7 +5,8 @@
     "importHelpers": true,
     "esModuleInterop": true,
     "sourceMap": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true
   },
   "exclude": ["node_modules"]
 }
