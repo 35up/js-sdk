@@ -47,7 +47,7 @@ describe('ThirtyFiveUp', () => {
 
       expect(
         await instance.getProductRecommendations(input),
-      ).to.be.deep.equal(recommendations);
+      ).to.be.deep.equal(makeSuccess(recommendations));
       expect(getProductRecommendationsMock).to.have.been.calledWith({
         ...configuration,
         ...input,

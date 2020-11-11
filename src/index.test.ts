@@ -28,6 +28,6 @@ describe('initialise', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       initialise({lang: 'en'});
-    }).to.have.thrown('Cannot initialize the 35up SDK without a partner ID');
+    }).to.throw('Cannot initialize the 35up SDK without a partner ID');
   });
 });
