@@ -10,7 +10,7 @@ export type BaseProduct = {
   [x: string]: unknown;
 }
 
-type Customer = {
+export type Customer = {
   age?: number | [number, number];
   gender?: string;
   postcode?: number;

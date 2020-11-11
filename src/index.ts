@@ -16,3 +16,19 @@ export function initialise(
     session: configuration.session ?? nanoid(),
   });
 }
+
+
+export {
+  SDKInitializationConfiguration as SDKConfiguration,
+  RecommendationParameters,
+  ProductRecommendation,
+  BaseProduct,
+  Actions,
+  Customer,
+  Delivery,
+  Descriptions,
+  Images,
+  Logo,
+  Price,
+  Vendor,
+} from './types';
