@@ -1,5 +1,5 @@
 {
-  "name": "tslib-boilerplate",
+  "name": "@caseable/js-sdk",
   "version": "0.0.1",
   "description": "Javascript SDK library for integrating 35up into your web shop",
   "scripts": {
