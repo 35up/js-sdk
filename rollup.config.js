@@ -28,10 +28,10 @@ export default [{
       format: 'es',
       plugins: [terser()],
     },
-    {file: pkg.browser, format: 'umd', name: 'thirtyFiveUp'},
+    {file: pkg.main, format: 'cjs', name: 'thirtyFiveUp'},
     {
-      file: pkg.browser.replace(/.js$/, '.min.js'),
-      format: 'umd',
+      file: pkg.main.replace(/.js$/, '.min.js'),
+      format: 'cjs',
       name: 'thirtyFiveUp',
       plugins: [terser()],
     },
@@ -46,7 +46,7 @@ export default [{
 {
   input: './src/index.ts',
   output: [
-    {file: 'build/35up-js-sdk.js', format: 'iife', name: 'thirtyFiveUp'},
+    {file: pkg.browser, format: 'umd', name: 'thirtyFiveUp'},
   ],
   plugins: [
     typescript(),
