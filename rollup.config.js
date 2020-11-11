@@ -38,9 +38,9 @@ export default [{
   ],
   external: Object.keys(pkg.dependencies || {}),
   plugins: [
-    typescript(),
     commonjs(),
     nodeResolve({browser: true}),
+    typescript(),
   ],
 },
 {
@@ -49,9 +49,9 @@ export default [{
     {file: pkg.browser, format: 'umd', name: 'thirtyFiveUp'},
   ],
   plugins: [
-    typescript(),
     commonjs(),
     nodeResolve({browser: true}),
+    typescript(),
     terser(),
     replace(fromEntries(
       Object.entries(env).map(([ key, value ]) => [
