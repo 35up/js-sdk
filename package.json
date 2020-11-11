@@ -24,6 +24,7 @@
   "homepage": "https://github.com/caseable/js-sdk#readme",
   "dependencies": {
     "@caseable/http-client": "0.0.10",
+    "@caseable/tslib-frontend-utils": "0.0.5",
     "nanoid": "^3.1.12",
     "tslib": "^2.0.0"
   },
