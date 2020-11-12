@@ -1,18 +1,18 @@
-import type { RecommendationParameters, SDKConfiguration } from './types';
+import type { RecommendationParams, SDKConfig } from './types';
 import { RemoteRecommendations, getProductRecommendations } from './services/recommendations';
 
 
 const configurationKey = Symbol('configuration');
 
 export class ThirtyFiveUp {
-  private [configurationKey]: SDKConfiguration;
+  private [configurationKey]: SDKConfig;
 
-  constructor(configuration: SDKConfiguration) {
+  constructor(configuration: SDKConfig) {
     this[configurationKey] = configuration;
   }
 
   async getProductRecommendations(
-    input: RecommendationParameters,
+    input: RecommendationParams,
   ): Promise<RemoteRecommendations> {
     return getProductRecommendations({
       ...this[configurationKey],

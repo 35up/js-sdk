@@ -19,18 +19,18 @@ export type Customer = {
   [x: string]: unknown;
 }
 
-export type SDKInitializationConfiguration = {
+export type SDKInitConfig = {
   partner: string;
   session?: string;
   lang?: string;
   country?: string;
 }
 
-export type SDKConfiguration = SDKInitializationConfiguration & {
+export type SDKConfig = SDKInitConfig & {
   session: string;
 }
 
-export type RecommendationParameters = {
+export type RecommendationParams = {
   baseProduct: BaseProduct;
   customer?: Customer;
   lang?: string;
