@@ -4,6 +4,9 @@ module.exports = {
   coverageDirectory: './coverage',
   coverageReporters: ['lcov'],
   collectCoverageFrom: ['src/**/*.ts'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!@caseable/tslib-frontend-utils)',
+  ],
   transform: {
     '^.+\\.[jt]s$': 'babel-jest',
   },
