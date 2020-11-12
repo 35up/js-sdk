@@ -27,7 +27,7 @@ describe('initialise', () => {
     expect(() => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      initialise({lang: 'en'});
+      initialise({lang: 'en', country: 'de', session: 'session-id'});
     }).to.throw('Cannot initialize the 35up SDK without a partner ID');
   });
 });
