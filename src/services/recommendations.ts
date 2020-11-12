@@ -7,10 +7,6 @@ export type RemoteRecommendations = RemoteData<ProductRecommendation[]>;
 type Params = SdkConfig & RecommendationParams;
 
 
-function isObject(value: unknown): value is Record<string, unknown> {
-  return !!value && value instanceof Object;
-}
-
 function flattenInput(
   input: Record<string, unknown>,
   keyPrefix = '',
@@ -33,8 +29,8 @@ function flattenInput(
       } else {
         result.push([key, value.map(encodeURIComponent).join(',')]);
       }
-    } else if (isObject(value)) {
-      const subArrays = flattenInput(value, `${key}.`);
+    } else if (value && typeof value === 'object') {
+      const subArrays = flattenInput(value as Record<string, unknown>, `${key}.`);
       result = [...result, ...subArrays];
     } else {
       result.push([key, encodeURIComponent(String(value))]);
