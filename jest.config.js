@@ -8,6 +8,7 @@ module.exports = {
     '/node_modules/(?!@caseable/tslib-frontend-utils)',
   ],
   transform: {
-    '^.+\\.[jt]s$': 'babel-jest',
+    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.js$': 'babel-jest',
   },
 };
