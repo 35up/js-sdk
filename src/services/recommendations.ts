@@ -1,4 +1,3 @@
-import { HttpError } from '@caseable/http-client';
 import {
   makeFail,
   makeSuccess,
@@ -12,10 +11,7 @@ import {
 import { get } from './api/methods';
 
 
-export type RemoteRecommendations = RemoteData<
-  ProductRecommendation[],
-  HttpError
->;
+export type RemoteRecommendations = RemoteData<ProductRecommendation[]>;
 type Params = SDKConfiguration & RecommendationParameters;
 
 
