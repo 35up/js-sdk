@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import fetch from 'jest-fetch-mock';
 import { makeSearchParams, getProductRecommendations } from './recommendations';
-import { RecommendationParams, SDKConfig } from '../types';
+import { RecommendationParams, SdkConfig } from '../types';
 import { getMockRecommendations } from './recommendations-data';
 
 
-const input: SDKConfig & RecommendationParams = {
+const input: SdkConfig & RecommendationParams = {
   partner: 'partner-7',
   session: 'sess-12',
   lang: 'en',

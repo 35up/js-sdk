@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid';
-import { SDKInitConfig } from './types';
+import { SdkInitConfig } from './types';
 import { Sdk } from './sdk';
 
 
-export function initialise(configuration: SDKInitConfig): Sdk {
+export function initialise(configuration: SdkInitConfig): Sdk {
   // Not everybody using this uses typescript
   if (!('partner' in configuration)) {
     throw new TypeError('Cannot initialize the 35up SDK without a partner ID');
@@ -16,7 +16,7 @@ export function initialise(configuration: SDKInitConfig): Sdk {
 }
 
 export {
-  SDKInitConfig as SDKConfig,
+  SdkInitConfig as SdkConfig,
   RecommendationParams,
   ProductRecommendation,
   BaseProduct,

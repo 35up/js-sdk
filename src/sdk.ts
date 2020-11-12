@@ -1,13 +1,13 @@
-import type { RecommendationParams, SDKConfig } from './types';
+import type { RecommendationParams, SdkConfig } from './types';
 import { RemoteRecommendations, getProductRecommendations } from './services/recommendations';
 
 
 const configurationKey = Symbol('configuration');
 
 export class Sdk {
-  private [configurationKey]: SDKConfig;
+  private [configurationKey]: SdkConfig;
 
-  constructor(configuration: SDKConfig) {
+  constructor(configuration: SdkConfig) {
     this[configurationKey] = configuration;
   }
 

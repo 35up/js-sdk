@@ -4,7 +4,7 @@ import { makeSuccess } from '@caseable/tslib-frontend-utils';
 import { getProductRecommendations, RemoteRecommendations } from './services/recommendations';
 import { getMockRecommendations } from './services/recommendations-data';
 import { Sdk } from './sdk';
-import { RecommendationParams, SDKConfig } from './types';
+import { RecommendationParams, SdkConfig } from './types';
 
 
 jest.mock('./services/recommendations');
@@ -14,7 +14,7 @@ const getProductRecommendationsMock = getProductRecommendations as SinonStub<
 >;
 
 const recommendations = getMockRecommendations();
-const configuration: SDKConfig = {
+const configuration: SdkConfig = {
   partner: 'partner-id',
   session: 'session-id',
   country: 'de',

@@ -1,10 +1,10 @@
 import { makeFail, makeSuccess, RemoteData } from '@caseable/tslib-frontend-utils';
-import { ProductRecommendation, RecommendationParams, SDKConfig } from '../types';
+import { ProductRecommendation, RecommendationParams, SdkConfig } from '../types';
 import { get } from './api/methods';
 
 
 export type RemoteRecommendations = RemoteData<ProductRecommendation[]>;
-type Params = SDKConfig & RecommendationParams;
+type Params = SdkConfig & RecommendationParams;
 
 
 function isObject(value: unknown): value is Record<string, unknown> {

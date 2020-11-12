@@ -19,14 +19,14 @@ export type Customer = {
   [x: string]: unknown;
 }
 
-export type SDKInitConfig = {
+export type SdkInitConfig = {
   partner: string;
   session?: string;
   lang?: string;
   country?: string;
 }
 
-export type SDKConfig = SDKInitConfig & {
+export type SdkConfig = SdkInitConfig & {
   session: string;
 }
 
