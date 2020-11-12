@@ -4,7 +4,7 @@ import { RemoteRecommendations, getProductRecommendations } from './services/rec
 
 const configurationKey = Symbol('configuration');
 
-export class ThirtyFiveUp {
+export class Sdk {
   private [configurationKey]: SDKConfig;
 
   constructor(configuration: SDKConfig) {

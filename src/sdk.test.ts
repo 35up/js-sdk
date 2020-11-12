@@ -3,7 +3,7 @@ import { SinonStub } from 'sinon';
 import { makeSuccess } from '@caseable/tslib-frontend-utils';
 import { getProductRecommendations, RemoteRecommendations } from './services/recommendations';
 import { getMockRecommendations } from './services/recommendations-data';
-import { ThirtyFiveUp } from './thirty-five-up';
+import { Sdk } from './sdk';
 import { RecommendationParams, SDKConfig } from './types';
 
 
@@ -35,7 +35,7 @@ const input: RecommendationParams = {
   },
 };
 
-describe('ThirtyFiveUp', () => {
+describe('Sdk', () => {
   beforeEach(() => {
     getProductRecommendationsMock.reset();
     getProductRecommendationsMock.resolves(makeSuccess(recommendations));
@@ -43,7 +43,7 @@ describe('ThirtyFiveUp', () => {
 
   describe('getProductRecommendations', () => {
     it('gets recommendations using provided params and the sdk configuration', async () => {
-      const instance = new ThirtyFiveUp(configuration);
+      const instance = new Sdk(configuration);
 
       expect(
         await instance.getProductRecommendations(input),

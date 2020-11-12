@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import { initialise } from './index';
-import { ThirtyFiveUp } from './thirty-five-up';
+import { Sdk } from './sdk';
 
 
 describe('initialise', () => {
-  it('creates ThirtyFiveUp object', () => {
+  it('creates Sdk object', () => {
     const actualObject = initialise({
       partner: 'partner-id',
       session: '8662f5bf-92c3-428c-b542-0c59147a8fb4',
@@ -12,15 +12,15 @@ describe('initialise', () => {
       country: 'de',
     });
 
-    expect(actualObject).to.be.instanceOf(ThirtyFiveUp);
+    expect(actualObject).to.be.instanceOf(Sdk);
   });
 
-  it('creates ThirtyFiveUp only with partner id', () => {
+  it('creates Sdk only with partner id', () => {
     const actualObject = initialise({
       partner: 'partner-id',
     });
 
-    expect(actualObject).to.be.instanceOf(ThirtyFiveUp);
+    expect(actualObject).to.be.instanceOf(Sdk);
   });
 
   it('throws an error when no partner information is provided', () => {
