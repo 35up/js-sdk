@@ -5,6 +5,7 @@
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "lint": "eslint --ext .js,.ts .",
+    "prepublishOnly": "make ci",
     "test": "jest --passWithNoTests",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage"
