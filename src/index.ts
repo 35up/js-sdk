@@ -1,24 +1,33 @@
 import { nanoid } from 'nanoid';
+import { SdkInitConfig } from './types';
+import { Sdk } from './sdk';
 
 
-const partnerIdKey = Symbol('partnerId');
-const sessionIdKey = Symbol('sessionId');
-
-export class ThirtyFiveUp {
-  [partnerIdKey]: string;
-  [sessionIdKey]: string;
-
-  constructor(partnerId: string, sessionId: string) {
-    this[partnerIdKey] = partnerId;
-    this[sessionIdKey] = sessionId;
+export function initialise(configuration: SdkInitConfig): Sdk {
+  // Not everybody using this uses typescript
+  if (!('partner' in configuration)) {
+    throw new TypeError('Cannot initialize the 35up SDK without a partner ID');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  getProductRecommendations(): void {
-  }
+  return new Sdk({
+    ...configuration,
+    session: configuration.session ?? nanoid(),
+  });
 }
 
-export function initialise(partnerId: string, sessionId?: string)
-: ThirtyFiveUp {
-  return new ThirtyFiveUp(partnerId, sessionId || nanoid());
-}
+export {
+  SdkInitConfig as SdkConfig,
+  RecommendationParams,
+  ProductRecommendation,
+  BaseProduct,
+  Actions,
+  Customer,
+  Delivery,
+  Descriptions,
+  Images,
+  Logo,
+  Price,
+  Vendor,
+} from './types';
+
+export type ThirtyFiveUp = Sdk;

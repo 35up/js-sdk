@@ -22,9 +22,15 @@ In this case all the API will be available from the global object
 SDK library uses following javascript API and features, please make sure you have them polyfilled if you support older browsers:
  - [Fetch API]
  - [Object.entries]
+ - [Object.values]
+ - [Symbol]
+ - [Array.isArray]
 
 
 <!-- LINKS -->
 
 [Fetch API]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 [Object.entries]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+[Object.values]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values
+[Symbol]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+[Array.isArray]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray

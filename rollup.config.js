@@ -28,30 +28,31 @@ export default [{
       format: 'es',
       plugins: [terser()],
     },
-    {file: pkg.browser, format: 'umd', name: 'thirtyFiveUp'},
+    {file: pkg.main, format: 'cjs', name: 'thirtyFiveUp'},
     {
-      file: pkg.browser.replace(/.js$/, '.min.js'),
-      format: 'umd',
+      file: pkg.main.replace(/.js$/, '.min.js'),
+      format: 'cjs',
       name: 'thirtyFiveUp',
       plugins: [terser()],
     },
   ],
   external: Object.keys(pkg.dependencies || {}),
   plugins: [
-    typescript(),
     commonjs(),
     nodeResolve({browser: true}),
+    typescript(),
   ],
 },
 {
   input: './src/index.ts',
   output: [
-    {file: 'build/35up-js-sdk.js', format: 'iife', name: 'thirtyFiveUp'},
+    {file: pkg.browser, format: 'iife', name: 'thirtyFiveUp'},
+    {file: pkg.amd, format: 'amd', name: 'thirtyFiveUp'},
   ],
   plugins: [
-    typescript(),
     commonjs(),
     nodeResolve({browser: true}),
+    typescript(),
     terser(),
     replace(fromEntries(
       Object.entries(env).map(([ key, value ]) => [
