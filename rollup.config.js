@@ -46,7 +46,8 @@ export default [{
 {
   input: './src/index.ts',
   output: [
-    {file: pkg.browser, format: 'umd', name: 'thirtyFiveUp'},
+    {file: pkg.browser, format: 'iife', name: 'thirtyFiveUp'},
+    {file: pkg.amd, format: 'amd', name: 'thirtyFiveUp'},
   ],
   plugins: [
     commonjs(),
