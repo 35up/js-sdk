@@ -1,6 +1,6 @@
 {
   "name": "@caseable/js-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Javascript SDK library for integrating 35up into your web shop",
   "scripts": {
     "build": "rollup --config rollup.config.js",
