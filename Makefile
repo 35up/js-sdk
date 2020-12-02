@@ -38,9 +38,8 @@ make-type-declarations:
 
 .PHONY: clean
 clean:
-	rm -rf ./node_modules
 	rm -rf ./dist
 
 .PHONY: ci
-ci: lint build make-type-declarations test
+ci: clean lint build make-type-declarations test
 
