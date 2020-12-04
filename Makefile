@@ -32,5 +32,14 @@ test: test-unit
 lint: node_modules
 	npm run lint
 
+.PHONY: make-type-declarations
+make-type-declarations:
+	npm run makeTypeDeclarations
+
+.PHONY: clean
+clean:
+	rm -rf ./dist
+
 .PHONY: ci
-ci: lint build test
+ci: clean lint build make-type-declarations test
+

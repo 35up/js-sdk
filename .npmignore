@@ -1,5 +1,4 @@
 *
-!build/**/*
-!src/**/*
+!dist/**/*
 __mocks__
 *.test.*
