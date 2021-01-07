@@ -3,7 +3,9 @@
   "version": "0.0.2",
   "description": "Javascript SDK library for integrating 35up into your web shop",
   "scripts": {
-    "build": "rollup --config rollup.config.js",
+    "build": "ENV=production rollup --config rollup.config.js",
+    "build:stage": "ENV=staging rollup --config rollup.config.js",
+    "build:mock": "ENV=mock rollup --config rollup.config.js",
     "lint": "eslint --ext .js,.ts .",
     "prepublishOnly": "make ci",
     "test": "jest --passWithNoTests",
@@ -60,6 +62,7 @@
     "ts-jest": "^26.4.4",
     "typescript": "^4.0.5"
   },
+  "iife": "dist/35up-js-sdk.iife.min.js",
   "main": "dist/35up-js-sdk.cjs.js",
   "amd": "dist/35up-js-sdk.amd.min.js",
   "module": "dist/35up-js-sdk.esm.js",
