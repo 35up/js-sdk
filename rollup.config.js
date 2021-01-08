@@ -16,10 +16,7 @@ const { parsed: env } = config({
   ),
 });
 
-const fromEntries = arr => arr
-  .reduce((acc, [ k, v ]) => ({ ...acc, [k]: v}), {});
-
-const replacements = fromEntries(
+const replacements = Object.fromEntries(
   Object.entries(env).map(([ key, value ]) => [
     `process.env.${key}`,
     JSON.stringify(value),
