@@ -91,3 +91,7 @@ export type ProductRecommendation = {
   actions: Actions;
   delivery: Delivery;
 }
+
+export type RecommendationsData = {
+  recommendations: ProductRecommendation[],
+}

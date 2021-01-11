@@ -52,7 +52,9 @@ describe('service - recommendations', () => {
     it('returns recommendations', async () => {
       const recommendations = await getProductRecommendations(input);
 
-      expect(recommendations.data).to.deep.equal(productRecommendations);
+      expect(recommendations.data).to.deep.equal(
+        productRecommendations.recommendations,
+      );
       expect(recommendations.error).to.be.null;
     });
 
