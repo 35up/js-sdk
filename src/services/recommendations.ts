@@ -55,10 +55,10 @@ export async function getProductRecommendations(
   params: Params,
 ): Promise<RemoteRecommendations> {
   try {
-    const recommendations: RecommendationsData = await get(
+    const data: RecommendationsData = await get(
       `/recommendations?${makeSearchParams(params)}`,
     );
-    return makeSuccess(recommendations.recommendations);
+    return makeSuccess(data.recommendations);
   } catch (e) {
     return makeFail(e);
   }
