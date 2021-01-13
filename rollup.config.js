@@ -12,12 +12,16 @@ import pkg from './package.json';
 const { parsed: env } = config({
   path: join(
     process.cwd(),
-    `./env/.env.${process.env.ENV || 'staging'}`,
+    `./env/.env.${process.env.ENV || 'production'}`,
   ),
 });
 
-const fromEntries = arr => arr
-  .reduce((acc, [ k, v ]) => ({ ...acc, [k]: v}), {});
+const replacements = Object.fromEntries(
+  Object.entries(env).map(([ key, value ]) => [
+    `process.env.${key}`,
+    JSON.stringify(value),
+  ]),
+);
 
 export default [{
   input: './src/index.ts',
@@ -41,12 +45,13 @@ export default [{
     commonjs(),
     nodeResolve({browser: true}),
     typescript(),
+    replace(replacements),
   ],
 },
 {
   input: './src/index.ts',
   output: [
-    {file: pkg.browser, format: 'iife', name: 'thirtyFiveUp'},
+    {file: pkg.iife, format: 'iife', name: 'thirtyFiveUp'},
     {file: pkg.amd, format: 'amd', name: 'thirtyFiveUp'},
   ],
   plugins: [
@@ -54,11 +59,6 @@ export default [{
     nodeResolve({browser: true}),
     typescript(),
     terser(),
-    replace(fromEntries(
-      Object.entries(env).map(([ key, value ]) => [
-        `process.env.${key}`,
-        JSON.stringify(value),
-      ]),
-    )),
+    replace(replacements),
   ],
 }];

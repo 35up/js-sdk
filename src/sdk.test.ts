@@ -13,7 +13,7 @@ const getProductRecommendationsMock = getProductRecommendations as SinonStub<
   Promise<RemoteRecommendations>
 >;
 
-const recommendations = getMockRecommendations();
+const { recommendations } = getMockRecommendations();
 const configuration: SdkConfig = {
   partner: 'partner-id',
   session: 'session-id',
@@ -38,7 +38,9 @@ const input: RecommendationParams = {
 describe('Sdk', () => {
   beforeEach(() => {
     getProductRecommendationsMock.reset();
-    getProductRecommendationsMock.resolves(makeSuccess(recommendations));
+    getProductRecommendationsMock.resolves(
+      makeSuccess(recommendations),
+    );
   });
 
   describe('getProductRecommendations', () => {

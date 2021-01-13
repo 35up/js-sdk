@@ -1,5 +1,10 @@
 import { makeFail, makeSuccess, RemoteData } from '@caseable/tslib-frontend-utils';
-import { ProductRecommendation, RecommendationParams, SdkConfig } from '../types';
+import {
+  ProductRecommendation,
+  RecommendationParams,
+  RecommendationsData,
+  SdkConfig,
+} from '../types';
 import { get } from './api/methods';
 
 
@@ -50,10 +55,10 @@ export async function getProductRecommendations(
   params: Params,
 ): Promise<RemoteRecommendations> {
   try {
-    const recommendations: ProductRecommendation[] = await get(
+    const data: RecommendationsData = await get(
       `/recommendations?${makeSearchParams(params)}`,
     );
-    return makeSuccess(recommendations);
+    return makeSuccess(data.recommendations);
   } catch (e) {
     return makeFail(e);
   }

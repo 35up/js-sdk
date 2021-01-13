@@ -1,4 +1,4 @@
-import { ProductRecommendation } from '../types';
+import { ProductRecommendation, RecommendationsData } from '../types';
 
 function makeRecommendation(): ProductRecommendation {
   return {
@@ -44,10 +44,12 @@ function makeRecommendation(): ProductRecommendation {
   };
 }
 
-export const getMockRecommendations = (): ProductRecommendation[] => [
-  makeRecommendation(),
-  makeRecommendation(),
-  makeRecommendation(),
-  makeRecommendation(),
-];
+export const getMockRecommendations = (): RecommendationsData => ({
+  recommendations: [
+    makeRecommendation(),
+    makeRecommendation(),
+    makeRecommendation(),
+    makeRecommendation(),
+  ],
+});
 
