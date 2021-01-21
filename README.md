@@ -78,6 +78,32 @@ recommendations based on the input
 Note that `getRecommendations` is an asynchronous function and returns a 
 `Promise` object.
 
+Full list of recommendations input params:
+```
+{
+  baseProduct: {
+    title: string, (mandatory)
+    price: number,
+    value: number,
+    color: string,
+    category: string,
+    tag: boolean | string | number | object
+  },
+  customer: {
+    age: number | [number, number],
+    gender: string,
+    postcode: number,
+    city: string,
+    country: string
+  },
+  lang: string,
+  country: string,
+  limit: number
+}
+```
+Note: all fields are optional except `baseProduct.title` and you can also pass 
+extra fields in `baseProduct` and `customer`
+
 ## Requirements
 
 SDK library uses following javascript API and features, please make sure you have them polyfilled if you support older browsers:
