@@ -3,19 +3,80 @@
 This library provides with Javascript APIs to integrate 35up
 into your online shop.
 
-You could include it into you code statically as a npm package
+## How to use
+
+### 1. Include library in your project
+You can include it into you code statically as a npm package
 ```$xslt
 npm i -S @35up/js-sdk
 ```
 
-or you can include it dynamically by inserting the following tag into your HTML:
+or you can include it dynamically by adding it as your website asset and
+inserting the following tag into your HTML:
 ```$xslt
-<script type="text/javascript" src="http://cdn.35up.com/35up-js-sdk.js"></script>
+<script type="text/javascript" src="your-site-assets/35up-js-sdk.iife.min.js"></script>
 ```
 
 In this case all the API will be available from the global object
 `thirtyFiveUp`
 
+### 2. Call `initialize` function
+The library exposes `initialise` function that prepares and returns an 
+`Sdk` object:
+
+```
+  import { initialize } from '@35up/js-sdk';
+
+  const config = {
+    partner: 'your_partner_id',
+    lang: 'de',
+    country: 'de'
+  };
+  
+  const sdk = initialize(config); 
+```
+
+Full configuration parameters list:
+
+Parameter | Description | Is optional
+--- | --- | ---
+partner | Your partner ID (contact 35up team to get one) | No
+lang | Language ISO 639-1 code (i.e. 'de', 'en') | Yes
+country | Country ISO 3166 code (i.e. 'us', 'fr') | Yes   
+session | The ID of a session (use only if you want to generate session yourself) | Yes
+
+### 3. Call `getRecommendations` sdk method to get products
+Sdk object has `getRecommendations` function that returns list of product 
+recommendations based on the input
+
+```
+  import { initialize } from '@35up/js-sdk';
+
+  ...
+  
+  const sdk = initialize(config); 
+
+  const input = {
+    partner: 'partner-id',
+    limit: 10,
+    baseProduct: {
+      title: 'Samsung Galaxy S20',
+      category: 'Electronics',
+      extra: {
+        device-type: 'smartphone',
+      },
+    },
+    customer: {
+      age: [20, 30],
+      cities: ['Berlin', 'Frankfurt am Main'],
+    },
+  };
+
+  const recommendations = await sdk.getRecommendations(input);
+```
+
+Note that `getRecommendations` is an asynchronous function and returns a 
+`Promise` object.
 
 ## Requirements
 
