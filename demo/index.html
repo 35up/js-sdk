@@ -9,13 +9,27 @@
 </head>
 <body>
 <h1>Shopping cart</h1>
-<div id="cart-wrapper">
-
-</div>
-<script type="text/javascript" src="../dist/35up-js-sdk.js"></script>
+<button>Fetch recommendations</button>
+<br/>
+<br/>
+<div id="cart-wrapper"></div>
+<script type="text/javascript" src="../dist/35up-js-sdk.iife.min.js"></script>
 <script>
     const container = document.getElementById('cart-wrapper');
-    container.innerText = window.thirtyFiveUp.hello("Friend");
+    const sdk = window.thirtyFiveUp.initialise({partner: '35up-test'});
+
+    document.getElementsByTagName('button')[0].onclick = function() {
+      const input = {
+        baseProduct: {
+          title: 'bestandskunden-samsung-galaxy-s10-plus-128gb-schwarz-12xlow',
+        }
+      };
+
+      sdk.getProductRecommendations(input)
+        .then((recommendations) => {
+          container.innerText = JSON.stringify(recommendations.data);
+        });
+    };
 </script>
 </body>
 </html>
