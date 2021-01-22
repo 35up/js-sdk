@@ -38,12 +38,12 @@ The library exposes `initialise` function that prepares and returns an
 
 Full configuration parameters list:
 
-Parameter | Description | Is optional
---- | --- | ---
-partner | Your partner ID (contact 35up team to get one) | No
-lang | Language `ISO 639-1` code (i.e. `de`, `en`) | Yes
-country | Country `ISO 3166` code (i.e. `us`, `fr`) | Yes   
-session | The ID of a session (use only if you want to generate session yourself) | Yes
+| Parameter | Description                                                             | Optional |
+|-----------|-------------------------------------------------------------------------|----------|
+| partner   | Your partner ID (contact 35up team to get one)                          | No       |
+| lang      | Language `ISO 639-1` code (i.e. `de`, `en`)                             | Yes      |
+| country   | Country `ISO 3166` code (i.e. `us`, `fr`)                               | Yes      |
+| session   | The ID of a session (use only if you want to generate session yourself) | Yes      |
 
 ### 3. Call `getRecommendations` sdk method to get products
 Sdk object has `getRecommendations` function that returns list of product 
