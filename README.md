@@ -20,12 +20,12 @@ inserting the following tag into your HTML:
 In this case all the API will be available from the global object
 `thirtyFiveUp`
 
-### 2. Call `initialize` function
+### 2. Call `initialise` function
 The library exposes `initialise` function that prepares and returns an 
 `Sdk` object:
 
 ```
-  import { initialize } from '@35up/js-sdk';
+  import { initialise } from '@35up/js-sdk';
 
   const config = {
     partner: 'your_partner_id',
@@ -33,7 +33,7 @@ The library exposes `initialise` function that prepares and returns an
     country: 'de'
   };
   
-  const sdk = initialize(config); 
+  const sdk = initialise(config); 
 ```
 
 Full configuration parameters list:
@@ -50,11 +50,11 @@ Sdk object has `getRecommendations` function that returns list of product
 recommendations based on the input
 
 ```
-  import { initialize } from '@35up/js-sdk';
+  import { initialise } from '@35up/js-sdk';
 
   ...
   
-  const sdk = initialize(config); 
+  const sdk = initialise(config); 
 
   const input = {
     partner: 'partner-id',
