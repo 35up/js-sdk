@@ -1,4 +1,4 @@
-import { createMethod } from '@caseable/http-client';
+import { createMethod } from '@35up/http-client';
 
 
 const { PRODUCTS_API } = process.env;

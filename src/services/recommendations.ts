@@ -1,4 +1,4 @@
-import { makeFail, makeSuccess, RemoteData } from '@caseable/tslib-frontend-utils';
+import { makeFail, makeSuccess, RemoteData } from '@35up/tslib-frontend-utils';
 import {
   ProductRecommendation,
   RecommendationParams,

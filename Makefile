@@ -5,11 +5,12 @@ github-pkg:
 	@if cat ~/.npmrc | grep -q '^//npm\.pkg\.github\.com/:_authToken'; then \
 		exit 0; \
 	fi; \
-	echo '======================================================================='; \
-	echo 'Cannot download @caseable packages from the Github package repository'; \
-	echo 'Please go to https://github.com/settings/tokens and generate a personal'; \
-	echo 'access token with permissions to read packages. After you generate the '; \
-	read -a GH_TOKEN -e -p 'token, please type or paste it here: '; \
+	echo '==============================================================='; \
+	echo 'Cannot download private packages from the Github package'; \
+	echo 'repository. Please go to https://github.com/settings/tokens and'; \
+	echo 'generate a personal access token with permissions to read'; \
+	echo 'packages. After you generate the token, please type or paste it'; \
+	read -a GH_TOKEN -e -p 'here: '; \
 	touch ~/.npmrc \
 	&& npm config set '//npm.pkg.github.com/:_authToken' "$$GH_TOKEN"
 

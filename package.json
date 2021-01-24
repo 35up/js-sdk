@@ -1,5 +1,5 @@
 {
-  "name": "@caseable/js-sdk",
+  "name": "@35up/js-sdk",
   "version": "0.1.0",
   "description": "Javascript SDK library for integrating 35up into your web shop",
   "scripts": {
@@ -15,27 +15,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caseable/js-sdk.git"
+    "url": "git+https://github.com/35up/js-sdk.git"
   },
   "keywords": [
     "bootstrap"
   ],
-  "author": "35up GmbH <it@35up.com>",
+  "author": "35up GmbH <the.engineers@35up.com>",
   "license": "UNLICENCED",
   "bugs": {
-    "url": "https://github.com/caseable/js-sdk/issues"
+    "url": "https://github.com/35up/js-sdk/issues"
   },
-  "homepage": "https://github.com/caseable/js-sdk#readme",
+  "homepage": "https://github.com/35up/js-sdk#readme",
   "dependencies": {
-    "@caseable/http-client": "0.0.12",
-    "@caseable/tslib-frontend-utils": "0.0.6",
+    "@35up/http-client": "0.1.0",
+    "@35up/tslib-frontend-utils": "0.1.0",
     "nanoid": "^3.1.20",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
-    "@caseable/eslint-config-35up-base": "0.0.4",
+    "@35up/eslint-config-35up-base": "0.1.0",
     "@rollup/plugin-commonjs": "^16.0.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
     "@rollup/plugin-replace": "^2.3.2",

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { SinonStub } from 'sinon';
-import { makeSuccess } from '@caseable/tslib-frontend-utils';
+import { makeSuccess } from '@35up/tslib-frontend-utils';
 import { getProductRecommendations, RemoteRecommendations } from './services/recommendations';
 import { getMockRecommendations } from './services/recommendations-data';
 import { Sdk } from './sdk';

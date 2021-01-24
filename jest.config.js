@@ -5,7 +5,7 @@ module.exports = {
   coverageReporters: ['lcov'],
   collectCoverageFrom: ['src/**/*.ts'],
   transformIgnorePatterns: [
-    '/node_modules/(?!@caseable/tslib-frontend-utils)',
+    '/node_modules/(?!@35up/tslib-frontend-utils)',
   ],
   transform: {
     '^.+\\.ts$': 'ts-jest',

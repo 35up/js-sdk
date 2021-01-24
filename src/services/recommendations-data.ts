@@ -31,11 +31,11 @@ function makeRecommendation(): ProductRecommendation {
       ),
     },
     actions: {
-      singleClickCheckout: 'https://easy.caseable.com/de/de/add-and-go/sku/HCI60XX114014XXAPIP60/?partner=o2&session=123abc',
-      addToCart: 'https://easy.caseable.com/de/de/add/sku/HCI60XX114014XXAPIP60/?partner=o2&session=123abc',
-      deleteFromCart: 'https://easy.caseable.com/de/de/delete/sku/HCI60XX114014XXAPIP60/?partner=o2&session=123abc',
-      goToCart: 'https://easy.caseable.com/de/de/go/cart/?partner=o2&session=123abc',
-      goToCheckout: 'https://easy.caseable.com/de/de/go/checkout/?partner=o2&session=123abc',
+      singleClickCheckout: 'https://easy.35up.io/de/de/add-and-go/sku/HCI60XX114014XXAPIP60/?partner=o2&session=123abc',
+      addToCart: 'https://easy.35up.io/de/de/add/sku/HCI60XX114014XXAPIP60/?partner=o2&session=123abc',
+      deleteFromCart: 'https://easy.35up.io/de/de/delete/sku/HCI60XX114014XXAPIP60/?partner=o2&session=123abc',
+      goToCart: 'https://easy.35up.io/de/de/go/cart/?partner=o2&session=123abc',
+      goToCheckout: 'https://easy.35up.io/de/de/go/checkout/?partner=o2&session=123abc',
     },
     delivery: {
       timeMin: 2,
