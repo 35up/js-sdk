@@ -22,8 +22,8 @@ export type Customer = {
 export type SdkInitConfig = {
   partner: string;
   session?: string;
-  lang?: string;
-  country?: string;
+  lang: string;
+  country: string;
 }
 
 export type SdkConfig = SdkInitConfig & {

@@ -9,6 +9,7 @@ const input: SdkConfig & RecommendationParams = {
   partner: 'partner-7',
   session: 'sess-12',
   lang: 'en',
+  country: 'de',
   limit: 10,
   baseProduct: {
     title: 'Cocobolo desk',
@@ -28,10 +29,10 @@ const productRecommendations = getMockRecommendations();
 describe('service - recommendations', () => {
   describe('makeSearchParams', () => {
     it('converts object to search string', () => {
-      const expected = 'partner=partner-7&session=sess-12&lang=en&limit=10'
-        + '&baseProduct.title=Cocobolo%20desk&baseProduct.category=Furniture'
-        + '&baseProduct.extra.foo=ba-da%20boo%5E%3F&customer.age=20-30'
-        + '&customer.cities=Berlin,Frankfurt%20am%20Main';
+      const expected = 'partner=partner-7&session=sess-12&lang=en&country=us'
+        + '&limit=10&baseProduct.title=Cocobolo%20desk&baseProduct.category'
+        + '=Furniture&baseProduct.extra.foo=ba-da%20boo%5E%3F&customer.age='
+        + '20-30&customer.cities=Berlin,Frankfurt%20am%20Main';
 
       expect(makeSearchParams(input)).to.equal(expected);
     });
