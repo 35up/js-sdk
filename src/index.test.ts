@@ -15,9 +15,11 @@ describe('initialise', () => {
     expect(actualObject).to.be.instanceOf(Sdk);
   });
 
-  it('creates Sdk only with partner id', () => {
+  it('creates Sdk only with mandatory fields', () => {
     const actualObject = initialise({
       partner: 'partner-id',
+      lang: 'en',
+      country: 'de',
     });
 
     expect(actualObject).to.be.instanceOf(Sdk);
@@ -29,5 +31,34 @@ describe('initialise', () => {
       // @ts-ignore
       initialise({lang: 'en', country: 'de', session: 'session-id'});
     }).to.throw('Cannot initialise the 35up SDK without a partner ID');
+  });
+
+  it('throws an error when no language information is provided', () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      initialise({partner: 'partner-id', lang: 'en', session: 'session-id'});
+    }).to.throw('Cannot initialise the 35up SDK without a language and country');
+  });
+
+  it('throws an error when no country information is provided', () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      initialise({
+        partner: 'partner-id',
+        country: 'de',
+        session: 'session-id',
+      });
+    }).to.throw('Cannot initialise the 35up SDK without a language and country');
+  });
+
+  it('throws an error when no language and country'
+    + 'information is provided', () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      initialise({partner: 'partner-id', session: 'session-id'});
+    }).to.throw('Cannot initialise the 35up SDK without a language and country');
   });
 });
