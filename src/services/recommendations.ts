@@ -46,7 +46,7 @@ function flattenInput(
 }
 
 export function makeSearchParams(input: TParams): string {
-  return flattenInput(input)
+  return flattenInput({...input})
     .map(([ key, value ]) => (`${key}=${value}`))
     .join('&');
 }
