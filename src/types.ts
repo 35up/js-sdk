@@ -1,6 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/naming-convention
 type mixed = boolean | string | number | Record<string, unknown>;
 
-export type BaseProduct = {
+export interface BaseProduct {
   title: string;
   price?: number;
   value?: number;
@@ -10,7 +11,7 @@ export type BaseProduct = {
   [x: string]: unknown;
 }
 
-export type Customer = {
+export interface Customer {
   age?: number | [number, number];
   gender?: string;
   postcode?: number;
@@ -19,18 +20,18 @@ export type Customer = {
   [x: string]: unknown;
 }
 
-export type SdkInitConfig = {
+export interface SdkInitConfig {
   partner: string;
   session?: string;
   lang: string;
   country: string;
 }
 
-export type SdkConfig = SdkInitConfig & {
+export interface SdkConfig extends SdkInitConfig {
   session: string;
 }
 
-export type RecommendationParams = {
+export interface RecommendationParams {
   baseProduct: BaseProduct;
   customer?: Customer;
   lang?: string;
@@ -38,37 +39,37 @@ export type RecommendationParams = {
   limit?: number;
 }
 
-export type Logo = {
+export interface Logo {
   square: string;
   landscape: string;
 }
 
-export type Vendor = {
+export interface Vendor {
   id: string;
   name: string;
   legalName: string;
   logo: Logo;
 }
 
-export type Price = {
+export interface Price {
   value: number;
   currency: string;
   formatted: string;
 }
 
-export type Images = {
+export interface Images {
   thumbnail: string;
   small?: string;
   medium?: string;
   large?: string;
 }
 
-export type Descriptions = {
+export interface Descriptions {
   short: string;
   long: string;
 }
 
-export type Actions = {
+export interface Actions {
   singleClickCheckout?: string;
   addToCart: string;
   deleteFromCart: string;
@@ -76,12 +77,12 @@ export type Actions = {
   goToCheckout: string;
 }
 
-export type Delivery = {
+export interface Delivery {
   timeMin?: number;
   timeMax?: number;
 }
 
-export type ProductRecommendation = {
+export interface ProductRecommendation {
   sku: string;
   vendor: Vendor;
   name: string;
@@ -92,6 +93,6 @@ export type ProductRecommendation = {
   delivery: Delivery;
 }
 
-export type RecommendationsData = {
+export interface RecommendationsData {
   recommendations: ProductRecommendation[],
 }

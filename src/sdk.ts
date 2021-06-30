@@ -1,5 +1,5 @@
 import type { RecommendationParams, SdkConfig } from './types';
-import { RemoteRecommendations, getProductRecommendations } from './services/recommendations';
+import { TRemoteRecommendations, getProductRecommendations } from './services/recommendations';
 
 
 const configurationKey = Symbol('configuration');
@@ -13,7 +13,7 @@ export class Sdk {
 
   async getProductRecommendations(
     input: RecommendationParams,
-  ): Promise<RemoteRecommendations> {
+  ): Promise<TRemoteRecommendations> {
     return getProductRecommendations({
       ...this[configurationKey],
       ...input,

@@ -35,4 +35,5 @@ export {
   Vendor,
 } from './types';
 
-export type ThirtyFiveUp = Sdk;
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThirtyFiveUp extends Sdk {}
