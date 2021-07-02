@@ -8,8 +8,8 @@ import {
 import { get } from './api/methods';
 
 
-export type RemoteRecommendations = RemoteData<ProductRecommendation[]>;
-type Params = SdkConfig & RecommendationParams;
+export type TRemoteRecommendations = RemoteData<ProductRecommendation[]>;
+type TParams = SdkConfig & RecommendationParams;
 
 
 function flattenInput(
@@ -45,15 +45,15 @@ function flattenInput(
   return result;
 }
 
-export function makeSearchParams(input: Params): string {
-  return flattenInput(input)
+export function makeSearchParams(input: TParams): string {
+  return flattenInput({...input})
     .map(([ key, value ]) => (`${key}=${value}`))
     .join('&');
 }
 
 export async function getProductRecommendations(
-  params: Params,
-): Promise<RemoteRecommendations> {
+  params: TParams,
+): Promise<TRemoteRecommendations> {
   try {
     const data: RecommendationsData = await get(
       `/recommendations?${makeSearchParams(params)}`,

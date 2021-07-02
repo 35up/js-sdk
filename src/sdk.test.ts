@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { SinonStub } from 'sinon';
 import { makeSuccess } from '@35up/tslib-frontend-utils';
-import { getProductRecommendations, RemoteRecommendations } from './services/recommendations';
+import { getProductRecommendations, TRemoteRecommendations } from './services/recommendations';
 import { getMockRecommendations } from './services/recommendations-data';
 import { Sdk } from './sdk';
 import { RecommendationParams, SdkConfig } from './types';
@@ -10,7 +10,7 @@ import { RecommendationParams, SdkConfig } from './types';
 jest.mock('./services/recommendations');
 const getProductRecommendationsMock = getProductRecommendations as SinonStub<
   unknown[],
-  Promise<RemoteRecommendations>
+  Promise<TRemoteRecommendations>
 >;
 
 const { recommendations } = getMockRecommendations();

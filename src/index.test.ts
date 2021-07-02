@@ -38,7 +38,9 @@ describe('initialise', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       initialise({partner: 'partner-id', lang: 'en', session: 'session-id'});
-    }).to.throw('Cannot initialise the 35up SDK without a language and country');
+    }).to.throw(
+      'Cannot initialise the 35up SDK without a language and country',
+    );
   });
 
   it('throws an error when no country information is provided', () => {
@@ -50,7 +52,9 @@ describe('initialise', () => {
         country: 'de',
         session: 'session-id',
       });
-    }).to.throw('Cannot initialise the 35up SDK without a language and country');
+    }).to.throw(
+      'Cannot initialise the 35up SDK without a language and country',
+    );
   });
 
   it('throws an error when no language and country'
@@ -59,6 +63,8 @@ describe('initialise', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       initialise({partner: 'partner-id', session: 'session-id'});
-    }).to.throw('Cannot initialise the 35up SDK without a language and country');
+    }).to.throw(
+      'Cannot initialise the 35up SDK without a language and country',
+    );
   });
 });

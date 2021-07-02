@@ -1,14 +1,2 @@
 extends:
   - "@35up/35up-base"
-parser: '@typescript-eslint/parser'
-plugins:
-  - '@typescript-eslint'
-env:
-  browser: true
-  es6: true
-overrides:
-  - files:
-      - "**/*.ts"
-    extends:
-      - 'plugin:@typescript-eslint/eslint-recommended'
-      - 'plugin:@typescript-eslint/recommended'
