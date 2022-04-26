@@ -10,9 +10,9 @@ github-pkg:
 	echo 'repository. Please go to https://github.com/settings/tokens and'; \
 	echo 'generate a personal access token with permissions to read'; \
 	echo 'packages. After you generate the token, please type or paste it'; \
-	read -a GH_TOKEN -e -p 'here: '; \
-	touch ~/.npmrc \
-	&& npm config set '//npm.pkg.github.com/:_authToken' "$$GH_TOKEN"
+	read -p 'here: ' GH_TOKEN \
+	&& npm config set --userconfig .npmrc \
+		'//npm.pkg.github.com/:_authToken' "$$GH_TOKEN"
 
 .PHONY: node_modules
 node_modules:
