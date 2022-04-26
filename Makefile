@@ -14,7 +14,6 @@ github-pkg:
 	&& npm config set --userconfig .npmrc \
 		'//npm.pkg.github.com/:_authToken' "$$GH_TOKEN"
 
-.PHONY: node_modules
 node_modules:
 	npm i
 
