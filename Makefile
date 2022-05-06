@@ -1,6 +1,9 @@
 .DEFAULT_GOAL := build
 
 .npmrc:
+  # Disables package lock
+	npm config set "package-lock"="false" --userconfig .npmrc \
+
   # Sets proper registry
 	npm config set --userconfig .npmrc \
       "@35up:registry" "https://npm.pkg.github.com" \
