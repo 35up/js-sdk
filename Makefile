@@ -21,7 +21,7 @@
 	echo 'packages. After you generate the token, please type or paste it'; \
 	read -p 'here: ' GH_TOKEN \
 	&& npm config set --userconfig .npmrc \
-		'//npm.pkg.github.com/:_authToken' "$$GH_TOKEN" \
+		'//npm.pkg.github.com/:_authToken' "$$GH_TOKEN"
 
 node_modules: .npmrc
 	npm i
