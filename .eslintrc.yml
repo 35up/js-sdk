@@ -1,2 +1,5 @@
 extends:
   - "@35up/35up-base"
+parserOptions:
+  project:
+    - tsconfig.json
