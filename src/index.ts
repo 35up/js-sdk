@@ -23,6 +23,9 @@ export function initialise(configuration: SdkInitConfig): Sdk {
 export {
   SdkInitConfig as SdkConfig,
   RecommendationParams,
+  CreateOrderDetails,
+  CreateOrderResult,
+  ORDER_STATUS,
   ProductRecommendation,
   BaseProduct,
   Actions,
