@@ -1,4 +1,8 @@
-import { makeFail, makeSuccess, RemoteData } from '@35up/tslib-frontend-utils';
+import {
+  makeFail,
+  makeSuccess,
+  ResolvedRemoteData,
+} from '@35up/tslib-frontend-utils';
 import {
   ProductRecommendation,
   RecommendationParams,
@@ -8,7 +12,9 @@ import {
 import { get } from './api/methods';
 
 
-export type TRemoteRecommendations = RemoteData<ProductRecommendation[]>;
+export type TRemoteRecommendations = ResolvedRemoteData<
+  ProductRecommendation[]
+>;
 type TParams = SdkConfig & RecommendationParams;
 
 
