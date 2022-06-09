@@ -11,9 +11,13 @@ module.exports = {
     },
   },
   collectCoverageFrom: ['src/**/*.ts'],
+  moduleNameMapper: {
+    nanoid: '<rootDir>/node_modules/nanoid/index.cjs',
+  },
   transformIgnorePatterns: [
-    '/node_modules/(?!@35up/tslib-frontend-utils)',
+    '/node_modules/(?!@35up/*)',
   ],
+  testEnvironment: 'jsdom',
   transform: {
     '^.+\\.ts$': 'ts-jest',
     '^.+\\.js$': 'babel-jest',
