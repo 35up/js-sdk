@@ -19,7 +19,7 @@ export function handleApiError<TParams>(
     return new BadParamsError<TParams>(
       'Bad request body',
       'errors' in e.data
-        ? (e.data as { errors: TParamErrorDetail<TParams> }).errors
+        ? (e.data as {errors: TParamErrorDetail<TParams>}).errors
         : undefined,
     );
   }
