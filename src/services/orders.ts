@@ -24,8 +24,6 @@ type TCreateOrderResultRaw = {
 /**
  * This endpoint allows the partner to place an order on the 35up marketplace
  * and responds with a 35up order ID and a status update.
- * @param details
- * @param config
  */
 export async function createOrder(
   details: CreateOrderDetails,
