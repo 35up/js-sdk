@@ -1,7 +1,6 @@
 import { HttpError } from '@35up/http-client';
 
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type TParamErrorDetail<T> = string | {
   [P in keyof T]?: string | TParamErrorDetail<T[P]>
 };
