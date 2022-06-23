@@ -2,7 +2,8 @@ import { expect } from 'chai';
 import { isFail, isSuccess } from '@35up/tslib-frontend-utils';
 import { HttpError } from '@35up/http-client';
 import {
-  CreateOrderDetails, CreateOrderResult,
+  CreateOrderDetails,
+  CreateOrderResult,
   ORDER_STATUS,
   SdkConfig,
 } from '../types';
