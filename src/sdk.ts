@@ -1,5 +1,12 @@
-import type { RecommendationParams, SdkConfig } from './types';
+import { ResolvedRemoteData } from '@35up/tslib-frontend-utils';
+import type {
+  CreateOrderDetails,
+  CreateOrderResult,
+  RecommendationParams,
+  SdkConfig,
+} from './types';
 import { TRemoteRecommendations, getProductRecommendations } from './services/recommendations';
+import { createOrder } from './services/orders';
 
 
 const configurationKey = Symbol('configuration');
@@ -18,5 +25,11 @@ export class Sdk {
       ...this[configurationKey],
       ...input,
     });
+  }
+
+  async createOrder(
+    details: CreateOrderDetails,
+  ): Promise<ResolvedRemoteData<CreateOrderResult>> {
+    return createOrder(details, this[configurationKey]);
   }
 }
