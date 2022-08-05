@@ -82,7 +82,7 @@ export interface Actions {
   goToCheckout: string;
 }
 
-export type Measurement = {
+export interface Measurement {
   unit: string;
   value: number;
 }

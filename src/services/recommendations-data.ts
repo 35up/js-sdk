@@ -1,7 +1,7 @@
 import { ProductRecommendation, RecommendationsData } from '../types';
 
 function makeRecommendation(): ProductRecommendation {
-  return  {
+  return {
     name: 'Galaxy S500 HardCase, "Realism" by Dan Say',
     sku: 'caseable/BCI60XX114014XXAPIP67',
     categories: [],
