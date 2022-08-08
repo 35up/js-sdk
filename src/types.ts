@@ -82,7 +82,7 @@ export interface Actions {
   goToCheckout: string;
 }
 
-export interface Measurement {
+export interface ValueWithUnit {
   unit: string;
   value: number;
 }
@@ -91,10 +91,10 @@ export interface Delivery {
   timeMin?: number;
   timeMax?: number;
   package?: {
-    weight?: Measurement;
-    width?: Measurement;
-    height?: Measurement;
-    length?: Measurement;
+    weight?: ValueWithUnit;
+    width?: ValueWithUnit;
+    height?: ValueWithUnit;
+    length?: ValueWithUnit;
   }
 }
 
@@ -102,12 +102,12 @@ export interface Specs {
   type: string;
   materials?: string[];
   color?: string;
-  weight?: Measurement;
-  width?: Measurement;
-  height?: Measurement;
-  length?: Measurement;
+  weight?: ValueWithUnit;
+  width?: ValueWithUnit;
+  height?: ValueWithUnit;
+  length?: ValueWithUnit;
   contract?: {
-    duration?: Measurement;
+    duration?: ValueWithUnit;
   }
 }
 
