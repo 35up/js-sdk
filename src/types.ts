@@ -59,6 +59,7 @@ export interface Price {
   value: number;
   currency: string;
   formatted: string;
+  label?: string;
 }
 
 export interface Images {
@@ -81,20 +82,61 @@ export interface Actions {
   goToCheckout: string;
 }
 
+export interface ValueWithUnit {
+  unit: string;
+  value: number;
+}
+
 export interface Delivery {
   timeMin?: number;
   timeMax?: number;
+  package?: {
+    weight?: ValueWithUnit;
+    width?: ValueWithUnit;
+    height?: ValueWithUnit;
+    length?: ValueWithUnit;
+  }
+}
+
+export interface Specs {
+  type: string;
+  materials?: string[];
+  color?: string;
+  weight?: ValueWithUnit;
+  width?: ValueWithUnit;
+  height?: ValueWithUnit;
+  length?: ValueWithUnit;
+  contract?: {
+    duration?: ValueWithUnit;
+  }
+}
+
+export interface Gtin { [k: string]: string; }
+
+export interface Tax {
+  code: string;
+  type: string;
+  base: string;
+  rate: number;
+  included: boolean;
 }
 
 export interface ProductRecommendation {
   sku: string;
   vendor: Vendor;
   name: string;
-  price: Price;
   images: Images;
   descriptions: Descriptions;
-  actions: Actions;
-  delivery: Delivery;
+  specs: Specs;
+  delivery?: Delivery;
+  price?: Price;
+  gtin?: Gtin;
+  taxes?: Tax[];
+  urls?: Record<string, string>;
+  actions?: Actions;
+  details?: Record<string, unknown>;
+  categories?: string[];
+  tags?: string[];
 }
 
 export interface RecommendationsData {

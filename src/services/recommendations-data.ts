@@ -2,44 +2,106 @@ import { ProductRecommendation, RecommendationsData } from '../types';
 
 function makeRecommendation(): ProductRecommendation {
   return {
-    sku: 'caseable/HCI60XX114014XXAPIP60',
+    name: 'Galaxy S500 HardCase, "Realism" by Dan Say',
+    sku: 'caseable/BCI60XX114014XXAPIP67',
+    categories: [],
     vendor: {
       id: 'caseable',
-      name: 'caseable',
       legalName: 'caseable GmbH',
+      name: 'caseable',
       logo: {
-        square: 'https://caseable.com/media/logo/squared.png',
         landscape: 'https://caseable.com/media/logo/horizontal.png',
+        square: 'https://caseable.com/media/logo/squared.png',
       },
     },
-    name: 'Galaxy S10 HardCase, "Release" by Dan May',
     price: {
-      value: 29.3,
+      value: 99.3,
       currency: 'EUR',
-      formatted: '€ 29,30',
-    },
-    images: {
-      thumbnail: 'https://caseable.com/media/product/galaxy-s10-hc/dan-may/release/thumb.jpg',
-      small: 'https://caseable.com/media/product/galaxy-s10-hc/dan-may/release/small.jpg',
-      medium: 'https://caseable.com/media/product/galaxy-s10-hc/dan-may/release/medium.jpg',
-      large: 'https://caseable.com/media/product/galaxy-s10-hc/dan-may/release/large.jpg',
-    },
-    descriptions: {
-      short: 'Hardshell cell phone case',
-      long: (
-        'Our hardshell cell phone cases can be attached to your smartphone...'
-      ),
+      formatted: '€ 99,30',
     },
     actions: {
-      singleClickCheckout: 'https://easy.35up.io/de/de/add-and-go/sku/HCI60XX114014XXAPIP60/?partner=o2&session=123abc',
-      addToCart: 'https://easy.35up.io/de/de/add/sku/HCI60XX114014XXAPIP60/?partner=o2&session=123abc',
-      deleteFromCart: 'https://easy.35up.io/de/de/delete/sku/HCI60XX114014XXAPIP60/?partner=o2&session=123abc',
-      goToCart: 'https://easy.35up.io/de/de/go/cart/?partner=o2&session=123abc',
-      goToCheckout: 'https://easy.35up.io/de/de/go/checkout/?partner=o2&session=123abc',
+      addToCart: 'https://easy.35up.io/de/de/add/sku/BCI60XX114014XXAPIP67/?partner=o2',
+      deleteFromCart: 'https://easy.35up.io/de/de/delete/sku/BCI60XX114014XXAPIP67/?partner=o2',
+      goToCheckout: 'https://easy.35up.io/de/de/go/checkout/?partner=o2',
+      goToCart: 'https://easy.35up.io/de/de/go/cart/?partner=o2',
+      singleClickCheckout: 'https://easy.35up.io/de/de/add-and-go/sku/BCI60XX114014XXAPIP67/?partner=o2',
+    },
+    descriptions: {
+      short: 'Hardnut cello phone case',
+      long: (
+        'Our hardnut cello phone cases can be attached to your smartphone...'
+      ),
+    },
+    images: {
+      thumbnail: 'https://caseable.com/media/product/galaxy-s500-hc/dan-say/realism/thumb.jpg',
+      small: 'https://caseable.com/media/product/galaxy-s500-hc/dan-say/realism/small.jpg',
+      medium: 'https://caseable.com/media/product/galaxy-s500-hc/dan-say/realism/medium.jpg',
+      large: 'https://caseable.com/media/product/galaxy-s500-hc/dan-say/realism/large.jpg',
     },
     delivery: {
-      timeMin: 2,
-      timeMax: 4,
+      timeMin: 3,
+      timeMax: 5,
+      package: {
+        height: {
+          value: 15,
+          unit: 'cm',
+        },
+        length: {
+          value: 5,
+          unit: 'mm',
+        },
+        weight: {
+          value: 300,
+          unit: 'gr',
+        },
+        width: {
+          value: 5,
+          unit: 'cm',
+        },
+      },
+    },
+    taxes: [
+      {
+        code: 'MNL',
+        type: 'included',
+        base: 'net',
+        rate: 0.27,
+        included: false,
+      },
+      {
+        code: 'VAT',
+        type: 'standard',
+        base: 'gross',
+        rate: 0.15,
+        included: true,
+      },
+    ],
+    gtin: {
+      isbn: '2355232435',
+    },
+    specs: {
+      height: {
+        value: 15,
+        unit: 'cm',
+      },
+      weight: {
+        value: 300,
+        unit: 'gr',
+      },
+      width: {
+        value: 5,
+        unit: 'cm',
+      },
+      length: {
+        value: 5,
+        unit: 'mm',
+      },
+      color: 'darkblue',
+      type: 'phone hard case',
+      materials: [
+        'silicon',
+        'plastic',
+      ],
     },
   };
 }
