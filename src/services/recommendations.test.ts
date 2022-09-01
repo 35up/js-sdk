@@ -5,9 +5,7 @@ import { RecommendationParams, SdkConfig } from '../types';
 import { getMockRecommendations } from './recommendations-data';
 
 
-const input: SdkConfig & RecommendationParams = {
-  partner: 'partner-7',
-  session: 'sess-12',
+const input: RecommendationParams = {
   lang: 'en',
   country: 'de',
   limit: 10,
@@ -24,17 +22,32 @@ const input: SdkConfig & RecommendationParams = {
   },
 };
 
+const sdkConfigWithoutUrl: Omit<SdkConfig, 'apiUrl'> = {
+  lang: 'de',
+  country: 'au',
+  partner: 'partner-7',
+  session: 'sess-12',
+};
+
+const sdkConfig: SdkConfig = {
+  ...sdkConfigWithoutUrl,
+  apiUrl: 'https://api.fake.io/v1',
+};
+
 const productRecommendations = getMockRecommendations();
 
 describe('service - recommendations', () => {
   describe('makeSearchParams', () => {
     it('converts object to search string', () => {
-      const expected = 'partner=partner-7&session=sess-12&lang=en&country=de'
+      const expected = 'lang=en&country=de&partner=partner-7&session=sess-12'
         + '&limit=10&baseProduct.title=Cocobolo%20desk&baseProduct.category'
         + '=Furniture&baseProduct.extra.foo=ba-da%20boo%5E%3F&customer.age='
         + '20-30&customer.cities=Berlin,Frankfurt%20am%20Main';
 
-      expect(makeSearchParams(input)).to.equal(expected);
+      expect(makeSearchParams({
+        ...sdkConfigWithoutUrl,
+        ...input,
+      })).to.equal(expected);
     });
   });
 
@@ -50,8 +63,14 @@ describe('service - recommendations', () => {
       fetch.resetMocks();
     });
 
+    it('makes request to the proper endpoint', async () => {
+      await getProductRecommendations(input, sdkConfig);
+
+      expect(fetchMock.mock.calls[0][0]).to.startWith(sdkConfig.apiUrl);
+    });
+
     it('returns recommendations', async () => {
-      const recommendations = await getProductRecommendations(input);
+      const recommendations = await getProductRecommendations(input, sdkConfig);
 
       expect(recommendations.data).to.deep.equal(
         productRecommendations.recommendations,
@@ -63,7 +82,7 @@ describe('service - recommendations', () => {
       const error = new Error('fail');
       fetch.mockReject(error);
 
-      const recommendations = await getProductRecommendations(input);
+      const recommendations = await getProductRecommendations(input, sdkConfig);
 
       expect(recommendations.data).to.be.null;
       expect(recommendations.error).to.be.equal(error);

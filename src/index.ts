@@ -16,7 +16,8 @@ export function initialise(configuration: SdkInitConfig): Sdk {
 
   return new Sdk({
     ...configuration,
-    session: configuration.session ?? nanoid(),
+    session: configuration.session || nanoid(),
+    apiUrl: configuration.apiUrl || 'https://api.35up.io/v1',
   });
 }
 

@@ -17,6 +17,7 @@ const config: SdkConfig = {
   lang: 'en',
   country: 'de',
   partner: 'store',
+  apiUrl: 'https://api.fake.io/v1',
 };
 
 describe('orders service', () => {
@@ -58,8 +59,8 @@ describe('orders service', () => {
     it('makes the request to the orders endpoint', async () => {
       await createOrder(details, config);
 
-      expect(fetchMock.mock.calls[0][0]).to.endWith(
-        `/orders?session=${config.session}`,
+      expect(fetchMock.mock.calls[0][0]).to.equal(
+        `${config.apiUrl}/orders?session=${config.session}`,
       );
       expect(fetchMock.mock.calls[0][1]).to.include({
         body: JSON.stringify(details),

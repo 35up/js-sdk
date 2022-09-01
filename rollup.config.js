@@ -1,27 +1,10 @@
-import { join } from 'path';
-import { config } from 'dotenv';
 import typescript from '@rollup/plugin-typescript';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
-import replace from '@rollup/plugin-replace';
 // eslint-disable-next-line import/extensions
 import pkg from './package.json';
 
-
-const { parsed: env } = config({
-  path: join(
-    process.cwd(),
-    `./env/.env.${process.env.ENV || 'production'}`,
-  ),
-});
-
-const replacements = Object.fromEntries(
-  Object.entries(env).map(([ key, value ]) => [
-    `process.env.${key}`,
-    JSON.stringify(value),
-  ]),
-);
 
 export default [{
   input: './src/index.ts',
@@ -45,7 +28,6 @@ export default [{
     commonjs(),
     nodeResolve({browser: true}),
     typescript(),
-    replace(replacements),
   ],
 },
 {
@@ -59,6 +41,5 @@ export default [{
     nodeResolve({browser: true}),
     typescript(),
     terser(),
-    replace(replacements),
   ],
 }];

@@ -3,13 +3,13 @@ import {
   makeSuccess,
   ResolvedRemoteData,
 } from '@35up/tslib-frontend-utils';
+import { post } from '@35up/http-client';
 import {
   CreateOrderDetails,
   CreateOrderResult,
   ORDER_STATUS,
   SdkConfig,
 } from '../types';
-import { post } from './api/methods';
 import { handleApiError } from '../errors';
 import { parseUnixTimestamp } from '../utils';
 
@@ -31,7 +31,7 @@ export async function createOrder(
 ): Promise<ResolvedRemoteData<CreateOrderResult>> {
   try {
     const result: TCreateOrderResultRaw = await post(
-      `/orders?session=${encodeURIComponent(config.session)}`,
+      `${config.apiUrl}/orders?session=${encodeURIComponent(config.session)}`,
       details,
     );
 
