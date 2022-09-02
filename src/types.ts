@@ -29,9 +29,8 @@ export interface SdkInitConfig {
   session?: string;
   /**
    * By default, this sdk interfaces with the API located at
-   * https://api.35up.io/v1, but it can be configured to point to point to a
-   * sandbox server, a proxy, or a mock implementation, by specifying another
-   * url
+   * https://api.35up.io/v1, but it can be configured to point to a sandbox
+   * server, a proxy, or a mock implementation, by specifying another url
    */
   apiUrl?: string;
   lang: string;
