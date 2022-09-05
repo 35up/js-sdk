@@ -3,19 +3,19 @@ import {
   makeSuccess,
   ResolvedRemoteData,
 } from '@35up/tslib-frontend-utils';
+import { get } from '@35up/http-client';
 import {
   ProductRecommendation,
   RecommendationParams,
   RecommendationsData,
   SdkConfig,
 } from '../types';
-import { get } from './api/methods';
 
 
 export type TRemoteRecommendations = ResolvedRemoteData<
   ProductRecommendation[]
 >;
-type TParams = SdkConfig & RecommendationParams;
+type TParams = Omit<SdkConfig, 'apiUrl'> & RecommendationParams;
 
 
 function flattenInput(
@@ -58,11 +58,14 @@ export function makeSearchParams(input: TParams): string {
 }
 
 export async function getProductRecommendations(
-  params: TParams,
+  params: RecommendationParams,
+  sdkConfig: SdkConfig,
 ): Promise<TRemoteRecommendations> {
+  const { apiUrl, ...finalParams } = {...sdkConfig, ...params};
+
   try {
     const data: RecommendationsData = await get(
-      `/recommendations?${makeSearchParams(params)}`,
+      `${apiUrl}/recommendations?${makeSearchParams(finalParams)}`,
     );
     return makeSuccess(data.recommendations);
   } catch (e) {

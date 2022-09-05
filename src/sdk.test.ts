@@ -21,6 +21,7 @@ const getProductRecommendationsMock = makeTypedMockFn(
 const createOrderMock = makeTypedMockFn(createOrder);
 
 const configuration: SdkConfig = {
+  apiUrl: 'https://fake.api/v1',
   partner: 'partner-id',
   session: 'session-id',
   country: 'de',
@@ -58,10 +59,10 @@ describe('Sdk', () => {
       expect(
         await instance.getProductRecommendations(input),
       ).to.be.deep.equal(makeSuccess(recommendations));
-      expect(getProductRecommendationsMock).to.have.been.calledWith({
-        ...configuration,
-        ...input,
-      });
+      expect(getProductRecommendationsMock).to.have.been.calledWith(
+        input,
+        configuration,
+      );
     });
   });
 

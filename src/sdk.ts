@@ -21,10 +21,7 @@ export class Sdk {
   async getProductRecommendations(
     input: RecommendationParams,
   ): Promise<TRemoteRecommendations> {
-    return getProductRecommendations({
-      ...this[configurationKey],
-      ...input,
-    });
+    return getProductRecommendations(input, this[configurationKey]);
   }
 
   async createOrder(

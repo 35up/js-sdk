@@ -10,6 +10,7 @@ describe('initialise', () => {
       session: '8662f5bf-92c3-428c-b542-0c59147a8fb4',
       lang: 'en',
       country: 'de',
+      apiUrl: 'https://api.35up.io/v1',
     });
 
     expect(actualObject).to.be.instanceOf(Sdk);
