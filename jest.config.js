@@ -1,3 +1,7 @@
+const packagesToTranspile = [
+  '@35up/*',
+];
+
 module.exports = {
   setupFilesAfterEnv: ['./src/setup-tests.ts'],
   testPathIgnorePatterns: ['/node_modules/'],
@@ -15,7 +19,7 @@ module.exports = {
     nanoid: '<rootDir>/node_modules/nanoid/index.cjs',
   },
   transformIgnorePatterns: [
-    '/node_modules/(?!@35up/*)',
+    `/node_modules/(?!${packagesToTranspile.join('|')})`,
   ],
   testEnvironment: 'jsdom',
   transform: {
