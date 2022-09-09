@@ -1,11 +1,14 @@
-import { ResolvedRemoteData } from '@35up/tslib-frontend-utils';
+import { ResolvedRemoteData } from '@35up/tslib-utils';
 import type {
   CreateOrderDetails,
   CreateOrderResult,
   RecommendationParams,
   SdkConfig,
 } from './types';
-import { TRemoteRecommendations, getProductRecommendations } from './services/recommendations';
+import {
+  TRemoteRecommendations,
+  getProductRecommendations,
+} from './services/recommendations';
 import { createOrder } from './services/orders';
 
 

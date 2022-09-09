@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { isFail, isSuccess } from '@35up/tslib-frontend-utils';
+import { isFail, isSuccess } from '@35up/tslib-utils';
 import { HttpError } from '@35up/http-client';
 import {
   CreateOrderDetails,

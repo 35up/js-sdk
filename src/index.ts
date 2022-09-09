@@ -21,7 +21,7 @@ export function initialise(configuration: SdkInitConfig): Sdk {
   });
 }
 
-export {
+export type {
   SdkInitConfig as SdkConfig,
   RecommendationParams,
   CreateOrderDetails,

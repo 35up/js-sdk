@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { makeSuccess } from '@35up/tslib-frontend-utils';
+import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import { getProductRecommendations } from './services/recommendations';
 import { getMockRecommendations } from './services/recommendations-data';

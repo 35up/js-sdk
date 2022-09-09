@@ -2,7 +2,7 @@ import {
   makeFail,
   makeSuccess,
   ResolvedRemoteData,
-} from '@35up/tslib-frontend-utils';
+} from '@35up/tslib-utils';
 import { get } from '@35up/http-client';
 import {
   ProductRecommendation,
