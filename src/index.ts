@@ -26,7 +26,6 @@ export type {
   RecommendationParams,
   CreateOrderDetails,
   CreateOrderResult,
-  ORDER_STATUS,
   ProductRecommendation,
   BaseProduct,
   Actions,
@@ -41,6 +40,8 @@ export type {
   Gtin,
   Tax,
 } from './types';
+
+export { ORDER_STATUS } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThirtyFiveUp extends Sdk {}
