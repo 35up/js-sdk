@@ -1,15 +1,13 @@
 import { ResolvedRemoteData } from '@35up/tslib-utils';
-import type {
+import {
   CreateOrderDetails,
   CreateOrderResult,
   RecommendationParams,
-  SdkConfig,
-} from './types';
-import {
-  TRemoteRecommendations,
-  getProductRecommendations,
-} from './services/recommendations';
-import { createOrder } from './services/orders';
+  type SdkConfig,
+  type TRemoteRecommendations,
+  getProductRecommendationsService,
+  createOrderService,
+} from '@35up/js-sdk-base';
 
 
 const configurationKey = Symbol('configuration');
@@ -24,12 +22,12 @@ export class Sdk {
   async getProductRecommendations(
     input: RecommendationParams,
   ): Promise<TRemoteRecommendations> {
-    return getProductRecommendations(input, this[configurationKey]);
+    return getProductRecommendationsService(input, this[configurationKey]);
   }
 
   async createOrder(
     details: CreateOrderDetails,
   ): Promise<ResolvedRemoteData<CreateOrderResult>> {
-    return createOrder(details, this[configurationKey]);
+    return createOrderService(details, this[configurationKey]);
   }
 }

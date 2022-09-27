@@ -7,7 +7,7 @@ import pkg from './package.json';
 
 
 export default [{
-  input: './src/index.ts',
+  input: './index.ts',
   output: [
     {file: pkg.module, format: 'es'},
     {
@@ -31,7 +31,7 @@ export default [{
   ],
 },
 {
-  input: './src/index.ts',
+  input: './index.ts',
   output: [
     {file: pkg.iife, format: 'iife', name: 'thirtyFiveUp'},
     {file: pkg.amd, format: 'amd', name: 'thirtyFiveUp'},

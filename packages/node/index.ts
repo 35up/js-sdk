@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { SdkInitConfig } from './types';
+import { SdkInitConfig } from '@35up/js-sdk-base';
 import { Sdk } from './sdk';
 
 
@@ -39,9 +39,9 @@ export type {
   Specs,
   Gtin,
   Tax,
-} from './types';
+} from '@35up/js-sdk-base';
 
-export { ORDER_STATUS } from './types';
+export { ORDER_STATUS } from '@35up/js-sdk-base';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThirtyFiveUp extends Sdk {}

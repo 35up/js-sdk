@@ -1,24 +1,23 @@
 import { expect } from 'chai';
 import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
-import { getProductRecommendations } from './services/recommendations';
-import { getMockRecommendations } from './services/recommendations-data';
-import { Sdk } from './sdk';
 import {
   CreateOrderDetails,
   ORDER_STATUS,
   RecommendationParams,
   SdkConfig,
-} from './types';
-import { createOrder } from './services/orders';
+  createOrderService,
+  getProductRecommendationsService,
+} from '@35up/js-sdk-base';
+import { getMockRecommendations } from '../base/services/recommendations-data';
+import { Sdk } from './sdk';
 
 
-jest.mock('./services/recommendations');
-jest.mock('./services/orders');
+jest.mock('@35up/js-sdk-base');
 const getProductRecommendationsMock = makeTypedMockFn(
-  getProductRecommendations,
+  getProductRecommendationsService,
 );
-const createOrderMock = makeTypedMockFn(createOrder);
+const createOrderMock = makeTypedMockFn(createOrderService);
 
 const configuration: SdkConfig = {
   apiUrl: 'https://fake.api/v1',
@@ -92,9 +91,8 @@ describe('Sdk', () => {
     it('creates order using provided params and the sdk configuration', async () => {
       const instance = new Sdk(configuration);
 
-      expect(
-        await instance.createOrder(input),
-      ).to.be.deep.equal(makeSuccess(createOrderResult));
+      const result = await instance.createOrder(input);
+      expect(result).to.be.deep.equal(makeSuccess(createOrderResult));
       expect(createOrderMock)
         .to.have.been.calledWith(input, configuration);
     });

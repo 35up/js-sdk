@@ -1,0 +1,6 @@
+extends:
+  - "@35up/35up-base"
+parser: '@typescript-eslint/parser'
+parserOptions:
+  project:
+    - tsconfig.json

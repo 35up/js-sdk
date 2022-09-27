@@ -3,7 +3,7 @@ const packagesToTranspile = [
 ];
 
 module.exports = {
-  setupFilesAfterEnv: ['./src/setup-tests.ts'],
+  setupFilesAfterEnv: ['./setup-tests.ts'],
   testPathIgnorePatterns: ['/node_modules/'],
   coverageDirectory: './coverage',
   coverageThreshold: {
@@ -14,7 +14,7 @@ module.exports = {
       statements: 80,
     },
   },
-  collectCoverageFrom: ['src/**/*.ts'],
+  collectCoverageFrom: ['base/**/*.ts'],
   moduleNameMapper: {
     nanoid: '<rootDir>/node_modules/nanoid/index.cjs',
   },
