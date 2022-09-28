@@ -1,13 +1,15 @@
 import { ResolvedRemoteData } from '@35up/tslib-utils';
 import {
-  CreateOrderDetails,
-  CreateOrderResult,
   RecommendationParams,
   type SdkConfig,
   type TRemoteRecommendations,
   getProductRecommendationsService,
-  createOrderService,
 } from '@35up/js-sdk-base';
+import {
+  CreateOrderDetails,
+  CreateOrderResult,
+} from './types';
+import { createOrder as createOrderService } from './services/orders';
 
 
 const configurationKey = Symbol('configuration');

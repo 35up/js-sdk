@@ -1,18 +1,19 @@
-import { SdkInitConfig, SdkConfig } from './types';
+import { SdkInitConfig, SdkConfig } from './src/types';
 
 
-export { createOrder as createOrderService } from './services/orders';
+export { parseUnixTimestamp } from './src/utils';
+export { handleApiError, type BadParamsError } from './src/errors';
+
+
 export {
   getProductRecommendations as getProductRecommendationsService,
   type TRemoteRecommendations,
-} from './services/recommendations';
+} from './src/services/recommendations';
 
 export type {
   SdkInitConfig,
   SdkConfig,
   RecommendationParams,
-  CreateOrderDetails,
-  CreateOrderResult,
   ProductRecommendation,
   BaseProduct,
   Actions,
@@ -26,6 +27,4 @@ export type {
   Specs,
   Gtin,
   Tax,
-} from './types';
-
-export { ORDER_STATUS } from './types';
+} from './src/types';

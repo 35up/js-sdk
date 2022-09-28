@@ -2,18 +2,17 @@ import { expect } from 'chai';
 import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
-  CreateOrderDetails,
-  ORDER_STATUS,
   RecommendationParams,
   SdkConfig,
-  createOrderService,
   getProductRecommendationsService,
 } from '@35up/js-sdk-base';
-import { getMockRecommendations } from '@35up/js-sdk-base/src/services/recommendations-data';
+import { ORDER_STATUS, CreateOrderDetails } from './types';
+import { createOrder as createOrderService } from './services/orders';
+import { getMockRecommendations } from '../../base/src/services/recommendations-data';
 import { Sdk } from './sdk';
 
 
-jest.mock('@35up/js-sdk-base');
+jest.mock('./services/orders');
 const getProductRecommendationsMock = makeTypedMockFn(
   getProductRecommendationsService,
 );
