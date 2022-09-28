@@ -26,8 +26,16 @@ jobs:
           node-version: '14'
       - name: Configure GitHub NPM Token
         run: npm config set '//npm.pkg.github.com/:_authToken' "${{ secrets.NPM_TOKEN }}"
+      - name: Configure npm registry
+        run: npm config set --userconfig .npmrc '@35up:registry' 'https://npm.pkg.github.com'
       - name: Clean
         run: make clean
+      - name: Install node modules
+        run: make node_modules
+      - name: Bootstrap lerna
+        run: make bootstrap
+      - name: Install node modules in packages
+        run: make node_modules_packages
       - name: Lint
         run: make lint
       - name: Build

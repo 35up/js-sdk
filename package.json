@@ -4,7 +4,7 @@
   "scripts": {
     "bump-version": "lerna version --no-git-tag-version --no-push",
     "bootstrap": "lerna bootstrap",
-    "build": "lerna build",
+    "build": "lerna run build",
     "test": "lerna run test",
     "lint": "lerna run lint"
   },
