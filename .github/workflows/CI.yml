@@ -31,17 +31,15 @@ jobs:
       - name: Clean
         run: make clean
       - name: Install node modules
-        run: make node_modules
+        run: npm i
       - name: Bootstrap lerna
-        run: make bootstrap
-      - name: Install node modules in packages
-        run: make node_modules_packages
+        run: npm run bootstrap
       - name: Lint
-        run: make lint
+        run: npm run lint
       - name: Build
-        run: make build
+        run: npm run build
       - name: Test
-        run: make test
+        run: npm run test
       - uses: ./.github/actions/slack-notify
         if: failure()
         env:
