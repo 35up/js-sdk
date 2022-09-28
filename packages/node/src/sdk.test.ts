@@ -9,7 +9,7 @@ import {
   createOrderService,
   getProductRecommendationsService,
 } from '@35up/js-sdk-base';
-import { getMockRecommendations } from '../base/services/recommendations-data';
+import { getMockRecommendations } from '@35up/js-sdk-base/src/services/recommendations-data';
 import { Sdk } from './sdk';
 
 

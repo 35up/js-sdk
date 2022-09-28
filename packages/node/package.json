@@ -11,7 +11,7 @@
     "test": "jest --passWithNoTests",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage",
-    "makeTypeDeclarations": "tsc -d --declarationDir dist/types --emitDeclarationOnly index.ts",
+    "makeTypeDeclarations": "tsc -d --declarationDir dist/types --emitDeclarationOnly src/index.ts",
     "bump-version": "lerna version --no-git-tag-version --no-push",
     "bootstrap": "lerna bootstrap"
   },
