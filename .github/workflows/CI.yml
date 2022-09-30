@@ -32,8 +32,6 @@ jobs:
         run: make clean
       - name: Install node modules
         run: npm i
-      - name: Bootstrap lerna
-        run: npm run bootstrap
       - name: Lint
         run: npm run lint
       - name: Build

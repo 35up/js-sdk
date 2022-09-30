@@ -26,7 +26,7 @@ export default [{
   external: Object.keys(pkg.dependencies || {}),
   plugins: [
     commonjs(),
-    nodeResolve({browser: true}),
+    nodeResolve({browser: false}),
     typescript(),
   ],
 },
