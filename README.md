@@ -1,6 +1,6 @@
 # 35up Javascript SDK
 
-This library provides with Javascript APIs to integrate 35up
+This library provides Javascript APIs to integrate 35up
 into your online shop.
 
 ## How to use

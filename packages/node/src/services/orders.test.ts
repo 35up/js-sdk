@@ -2,14 +2,16 @@ import { expect } from 'chai';
 import { isFail, isSuccess } from '@35up/tslib-utils';
 import { HttpError } from '@35up/http-client';
 import {
+  parseUnixTimestamp,
+  type BadParamsError,
+  type SdkConfig,
+} from '@35up/js-sdk-base';
+import {
   CreateOrderDetails,
   CreateOrderResult,
   ORDER_STATUS,
-  SdkConfig,
 } from '../types';
 import { createOrder } from './orders';
-import { parseUnixTimestamp } from '../utils';
-import { BadParamsError } from '../errors';
 
 
 const config: SdkConfig = {

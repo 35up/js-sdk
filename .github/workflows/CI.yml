@@ -23,17 +23,21 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
       - name: Configure GitHub NPM Token
         run: npm config set '//npm.pkg.github.com/:_authToken' "${{ secrets.NPM_TOKEN }}"
+      - name: Configure npm registry
+        run: make .npmrc
       - name: Clean
         run: make clean
+      - name: Install node modules
+        run: npm i
       - name: Lint
-        run: make lint
+        run: npm run lint
       - name: Build
-        run: make build
+        run: npm run build
       - name: Test
-        run: make test
+        run: npm run test
       - uses: ./.github/actions/slack-notify
         if: failure()
         env:

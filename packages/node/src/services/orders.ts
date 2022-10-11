@@ -4,14 +4,12 @@ import {
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
 import { post } from '@35up/http-client';
+import { SdkConfig, handleApiError, parseUnixTimestamp } from '@35up/js-sdk-base';
 import {
   CreateOrderDetails,
   CreateOrderResult,
   ORDER_STATUS,
-  SdkConfig,
 } from '../types';
-import { handleApiError } from '../errors';
-import { parseUnixTimestamp } from '../utils';
 
 
 type TCreateOrderResultRaw = {

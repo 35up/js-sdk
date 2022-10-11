@@ -62,10 +62,10 @@ const validateMaybeMeasurement = validateRecord<{
   unit: string;
   value: number;
 } | undefined
->({
-  value: validateRequired(Number.NaN),
-  unit: validateRequired(''),
-});
+  >({
+    value: validateRequired(Number.NaN),
+    unit: validateRequired(''),
+  });
 
 const validateDelivery = validateRecord<Product['delivery']>({
   timeMax: skipValidation,
@@ -82,7 +82,7 @@ const validateTax = validateRecord<Product['taxes'][0]>({
   type: validateRequired(''),
   base: validateRequired(''),
   code: validateRequired(''),
-  included: validateRequired(false),
+  included: validateRequired<boolean>(false),
   rate: validateRequired(Number.NaN),
 });
 
@@ -115,9 +115,9 @@ export const validateProduct = validateRecord<Product>({
   delivery: validateDelivery,
   categories: validateRequired<string[]>([]),
   taxes: validateList(validateTax),
-  gtin: validateObjectMap(
+  gtin: validateObjectMap<string>(
     validateRequired(''),
-  ) as ReturnType<typeof validateRecord<Product['gtin'] | undefined>>,
+  ),
   specs: validateRecord<Product['specs']>({
     height: validateMaybeMeasurement,
     weight: validateMaybeMeasurement,
@@ -125,8 +125,8 @@ export const validateProduct = validateRecord<Product>({
     length: validateMaybeMeasurement,
     color: skipValidation,
     type: validateRequired(''),
-    materials: validateList(
+    materials: validateList<string>(
       validateRequired(''),
-    ) as ReturnType<typeof validateRecord<string[] | undefined>>,
+    ),
   }),
 });

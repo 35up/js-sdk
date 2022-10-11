@@ -1,9 +1,4 @@
-.PHONY: %/clean
-%/clean:
-	cd ./packages/$*  && $(MAKE) clean
-
-.PHONY: clean
-clean: base/clean browser/clean node/clean
+.DEFAULT_GOAL := build
 
 .npmrc:
   # Disables package lock
@@ -30,3 +25,30 @@ clean: base/clean browser/clean node/clean
 
 node_modules: .npmrc
 	npm i
+
+.PHONY: build
+build: node_modules
+	npm run build
+
+.PHONY: test-unit
+test-unit: node_modules
+	npm run test
+
+.PHONY: test
+test: test-unit
+
+.PHONY: lint
+lint: node_modules
+	npm run lint
+
+.PHONY: make-type-declarations
+make-type-declarations:
+	npm run makeTypeDeclarations
+
+.PHONY: clean
+clean:
+	rm -rf ./dist
+
+.PHONY: ci
+ci: clean lint build make-type-declarations test
+

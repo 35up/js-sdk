@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { initialise } from './index';
-import { Sdk } from './sdk';
+import { Sdk } from './src/sdk';
 
 
 describe('initialise', () => {

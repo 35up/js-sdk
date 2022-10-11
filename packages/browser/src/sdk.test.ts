@@ -1,24 +1,18 @@
 import { expect } from 'chai';
 import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
-import { getProductRecommendations } from './services/recommendations';
-import { getMockRecommendations } from './services/recommendations-data';
-import { Sdk } from './sdk';
 import {
-  CreateOrderDetails,
-  ORDER_STATUS,
   RecommendationParams,
   SdkConfig,
-} from './types';
-import { createOrder } from './services/orders';
+  getProductRecommendationsService,
+} from '@35up/js-sdk-base';
+import { getMockRecommendations } from '../../base/src/services/recommendations-data';
+import { Sdk } from './sdk';
 
 
-jest.mock('./services/recommendations');
-jest.mock('./services/orders');
 const getProductRecommendationsMock = makeTypedMockFn(
-  getProductRecommendations,
+  getProductRecommendationsService,
 );
-const createOrderMock = makeTypedMockFn(createOrder);
 
 const configuration: SdkConfig = {
   apiUrl: 'https://fake.api/v1',
@@ -63,40 +57,6 @@ describe('Sdk', () => {
         input,
         configuration,
       );
-    });
-  });
-
-  describe('createOrder', () => {
-    const createOrderResult = {
-      id: 'abcd1234',
-      status: ORDER_STATUS.PENDING,
-      updatedAt: new Date('2022-12-01'),
-      createdAt: new Date(),
-    };
-
-    beforeEach(() => {
-      createOrderMock.reset();
-      createOrderMock.resolves(makeSuccess(createOrderResult));
-    });
-
-    const input: CreateOrderDetails = {
-      reference: 'blabla',
-      customer: {
-        email: 'john@doe.qq',
-        firstName: 'John',
-        lastName: 'Doe',
-      },
-      items: [{sku: 'software-123', qty: 1}],
-    };
-
-    it('creates order using provided params and the sdk configuration', async () => {
-      const instance = new Sdk(configuration);
-
-      expect(
-        await instance.createOrder(input),
-      ).to.be.deep.equal(makeSuccess(createOrderResult));
-      expect(createOrderMock)
-        .to.have.been.calledWith(input, configuration);
     });
   });
 });

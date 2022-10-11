@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
-import { SdkInitConfig } from './types';
-import { Sdk } from './sdk';
+import { SdkInitConfig } from '@35up/js-sdk-base';
+import { Sdk } from './src/sdk';
 
 
 export function initialise(configuration: SdkInitConfig): Sdk {
@@ -24,8 +24,6 @@ export function initialise(configuration: SdkInitConfig): Sdk {
 export type {
   SdkInitConfig as SdkConfig,
   RecommendationParams,
-  CreateOrderDetails,
-  CreateOrderResult,
   ProductRecommendation,
   BaseProduct,
   Actions,
@@ -39,9 +37,12 @@ export type {
   Specs,
   Gtin,
   Tax,
-} from './types';
+} from '@35up/js-sdk-base';
 
-export { ORDER_STATUS } from './types';
-
+export {
+  ORDER_STATUS,
+  type CreateOrderDetails,
+  type CreateOrderResult,
+} from './src/types';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThirtyFiveUp extends Sdk {}
