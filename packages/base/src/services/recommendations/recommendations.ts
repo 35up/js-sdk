@@ -12,10 +12,10 @@ import {
 } from '../../types';
 
 
-export type TRemoteRecommendations = ResolvedRemoteData<
+export type RemoteRecommendations = ResolvedRemoteData<
   ProductRecommendation[]
 >;
-type TParams = Omit<SdkConfig, 'apiUrl'> & RecommendationParams;
+type Params = Omit<SdkConfig, 'apiUrl'> & RecommendationParams;
 
 
 function flattenInput(
@@ -51,7 +51,7 @@ function flattenInput(
   return result;
 }
 
-export function makeSearchParams(input: TParams): string {
+export function makeSearchParams(input: Params): string {
   return flattenInput({...input})
     .map(([ key, value ]) => (`${key}=${value}`))
     .join('&');
@@ -60,7 +60,7 @@ export function makeSearchParams(input: TParams): string {
 export async function getProductRecommendations(
   params: RecommendationParams,
   sdkConfig: SdkConfig,
-): Promise<TRemoteRecommendations> {
+): Promise<RemoteRecommendations> {
   const { apiUrl, ...finalParams } = {...sdkConfig, ...params};
 
   try {

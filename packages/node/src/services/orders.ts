@@ -12,12 +12,13 @@ import {
 } from '../types';
 
 
-type TCreateOrderResultRaw = {
+type CreateOrderResultRaw = {
   id: string;
   status: ORDER_STATUS;
   updatedAt: string;
   createdAt: string;
 };
+export type RemoteCreateOrderResult = ResolvedRemoteData<CreateOrderResult>;
 
 /**
  * This endpoint allows the partner to place an order on the 35up marketplace
@@ -26,9 +27,9 @@ type TCreateOrderResultRaw = {
 export async function createOrder(
   details: CreateOrderParams,
   config: SdkConfig,
-): Promise<ResolvedRemoteData<CreateOrderResult>> {
+): Promise<RemoteCreateOrderResult> {
   try {
-    const result: TCreateOrderResultRaw = await post(
+    const result: CreateOrderResultRaw = await post(
       `${config.apiUrl}/orders?session=${encodeURIComponent(config.session)}`,
       details,
     );

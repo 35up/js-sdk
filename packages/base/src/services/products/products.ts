@@ -5,7 +5,7 @@ import {
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
 import { SdkConfig } from '../../types';
-import type { Product, TServerProductDetails } from './products-types';
+import type { Product, ServerProductDetails } from './products-types';
 import { validateProduct } from './products-validation';
 
 
@@ -14,19 +14,19 @@ export interface GetProductDetailsParams {
   lang?: string;
   country?: string;
 }
-export type TRemoteProduct = ResolvedRemoteData<Product>;
+export type RemoteProduct = ResolvedRemoteData<Product>;
 
 export async function getProduct(
   params: GetProductDetailsParams,
   sdkConfig: SdkConfig,
-): Promise<TRemoteProduct> {
+): Promise<RemoteProduct> {
   try {
     const { sku, ...restParams } = params;
     const searchParams = new URLSearchParams({
       partner: sdkConfig.partner,
       ...restParams,
     });
-    const { product }: TServerProductDetails = await get(
+    const { product }: ServerProductDetails = await get(
       `${sdkConfig.apiUrl}/products/${encodeURIComponent(sku)}?${searchParams}`,
     );
 

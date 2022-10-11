@@ -1,34 +1,34 @@
-type TLogo = {
+type Logo = {
   square: string;
   landscape: string;
 }
 
-type TVendor = {
+type Vendor = {
   id: string;
   name: string;
   legalName: string;
-  logo: TLogo;
+  logo: Logo;
 }
 
-type TPrice = {
+type Price = {
   value: number;
   currency: string;
   formatted: string;
 }
 
-type TImages = {
+type Images = {
   thumbnail: string;
   small?: string;
   medium?: string;
   large?: string;
 }
 
-type TDescriptions = {
+type Descriptions = {
   short: string;
   long: string;
 }
 
-type TActions = {
+type Actions = {
   singleClickCheckout?: string;
   addToCart: string;
   deleteFromCart: string;
@@ -36,33 +36,33 @@ type TActions = {
   goToCheckout: string;
 }
 
-type TMeasurement = {
+type Measurement = {
   unit: string;
   value: number;
 }
 
-type TDelivery = {
+type Delivery = {
   timeMin?: number;
   timeMax?: number;
   package?: {
-    weight?: TMeasurement;
-    width?: TMeasurement;
-    height?: TMeasurement;
-    length?: TMeasurement;
+    weight?: Measurement;
+    width?: Measurement;
+    height?: Measurement;
+    length?: Measurement;
   }
 }
 
-type TSpecs = {
+type Specs = {
   type: string;
   materials?: string[];
   color?: string;
-  weight?: TMeasurement;
-  width?: TMeasurement;
-  height?: TMeasurement;
-  length?: TMeasurement;
+  weight?: Measurement;
+  width?: Measurement;
+  height?: Measurement;
+  length?: Measurement;
 };
 
-type TTax = {
+type Tax = {
   code: string;
   type: string;
   base: string;
@@ -72,17 +72,17 @@ type TTax = {
 
 export interface Product {
   sku: string;
-  vendor: TVendor;
+  vendor: Vendor;
   name: string;
-  price?: TPrice;
-  images: TImages;
-  descriptions: TDescriptions;
+  price?: Price;
+  images: Images;
+  descriptions: Descriptions;
   categories: string[];
-  actions: TActions;
-  delivery: TDelivery;
-  specs?: TSpecs;
+  actions: Actions;
+  delivery: Delivery;
+  specs?: Specs;
   gtin?: Record<string, string>;
-  taxes: TTax[];
+  taxes: Tax[];
 }
 
-export type TServerProductDetails = {product: Product};
+export type ServerProductDetails = {product: Product};

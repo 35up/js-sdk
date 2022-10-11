@@ -5,12 +5,12 @@ export { parseUnixTimestamp } from './src/utils';
 export { handleApiError, type BadParamsError } from './src/errors';
 export {
   getProductRecommendations as getProductRecommendationsService,
-  type TRemoteRecommendations,
+  type RemoteRecommendations,
 } from './src/services/recommendations';
 export {
   getProduct as getProductService,
   type GetProductDetailsParams,
-  type TRemoteProduct,
+  type RemoteProduct,
 } from './src/services/products';
 
 export type {
