@@ -1,3 +1,6 @@
+import { InputParams } from '@35up/js-sdk-base';
+
+
 export enum ORDER_STATUS {
   PENDING = 'pending',
   APPROVED = 'approved',
@@ -97,7 +100,7 @@ export interface CreateOrderItem {
   config?: Record<string, string>;
 }
 
-export interface CreateOrderDetails {
+export interface CreateOrderParams extends InputParams {
   /**
    * This field accepts an arbitrary string sent by the partner to assist
    * tracking the order and relating it to a base order. Although this field is
@@ -115,7 +118,7 @@ export interface CreateOrderDetails {
    */
   shippingAddress?: CreateOrderShippingAddress;
   /**
-   * Information about the items bought from the marketplace as cross selling
+   * Information about the items bought from the marketplace as cross-selling
    * products in that order.
    */
   items: CreateOrderItem[];

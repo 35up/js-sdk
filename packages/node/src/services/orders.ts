@@ -6,7 +6,7 @@ import {
 import { post } from '@35up/http-client';
 import { SdkConfig, handleApiError, parseUnixTimestamp } from '@35up/js-sdk-base';
 import {
-  CreateOrderDetails,
+  CreateOrderParams,
   CreateOrderResult,
   ORDER_STATUS,
 } from '../types';
@@ -24,7 +24,7 @@ type TCreateOrderResultRaw = {
  * and responds with a 35up order ID and a status update.
  */
 export async function createOrder(
-  details: CreateOrderDetails,
+  details: CreateOrderParams,
   config: SdkConfig,
 ): Promise<ResolvedRemoteData<CreateOrderResult>> {
   try {
@@ -41,7 +41,7 @@ export async function createOrder(
     });
   } catch (e) {
     if (e.response) {
-      return makeFail(handleApiError<CreateOrderDetails>(e) || e);
+      return makeFail(handleApiError<CreateOrderParams>(e) || e);
     }
 
     return makeFail(e);

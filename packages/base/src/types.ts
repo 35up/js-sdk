@@ -42,7 +42,11 @@ export interface SdkConfig extends SdkInitConfig {
   apiUrl: string;
 }
 
-export interface RecommendationParams {
+export interface InputParams {
+  session?: string;
+}
+
+export interface RecommendationParams extends InputParams {
   baseProduct: BaseProduct;
   customer?: Customer;
   lang?: string;

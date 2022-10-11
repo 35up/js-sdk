@@ -7,7 +7,7 @@ import {
   type SdkConfig,
 } from '@35up/js-sdk-base';
 import {
-  CreateOrderDetails,
+  CreateOrderParams,
   CreateOrderResult,
   ORDER_STATUS,
 } from '../types';
@@ -24,7 +24,7 @@ const config: SdkConfig = {
 
 describe('orders service', () => {
   describe('createOrders', () => {
-    const details: CreateOrderDetails = {
+    const details: CreateOrderParams = {
       reference: 'some-reference',
       customer: {
         firstName: 'Joe',

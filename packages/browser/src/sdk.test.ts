@@ -45,6 +45,7 @@ describe('Sdk', () => {
         age: [20, 30],
         cities: ['Berlin', 'Frankfurt am Main'],
       },
+      session: '123',
     };
 
     it('gets recommendations using provided params and the sdk configuration', async () => {
