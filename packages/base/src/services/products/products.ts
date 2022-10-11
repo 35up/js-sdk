@@ -9,20 +9,22 @@ import type { Product, TServerProductDetails } from './products-types';
 import { validateProduct } from './products-validation';
 
 
-interface GetProductDetailsParams {
+export interface GetProductDetailsParams {
+  sku: string,
   lang?: string;
   country?: string;
 }
+export type TRemoteProduct = ResolvedRemoteData<Product>;
 
 export async function getProduct(
-  sku: string,
+  params: GetProductDetailsParams,
   sdkConfig: SdkConfig,
-  params: GetProductDetailsParams = {},
-): Promise<ResolvedRemoteData<Product>> {
+): Promise<TRemoteProduct> {
   try {
+    const { sku, ...restParams } = params;
     const searchParams = new URLSearchParams({
       partner: sdkConfig.partner,
-      ...params,
+      ...restParams,
     });
     const { product }: TServerProductDetails = await get(
       `${sdkConfig.apiUrl}/products/${encodeURIComponent(sku)}?${searchParams}`,

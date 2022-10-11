@@ -5,16 +5,21 @@ import {
   RecommendationParams,
   SdkConfig,
   getProductRecommendationsService,
+  getProductService, GetProductDetailsParams,
 } from '@35up/js-sdk-base';
 import { ORDER_STATUS, CreateOrderParams } from './types';
 import { createOrder as createOrderService } from './services/orders';
 import { getMockRecommendations } from '../../base/src/services/recommendations-data';
+import { makeProductDetailsMock } from '../../base/src/services/products/product-data';
 import { Sdk } from './sdk';
 
 
 jest.mock('./services/orders');
 const getProductRecommendationsMock = makeTypedMockFn(
   getProductRecommendationsService,
+);
+const getProductServiceMock = makeTypedMockFn(
+  getProductService,
 );
 const createOrderMock = makeTypedMockFn(createOrderService);
 
@@ -58,6 +63,32 @@ describe('Sdk', () => {
         await instance.getProductRecommendations(input),
       ).to.be.deep.equal(makeSuccess(recommendations));
       expect(getProductRecommendationsMock).to.have.been.calledWith(
+        input,
+        configuration,
+      );
+    });
+  });
+
+  describe('getProductDetails', () => {
+    const productDetails = makeProductDetailsMock();
+    beforeEach(() => {
+      getProductServiceMock.reset();
+      getProductServiceMock.resolves(
+        makeSuccess(productDetails),
+      );
+    });
+
+    const input: GetProductDetailsParams = {
+      sku: '123',
+    };
+
+    it('gets product details using provided params and the sdk configuration', async () => {
+      const instance = new Sdk(configuration);
+
+      expect(
+        await instance.getProductDetails(input),
+      ).to.be.deep.equal(makeSuccess(productDetails));
+      expect(getProductServiceMock).to.have.been.calledWith(
         input,
         configuration,
       );

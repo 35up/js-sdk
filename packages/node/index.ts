@@ -41,7 +41,7 @@ export type {
 
 export {
   ORDER_STATUS,
-  type CreateOrderDetails,
+  type CreateOrderParams,
   type CreateOrderResult,
 } from './src/types';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

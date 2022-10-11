@@ -8,7 +8,13 @@ const getProductRecommendationsService = sinon.stub(
   'getProductRecommendationsService',
 ).callThrough();
 
+const getProductService = sinon.stub(
+  jsSdkBase,
+  'getProductService',
+).callThrough();
+
 module.exports = {
   ...jsSdkBase,
   getProductRecommendationsService,
+  getProductService,
 };

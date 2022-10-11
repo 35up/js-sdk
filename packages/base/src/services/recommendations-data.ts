@@ -1,5 +1,6 @@
 import { ProductRecommendation, RecommendationsData } from '../types';
 
+
 function makeRecommendation(): ProductRecommendation {
   return {
     name: 'Galaxy S500 HardCase, "Realism" by Dan Say',

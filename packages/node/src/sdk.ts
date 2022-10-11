@@ -4,9 +4,12 @@ import {
   type SdkConfig,
   type TRemoteRecommendations,
   getProductRecommendationsService,
+  type GetProductDetailsParams,
+  type TRemoteProduct,
+  getProductService,
 } from '@35up/js-sdk-base';
 import {
-  CreateOrderDetails,
+  CreateOrderParams,
   CreateOrderResult,
 } from './types';
 import { createOrder as createOrderService } from './services/orders';
@@ -27,8 +30,14 @@ export class Sdk {
     return getProductRecommendationsService(input, this[configurationKey]);
   }
 
+  async getProductDetails(
+    input: GetProductDetailsParams,
+  ): Promise<TRemoteProduct> {
+    return getProductService(input, this[configurationKey]);
+  }
+
   async createOrder(
-    details: CreateOrderDetails,
+    details: CreateOrderParams,
   ): Promise<ResolvedRemoteData<CreateOrderResult>> {
     return createOrderService(details, this[configurationKey]);
   }

@@ -7,6 +7,11 @@ export {
   getProductRecommendations as getProductRecommendationsService,
   type TRemoteRecommendations,
 } from './src/services/recommendations';
+export {
+  getProduct as getProductService,
+  type GetProductDetailsParams,
+  type TRemoteProduct,
+} from './src/services/products';
 
 export type {
   SdkInitConfig,
