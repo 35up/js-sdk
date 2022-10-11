@@ -8,8 +8,12 @@ import {
   type GetProductDetailsParams,
   getProductService,
 } from '@35up/js-sdk-base';
-import { getMockRecommendations } from '../../base/src/services/recommendations-data';
-import { makeProductDetailsMock } from '../../base/src/services/products/product-data';
+import {
+  getMockRecommendations,
+} from '../../base/src/services/recommendations/recommendations-data';
+import {
+  makeProductDetailsMock,
+} from '../../base/src/services/products/product-data';
 import { Sdk } from './sdk';
 
 

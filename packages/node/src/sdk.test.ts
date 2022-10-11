@@ -10,8 +10,12 @@ import {
 } from '@35up/js-sdk-base';
 import { ORDER_STATUS, CreateOrderParams } from './types';
 import { createOrder as createOrderService } from './services/orders';
-import { getMockRecommendations } from '../../base/src/services/recommendations-data';
-import { makeProductDetailsMock } from '../../base/src/services/products/product-data';
+import {
+  getMockRecommendations,
+} from '../../base/src/services/recommendations/recommendations-data';
+import {
+  makeProductDetailsMock,
+} from '../../base/src/services/products/product-data';
 import { Sdk } from './sdk';
 
 

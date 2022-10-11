@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import fetch from 'jest-fetch-mock';
 import { makeSearchParams, getProductRecommendations } from './recommendations';
-import { RecommendationParams, SdkConfig } from '../types';
+import { RecommendationParams, SdkConfig } from '../../types';
 import { getMockRecommendations } from './recommendations-data';
 
 

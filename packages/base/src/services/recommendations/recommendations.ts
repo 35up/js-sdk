@@ -9,7 +9,7 @@ import {
   RecommendationParams,
   RecommendationsData,
   SdkConfig,
-} from '../types';
+} from '../../types';
 
 
 export type TRemoteRecommendations = ResolvedRemoteData<
