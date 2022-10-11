@@ -5,7 +5,8 @@ import {
   RecommendationParams,
   SdkConfig,
   getProductRecommendationsService,
-  getProductService, GetProductDetailsParams,
+  getProductService,
+  type GetProductDetailsParams,
 } from '@35up/js-sdk-base';
 import { ORDER_STATUS, CreateOrderParams } from './types';
 import { createOrder as createOrderService } from './services/orders';
