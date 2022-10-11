@@ -33,8 +33,8 @@ export interface SdkInitConfig {
    * server, a proxy, or a mock implementation, by specifying another url
    */
   apiUrl?: string;
-  lang: string;
-  country: string;
+  lang?: string;
+  country?: string;
 }
 
 export interface SdkConfig extends SdkInitConfig {
