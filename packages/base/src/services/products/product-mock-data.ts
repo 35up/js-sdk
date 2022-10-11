@@ -23,11 +23,11 @@ export const getMockProductDetails = (): Product => ({
     formatted: '€ 29,30',
   },
   actions: {
-    addToCart: 'https://easy.35up.io/de/de/add/sku/HCI60XX114014XXAPIP60/?partner=o2',
-    deleteFromCart: 'https://easy.35up.io/de/de/delete/sku/HCI60XX114014XXAPIP60/?partner=o2',
-    goToCheckout: 'https://easy.35up.io/de/de/go/checkout/?partner=o2',
-    goToCart: 'https://easy.35up.io/de/de/go/cart/?partner=o2',
-    singleClickCheckout: 'https://easy.35up.io/de/de/add-and-go/sku/HCI60XX114014XXAPIP60/?partner=o2',
+    addToCart: 'https://easy.35up.io/de/de/add/sku/HCI60XX114014XXAPIP60/?seller=o2',
+    deleteFromCart: 'https://easy.35up.io/de/de/delete/sku/HCI60XX114014XXAPIP60/?seller=o2',
+    goToCheckout: 'https://easy.35up.io/de/de/go/checkout/?seller=o2',
+    goToCart: 'https://easy.35up.io/de/de/go/cart/?seller=o2',
+    singleClickCheckout: 'https://easy.35up.io/de/de/add-and-go/sku/HCI60XX114014XXAPIP60/?seller=o2',
   },
   descriptions: {
     short: 'Hardshell cell phone case',

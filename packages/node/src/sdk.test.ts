@@ -30,7 +30,7 @@ const createOrderMock = makeTypedMockFn(createOrderService);
 
 const configuration: SdkConfig = {
   apiUrl: 'https://fake.api/v1',
-  partner: 'partner-id',
+  seller: 'seller-id',
   session: 'session-id',
   country: 'de',
   lang: 'en',

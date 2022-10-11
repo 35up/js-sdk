@@ -18,7 +18,7 @@ export async function getProduct(
   try {
     const { sku, ...restParams } = params;
     const searchParams = new URLSearchParams({
-      partner: sdkConfig.partner,
+      seller: sdkConfig.seller,
       ...restParams,
     });
     const { product }: ServerProductDetails = await get(

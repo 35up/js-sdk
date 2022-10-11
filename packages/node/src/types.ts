@@ -102,7 +102,7 @@ export interface CreateOrderItem {
 
 export interface CreateOrderParams extends InputParams {
   /**
-   * This field accepts an arbitrary string sent by the partner to assist
+   * This field accepts an arbitrary string sent by the seller to assist
    * tracking the order and relating it to a base order. Although this field is
    * optional, we strongly recommend always sending it containing the seller's
    * orderId.

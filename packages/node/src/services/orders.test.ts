@@ -18,7 +18,7 @@ const config: SdkConfig = {
   session: 'the-session',
   lang: 'en',
   country: 'de',
-  partner: 'store',
+  seller: 'store',
   apiUrl: 'https://api.fake.io/v1',
 };
 

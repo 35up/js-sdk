@@ -10,7 +10,7 @@ const sdkConfig: SdkConfig = {
   session: 'the-session',
   lang: 'en',
   country: 'de',
-  partner: 'store',
+  seller: 'store',
   apiUrl: 'https://api.fake.io/v1',
 };
 const init = {headers: {'Content-Type': 'application/json'}};
@@ -22,7 +22,7 @@ describe('Products Service', () => {
 
   describe('getProduct', () => {
     const sku = `${Math.random()}`;
-    const { partner } = sdkConfig;
+    const { seller } = sdkConfig;
     const optionalParams = {
       lang: `${Math.random()}`,
       country: `${Math.random()}`,
@@ -37,7 +37,7 @@ describe('Products Service', () => {
 
     it('makes request using GET', async () => {
       await getProduct({sku, ...optionalParams}, sdkConfig);
-      const params = new URLSearchParams({partner, ...optionalParams});
+      const params = new URLSearchParams({seller, ...optionalParams});
 
       expect(fetch.mock.calls).to.have.lengthOf(1);
       expect(fetch.mock.calls[0][0]).to.be.equal(
@@ -51,7 +51,7 @@ describe('Products Service', () => {
         {sku: 'caseable/6f0c51a33cdc48a'},
         sdkConfig,
       );
-      const params = new URLSearchParams({partner});
+      const params = new URLSearchParams({seller});
 
       expect(fetch.mock.calls).to.have.lengthOf(1);
       expect(fetch.mock.calls[0][0]).to.be.equal(

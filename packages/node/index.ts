@@ -5,8 +5,8 @@ import { Sdk } from './src/sdk';
 
 export function initialise(configuration: SdkInitConfig): Sdk {
   // Not everybody using this uses typescript
-  if (!('partner' in configuration)) {
-    throw new TypeError('Cannot initialise the 35up SDK without a partner ID');
+  if (!('seller' in configuration)) {
+    throw new TypeError('Cannot initialise the 35up SDK without a seller ID');
   }
 
   if (!('lang' in configuration) || !('country' in configuration)) {

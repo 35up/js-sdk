@@ -21,7 +21,7 @@ export interface Customer {
 }
 
 export interface SdkInitConfig {
-  partner: string;
+  seller: string;
   /**
    * A unique session ID which is used to connect several requests over time.
    * The unique session ID can be any unique string.

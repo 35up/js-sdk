@@ -21,11 +21,11 @@ function getMockRecommendation(): ProductRecommendation {
       formatted: '€ 99,30',
     },
     actions: {
-      addToCart: 'https://easy.35up.io/de/de/add/sku/BCI60XX114014XXAPIP67/?partner=o2',
-      deleteFromCart: 'https://easy.35up.io/de/de/delete/sku/BCI60XX114014XXAPIP67/?partner=o2',
-      goToCheckout: 'https://easy.35up.io/de/de/go/checkout/?partner=o2',
-      goToCart: 'https://easy.35up.io/de/de/go/cart/?partner=o2',
-      singleClickCheckout: 'https://easy.35up.io/de/de/add-and-go/sku/BCI60XX114014XXAPIP67/?partner=o2',
+      addToCart: 'https://easy.35up.io/de/de/add/sku/BCI60XX114014XXAPIP67/?seller=o2',
+      deleteFromCart: 'https://easy.35up.io/de/de/delete/sku/BCI60XX114014XXAPIP67/?seller=o2',
+      goToCheckout: 'https://easy.35up.io/de/de/go/checkout/?seller=o2',
+      goToCart: 'https://easy.35up.io/de/de/go/cart/?seller=o2',
+      singleClickCheckout: 'https://easy.35up.io/de/de/add-and-go/sku/BCI60XX114014XXAPIP67/?seller=o2',
     },
     descriptions: {
       short: 'Hardnut cello phone case',

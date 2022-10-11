@@ -21,7 +21,7 @@ type CreateOrderResultRaw = {
 export type RemoteCreateOrderResult = ResolvedRemoteData<CreateOrderResult>;
 
 /**
- * This endpoint allows the partner to place an order on the 35up marketplace
+ * This endpoint allows the seller to place an order on the 35up marketplace
  * and responds with a 35up order ID and a status update.
  */
 export async function createOrder(
