@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
-  RecommendationParams,
   SdkConfig,
   getProductRecommendationsService,
   getProductService,
+  type GetRecommendationsParams,
   type GetProductDetailsParams,
 } from '@35up/js-sdk-base';
 import { ORDER_STATUS, CreateOrderParams } from './types';
@@ -46,7 +46,7 @@ describe('Sdk', () => {
       );
     });
 
-    const input: RecommendationParams = {
+    const input: GetRecommendationsParams = {
       lang: 'fr',
       baseProduct: {
         title: 'Cocobolo desk',

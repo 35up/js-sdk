@@ -9,7 +9,6 @@ export {
 } from './src/services/recommendations';
 export {
   getProduct as getProductService,
-  type GetProductDetailsParams,
   type RemoteProduct,
 } from './src/services/products';
 
@@ -17,7 +16,8 @@ export type {
   SdkInitConfig,
   SdkConfig,
   InputParams,
-  RecommendationParams,
+  GetRecommendationsParams,
+  GetProductDetailsParams,
   ProductRecommendation,
   BaseProduct,
   Actions,

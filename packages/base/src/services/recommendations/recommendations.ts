@@ -6,7 +6,7 @@ import {
 import { get } from '@35up/http-client';
 import {
   ProductRecommendation,
-  RecommendationParams,
+  GetRecommendationsParams,
   RecommendationsData,
   SdkConfig,
 } from '../../types';
@@ -15,7 +15,7 @@ import {
 export type RemoteRecommendations = ResolvedRemoteData<
   ProductRecommendation[]
 >;
-type Params = Omit<SdkConfig, 'apiUrl'> & RecommendationParams;
+type Params = Omit<SdkConfig, 'apiUrl'> & GetRecommendationsParams;
 
 
 function flattenInput(
@@ -58,7 +58,7 @@ export function makeSearchParams(input: Params): string {
 }
 
 export async function getProductRecommendations(
-  params: RecommendationParams,
+  params: GetRecommendationsParams,
   sdkConfig: SdkConfig,
 ): Promise<RemoteRecommendations> {
   const { apiUrl, ...finalParams } = {...sdkConfig, ...params};

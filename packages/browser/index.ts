@@ -23,7 +23,7 @@ export function initialise(configuration: SdkInitConfig): Sdk {
 
 export type {
   SdkInitConfig as SdkConfig,
-  RecommendationParams,
+  GetRecommendationsParams,
   ProductRecommendation,
   BaseProduct,
   Actions,

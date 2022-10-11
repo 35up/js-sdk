@@ -4,16 +4,11 @@ import {
   makeSuccess,
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
-import { SdkConfig } from '../../types';
+import { SdkConfig, GetProductDetailsParams } from '../../types';
 import type { Product, ServerProductDetails } from './products-types';
 import { validateProduct } from './products-validation';
 
 
-export interface GetProductDetailsParams {
-  sku: string,
-  lang?: string;
-  country?: string;
-}
 export type RemoteProduct = ResolvedRemoteData<Product>;
 
 export async function getProduct(

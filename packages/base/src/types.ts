@@ -46,12 +46,18 @@ export interface InputParams {
   session?: string;
 }
 
-export interface RecommendationParams extends InputParams {
+export interface GetRecommendationsParams extends InputParams {
   baseProduct: BaseProduct;
   customer?: Customer;
   lang?: string;
   country?: string;
   limit?: number;
+}
+
+export interface GetProductDetailsParams {
+  sku: string,
+  lang?: string;
+  country?: string;
 }
 
 export interface Logo {
