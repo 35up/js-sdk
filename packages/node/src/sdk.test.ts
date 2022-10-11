@@ -12,10 +12,10 @@ import { ORDER_STATUS, CreateOrderParams } from './types';
 import { createOrder as createOrderService } from './services/orders';
 import {
   getMockRecommendations,
-} from '../../base/src/services/recommendations/recommendations-data';
+} from '../../base/src/services/recommendations/recommendations-mock-data';
 import {
-  makeProductDetailsMock,
-} from '../../base/src/services/products/product-data';
+  getMockProductDetails,
+} from '../../base/src/services/products/product-mock-data';
 import { Sdk } from './sdk';
 
 
@@ -75,7 +75,7 @@ describe('Sdk', () => {
   });
 
   describe('getProductDetails', () => {
-    const productDetails = makeProductDetailsMock();
+    const productDetails = getMockProductDetails();
     beforeEach(() => {
       getProductServiceMock.reset();
       getProductServiceMock.resolves(

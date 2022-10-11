@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import fetch from 'jest-fetch-mock';
 import { SdkConfig } from '../../types';
 import { getProduct } from './products';
-import { makeProductDetailsMock } from './product-data';
+import { getMockProductDetails } from './product-mock-data';
 
 
 const sdkConfig: SdkConfig = {
@@ -30,7 +30,7 @@ describe('Products Service', () => {
 
     beforeEach(() => {
       fetch.mockResponse(
-        JSON.stringify({product: makeProductDetailsMock()}),
+        JSON.stringify({product: getMockProductDetails()}),
         init,
       );
     });
@@ -61,14 +61,14 @@ describe('Products Service', () => {
 
     it('returns validated product details', async () => {
       fetch.mockResponse(
-        JSON.stringify({product: {...makeProductDetailsMock(), name: null}}),
+        JSON.stringify({product: {...getMockProductDetails(), name: null}}),
         init,
       );
       const result = await getProduct({sku, ...optionalParams}, sdkConfig);
 
       expect(isSuccess(result)).to.be.true;
       expect(result.data).to.deep.equal(
-        {...makeProductDetailsMock(), name: ''},
+        {...getMockProductDetails(), name: ''},
       );
       expect(result.error).to.be.null;
     });

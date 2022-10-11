@@ -1,7 +1,7 @@
 import { ProductRecommendation, RecommendationsData } from '../../types';
 
 
-function makeRecommendation(): ProductRecommendation {
+function getMockRecommendation(): ProductRecommendation {
   return {
     name: 'Galaxy S500 HardCase, "Realism" by Dan Say',
     sku: 'caseable/BCI60XX114014XXAPIP67',
@@ -109,10 +109,10 @@ function makeRecommendation(): ProductRecommendation {
 
 export const getMockRecommendations = (): RecommendationsData => ({
   recommendations: [
-    makeRecommendation(),
-    makeRecommendation(),
-    makeRecommendation(),
-    makeRecommendation(),
+    getMockRecommendation(),
+    getMockRecommendation(),
+    getMockRecommendation(),
+    getMockRecommendation(),
   ],
 });
 
