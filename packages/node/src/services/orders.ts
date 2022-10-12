@@ -4,32 +4,32 @@ import {
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
 import { post } from '@35up/http-client';
-import { SdkConfig, handleApiError, parseUnixTimestamp } from '@35up/js-sdk-base';
+import { TSdkConfig, handleApiError, parseUnixTimestamp } from '@35up/js-sdk-base';
 import {
-  CreateOrderParams,
-  CreateOrderResult,
+  TCreateOrderParams,
+  TCreateOrderResult,
   ORDER_STATUS,
 } from '../types';
 
 
-type CreateOrderResultRaw = {
+type TCreateOrderResultRaw = {
   id: string;
   status: ORDER_STATUS;
   updatedAt: string;
   createdAt: string;
 };
-export type RemoteCreateOrderResult = ResolvedRemoteData<CreateOrderResult>;
+export type TRemoteCreateOrderResult = ResolvedRemoteData<TCreateOrderResult>;
 
 /**
  * This endpoint allows the seller to place an order on the 35up marketplace
  * and responds with a 35up order ID and a status update.
  */
 export async function createOrder(
-  details: CreateOrderParams,
-  config: SdkConfig,
-): Promise<RemoteCreateOrderResult> {
+  details: TCreateOrderParams,
+  config: TSdkConfig,
+): Promise<TRemoteCreateOrderResult> {
   try {
-    const result: CreateOrderResultRaw = await post(
+    const result: TCreateOrderResultRaw = await post(
       `${config.apiUrl}/orders?session=${encodeURIComponent(config.session)}`,
       details,
     );
@@ -42,7 +42,7 @@ export async function createOrder(
     });
   } catch (e) {
     if (e.response) {
-      return makeFail(handleApiError<CreateOrderParams>(e) || e);
+      return makeFail(handleApiError<TCreateOrderParams>(e) || e);
     }
 
     return makeFail(e);

@@ -1,34 +1,34 @@
-type Logo = {
+type TLogo = {
   square: string;
   landscape: string;
 }
 
-type Vendor = {
+type TVendor = {
   id: string;
   name: string;
   legalName: string;
-  logo: Logo;
+  logo: TLogo;
 }
 
-type Price = {
+type TPrice = {
   value: number;
   currency: string;
   formatted: string;
 }
 
-type Images = {
+type TImages = {
   thumbnail: string;
   small?: string;
   medium?: string;
   large?: string;
 }
 
-type Descriptions = {
+type TDescriptions = {
   short: string;
   long: string;
 }
 
-type Actions = {
+type TActions = {
   singleClickCheckout?: string;
   addToCart: string;
   deleteFromCart: string;
@@ -36,33 +36,33 @@ type Actions = {
   goToCheckout: string;
 }
 
-type Measurement = {
+type TMeasurement = {
   unit: string;
   value: number;
 }
 
-type Delivery = {
+type TDelivery = {
   timeMin?: number;
   timeMax?: number;
   package?: {
-    weight?: Measurement;
-    width?: Measurement;
-    height?: Measurement;
-    length?: Measurement;
+    weight?: TMeasurement;
+    width?: TMeasurement;
+    height?: TMeasurement;
+    length?: TMeasurement;
   }
 }
 
-type Specs = {
+type TSpecs = {
   type: string;
   materials?: string[];
   color?: string;
-  weight?: Measurement;
-  width?: Measurement;
-  height?: Measurement;
-  length?: Measurement;
+  weight?: TMeasurement;
+  width?: TMeasurement;
+  height?: TMeasurement;
+  length?: TMeasurement;
 };
 
-type Tax = {
+type TTax = {
   code: string;
   type: string;
   base: string;
@@ -70,19 +70,19 @@ type Tax = {
   included: boolean;
 }
 
-export interface Product {
+export interface TProduct {
   sku: string;
-  vendor: Vendor;
+  vendor: TVendor;
   name: string;
-  price?: Price;
-  images: Images;
-  descriptions: Descriptions;
+  price?: TPrice;
+  images: TImages;
+  descriptions: TDescriptions;
   categories: string[];
-  actions: Actions;
-  delivery: Delivery;
-  specs?: Specs;
+  actions: TActions;
+  delivery: TDelivery;
+  specs?: TSpecs;
   gtin?: Record<string, string>;
-  taxes: Tax[];
+  taxes: TTax[];
 }
 
-export type ServerProductDetails = {product: Product};
+export type TServerProductDetails = {product: TProduct};

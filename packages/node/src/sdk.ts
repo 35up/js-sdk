@@ -1,43 +1,43 @@
 import {
-  type SdkConfig,
-  type RemoteRecommendations,
-  type GetRecommendationsParams,
-  type GetProductDetailsParams,
-  type RemoteProduct,
+  type TSdkConfig,
+  type TRemoteRecommendations,
+  type TGetRecommendationsParams,
+  type TGetProductDetailsParams,
+  type TRemoteProduct,
   getProductRecommendationsService,
   getProductService,
 } from '@35up/js-sdk-base';
-import { CreateOrderParams } from './types';
+import { TCreateOrderParams } from './types';
 import {
   createOrder as createOrderService,
-  RemoteCreateOrderResult,
+  TRemoteCreateOrderResult,
 } from './services/orders';
 
 
 const configurationKey = Symbol('configuration');
 
 export class Sdk {
-  private [configurationKey]: SdkConfig;
+  private [configurationKey]: TSdkConfig;
 
-  constructor(configuration: SdkConfig) {
+  constructor(configuration: TSdkConfig) {
     this[configurationKey] = configuration;
   }
 
   async getProductRecommendations(
-    input: GetRecommendationsParams,
-  ): Promise<RemoteRecommendations> {
+    input: TGetRecommendationsParams,
+  ): Promise<TRemoteRecommendations> {
     return getProductRecommendationsService(input, this[configurationKey]);
   }
 
   async getProductDetails(
-    input: GetProductDetailsParams,
-  ): Promise<RemoteProduct> {
+    input: TGetProductDetailsParams,
+  ): Promise<TRemoteProduct> {
     return getProductService(input, this[configurationKey]);
   }
 
   async createOrder(
-    details: CreateOrderParams,
-  ): Promise<RemoteCreateOrderResult> {
+    details: TCreateOrderParams,
+  ): Promise<TRemoteCreateOrderResult> {
     return createOrderService(details, this[configurationKey]);
   }
 }

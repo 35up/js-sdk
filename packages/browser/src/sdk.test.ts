@@ -2,9 +2,9 @@ import { expect } from 'chai';
 import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
-  SdkConfig,
-  type GetRecommendationsParams,
-  type GetProductDetailsParams,
+  TSdkConfig,
+  type TGetRecommendationsParams,
+  type TGetProductDetailsParams,
   getProductRecommendationsService,
   getProductService,
 } from '@35up/js-sdk-base';
@@ -24,7 +24,7 @@ const getProductServiceMock = makeTypedMockFn(
   getProductService,
 );
 
-const configuration: SdkConfig = {
+const configuration: TSdkConfig = {
   apiUrl: 'https://fake.api/v1',
   seller: 'seller-id',
   session: 'session-id',
@@ -42,7 +42,7 @@ describe('Sdk', () => {
       );
     });
 
-    const input: GetRecommendationsParams = {
+    const input: TGetRecommendationsParams = {
       lang: 'fr',
       baseProduct: {
         title: 'Cocobolo desk',
@@ -80,7 +80,7 @@ describe('Sdk', () => {
       );
     });
 
-    const input: GetProductDetailsParams = {
+    const input: TGetProductDetailsParams = {
       sku: '123',
     };
 

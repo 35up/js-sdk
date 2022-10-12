@@ -2,13 +2,13 @@ import { expect } from 'chai';
 import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
-  SdkConfig,
+  TSdkConfig,
   getProductRecommendationsService,
   getProductService,
-  type GetRecommendationsParams,
-  type GetProductDetailsParams,
+  type TGetRecommendationsParams,
+  type TGetProductDetailsParams,
 } from '@35up/js-sdk-base';
-import { ORDER_STATUS, CreateOrderParams } from './types';
+import { ORDER_STATUS, TCreateOrderParams } from './types';
 import { createOrder as createOrderService } from './services/orders';
 import {
   getMockRecommendations,
@@ -28,7 +28,7 @@ const getProductServiceMock = makeTypedMockFn(
 );
 const createOrderMock = makeTypedMockFn(createOrderService);
 
-const configuration: SdkConfig = {
+const configuration: TSdkConfig = {
   apiUrl: 'https://fake.api/v1',
   seller: 'seller-id',
   session: 'session-id',
@@ -46,7 +46,7 @@ describe('Sdk', () => {
       );
     });
 
-    const input: GetRecommendationsParams = {
+    const input: TGetRecommendationsParams = {
       lang: 'fr',
       baseProduct: {
         title: 'Cocobolo desk',
@@ -83,7 +83,7 @@ describe('Sdk', () => {
       );
     });
 
-    const input: GetProductDetailsParams = {
+    const input: TGetProductDetailsParams = {
       sku: '123',
     };
 
@@ -113,7 +113,7 @@ describe('Sdk', () => {
       createOrderMock.resolves(makeSuccess(createOrderResult));
     });
 
-    const input: CreateOrderParams = {
+    const input: TCreateOrderParams = {
       reference: 'blabla',
       customer: {
         email: 'john@doe.qq',

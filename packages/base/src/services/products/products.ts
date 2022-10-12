@@ -4,24 +4,24 @@ import {
   makeSuccess,
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
-import { SdkConfig, GetProductDetailsParams } from '../../types';
-import type { Product, ServerProductDetails } from './products-types';
+import { TSdkConfig, TGetProductDetailsParams } from '../../types';
+import type { TProduct, TServerProductDetails } from './products-types';
 import { validateProduct } from './products-validation';
 
 
-export type RemoteProduct = ResolvedRemoteData<Product>;
+export type TRemoteProduct = ResolvedRemoteData<TProduct>;
 
 export async function getProduct(
-  params: GetProductDetailsParams,
-  sdkConfig: SdkConfig,
-): Promise<RemoteProduct> {
+  params: TGetProductDetailsParams,
+  sdkConfig: TSdkConfig,
+): Promise<TRemoteProduct> {
   try {
     const { sku, ...restParams } = params;
     const searchParams = new URLSearchParams({
       seller: sdkConfig.seller,
       ...restParams,
     });
-    const { product }: ServerProductDetails = await get(
+    const { product }: TServerProductDetails = await get(
       `${sdkConfig.apiUrl}/products/${encodeURIComponent(sku)}?${searchParams}`,
     );
 

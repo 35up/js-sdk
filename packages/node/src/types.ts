@@ -1,4 +1,4 @@
-import { InputParams } from '@35up/js-sdk-base';
+import { TInputParams } from '@35up/js-sdk-base';
 
 
 export enum ORDER_STATUS {
@@ -12,7 +12,7 @@ export enum ORDER_STATUS {
   CLOSED = 'closed',
 }
 
-export interface CreateOrderCustomer {
+export interface TCreateOrderCustomer {
   /**
    * First name of the customer.
    */
@@ -31,7 +31,7 @@ export interface CreateOrderCustomer {
   phone?: string;
 }
 
-export interface CreateOrderShippingAddress {
+export interface TCreateOrderShippingAddress {
   /**
    * First name of the customer. If not provided in `customer.firstName` will
    * be used as default.
@@ -88,7 +88,7 @@ export interface CreateOrderShippingAddress {
   country: string;
 }
 
-export interface CreateOrderItem {
+export interface TCreateOrderItem {
   /**
    * Unique identifier of the product.
    */
@@ -100,7 +100,7 @@ export interface CreateOrderItem {
   config?: Record<string, string>;
 }
 
-export interface CreateOrderParams extends InputParams {
+export interface TCreateOrderParams extends TInputParams {
   /**
    * This field accepts an arbitrary string sent by the seller to assist
    * tracking the order and relating it to a base order. Although this field is
@@ -111,20 +111,20 @@ export interface CreateOrderParams extends InputParams {
   /**
    * Information about the billing address of the customer.
    */
-  customer: CreateOrderCustomer;
+  customer: TCreateOrderCustomer;
   /**
    * Information about the delivery address of the customer for products that
    * require physical delivery.
    */
-  shippingAddress?: CreateOrderShippingAddress;
+  shippingAddress?: TCreateOrderShippingAddress;
   /**
    * Information about the items bought from the marketplace as cross-selling
    * products in that order.
    */
-  items: CreateOrderItem[];
+  items: TCreateOrderItem[];
 }
 
-export interface CreateOrderResult {
+export interface TCreateOrderResult {
   /**
    * Order number of the cross-selling order within 35up marketplace.
    */

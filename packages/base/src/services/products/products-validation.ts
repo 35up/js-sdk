@@ -6,15 +6,15 @@ import {
   validateRequired,
   validateObjectMap,
 } from '@35up/tslib-utils';
-import type { Product } from './products-types';
+import type { TProduct } from './products-types';
 
 
-const validateLogo = validateRecord<Product['vendor']['logo']>({
+const validateLogo = validateRecord<TProduct['vendor']['logo']>({
   landscape: validateRequired(''),
   square: validateRequired(''),
 });
 
-const validateProductVendor = validateRecord<Product['vendor']>({
+const validateProductVendor = validateRecord<TProduct['vendor']>({
   id: validateRequired(''),
   legalName: validateRequired(''),
   name: validateRequired(''),
@@ -43,14 +43,14 @@ const validatePrice = composeValidations(
       price.formatted ?? generateFormattedPrice(price.value, price.currency)
     ),
   })),
-  validateRecord<Product['price']>({
+  validateRecord<TProduct['price']>({
     value: validateRequired(Number.NaN),
     currency: validateRequired(''),
     formatted: validateRequired(''),
   }),
 );
 
-const validateActions = validateRecord<Product['actions']>({
+const validateActions = validateRecord<TProduct['actions']>({
   addToCart: validateRequired(''),
   deleteFromCart: validateRequired(''),
   goToCheckout: validateRequired(''),
@@ -67,10 +67,10 @@ const validateMaybeMeasurement = validateRecord<{
     unit: validateRequired(''),
   });
 
-const validateDelivery = validateRecord<Product['delivery']>({
+const validateDelivery = validateRecord<TProduct['delivery']>({
   timeMax: skipValidation,
   timeMin: skipValidation,
-  package: validateRecord<Product['delivery']['package']>({
+  package: validateRecord<TProduct['delivery']['package']>({
     height: validateMaybeMeasurement,
     length: validateMaybeMeasurement,
     weight: validateMaybeMeasurement,
@@ -78,7 +78,7 @@ const validateDelivery = validateRecord<Product['delivery']>({
   }),
 });
 
-const validateTax = validateRecord<Product['taxes'][0]>({
+const validateTax = validateRecord<TProduct['taxes'][0]>({
   type: validateRequired(''),
   base: validateRequired(''),
   code: validateRequired(''),
@@ -86,13 +86,13 @@ const validateTax = validateRecord<Product['taxes'][0]>({
   rate: validateRequired(Number.NaN),
 });
 
-const validateDescriptions = validateRecord<Product['descriptions']>({
+const validateDescriptions = validateRecord<TProduct['descriptions']>({
   short: validateRequired(''),
   long: validateRequired(''),
 });
 
 const validateImages = composeValidations(
-  validateRecord<Product['images']>({
+  validateRecord<TProduct['images']>({
     thumbnail: validateRequired(''),
     small: skipValidation,
     medium: skipValidation,
@@ -104,7 +104,7 @@ const validateImages = composeValidations(
   })),
 );
 
-export const validateProduct = validateRecord<Product>({
+export const validateProduct = validateRecord<TProduct>({
   name: validateRequired(''),
   sku: validateRequired(''),
   vendor: validateProductVendor,
@@ -118,7 +118,7 @@ export const validateProduct = validateRecord<Product>({
   gtin: validateObjectMap<string>(
     validateRequired(''),
   ),
-  specs: validateRecord<Product['specs']>({
+  specs: validateRecord<TProduct['specs']>({
     height: validateMaybeMeasurement,
     weight: validateMaybeMeasurement,
     width: validateMaybeMeasurement,
