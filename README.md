@@ -104,8 +104,78 @@ Note that `getRecommendations` is an asynchronous function and returns a
 
 #### Output
 
-```js
-  const recommendations = [{
+```ts
+  interface Recommendation {
+    sku: string;
+    vendor: {
+      id: string;
+      name: string;
+      legalName: string;
+      logo: {
+        square: string;
+        landscape: string;
+      };
+    };
+    name: string;
+    images: {
+      thumbnail: string;
+      small?: string;
+      medium?: string;
+      large?: string;
+    };
+    descriptions: {
+      short: string;
+      long: string;
+    };
+    specs: {
+      type: string;
+      materials?: string[];
+      color?: string;
+      weight?: { unit: string; value: number; };
+      width?: { unit: string; value: number; };
+      height?: { unit: string; value: number; };
+      length?: { unit: string; value: number; };
+      contract?: {
+        duration?: { unit: string; value: number; };
+      }
+    };
+    delivery?: {
+      timeMin?: number;
+      timeMax?: number;
+      package?: {
+        weight?: { unit: string; value: number; };
+        width?: { unit: string; value: number; };
+        height?: { unit: string; value: number; };
+        length?: { unit: string; value: number; };
+      }
+    };
+    price?: {
+      value: number;
+      currency: string;
+      formatted: string;
+      label?: string;
+    };
+    gtin?: Record<string, string>;
+    taxes?: {
+      code: string;
+      type: string;
+      base: string;
+      rate: number;
+      included: boolean;
+    }[];
+    urls?: Record<string, string>;
+    actions?: {
+      singleClickCheckout?: string;
+      addToCart: string;
+      deleteFromCart: string;
+      goToCart?: string;
+      goToCheckout: string;
+    };
+    details?: Record<string, unknown>;
+    categories?: string[];
+    tags?: string[];
+  }
+  const recommendations: Recommendation[] = [{
     name: 'Galaxy S500 HardCase, "Realism" by Dan Say',
     sku: 'caseable/BCI60XX114014XXAPIP67',
     categories: [],
@@ -206,8 +276,67 @@ Note that `getProduct` is an asynchronous function and returns a
 
 #### Output
 
-```js
-  const product = {
+```ts
+  interface Product {
+    sku: string;
+    vendor: {
+        id: string;
+        name: string;
+        legalName: string;
+        logo: {
+          square: string;
+          landscape: string;
+        };
+      };
+      name: string;
+      images: {
+        thumbnail: string;
+        small?: string;
+        medium?: string;
+        large?: string;
+      };
+      descriptions: {
+        short: string;
+        long: string;
+      };
+    categories: string[];
+    actions: {
+      singleClickCheckout?: string;
+      addToCart: string;
+      deleteFromCart: string;
+      goToCart?: string;
+      goToCheckout: string;
+    };
+    delivery: {
+      timeMin?: number;
+      timeMax?: number;
+      package?: {
+        weight?: { unit: string; value: number; };
+        width?: { unit: string; value: number; };
+        height?: { unit: string; value: number; };
+        length?: { unit: string; value: number; };
+      }
+    };
+    specs?: {
+      type: string;
+      materials?: string[];
+      color?: string;
+      weight?: { unit: string; value: number; };
+      width?: { unit: string; value: number; };
+      height?: { unit: string; value: number; };
+      length?: { unit: string; value: number; };
+    };
+    gtin?: Record<string, string>;
+    taxes: {
+      code: string;
+      type: string;
+      base: string;
+      rate: number;
+      included: boolean;
+    }[];
+  }
+
+  const product: Product = {
     name: 'Galaxy S10 HardCase, "Release" by Dan May',
     sku: 'caseable/HCI60XX114014XXAPIP60',
     categories: [
