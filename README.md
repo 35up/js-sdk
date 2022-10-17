@@ -250,7 +250,7 @@ Note that `getRecommendations` is an asynchronous function and returns a
 ```
 
 ### 3.2. `getProduct`
-Sdk instance has a `getProduct` method that returns details of given product
+Sdk instance has a `getProduct` method that returns details of a given product
 
 #### Input
 ```ts
