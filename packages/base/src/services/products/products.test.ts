@@ -1,12 +1,12 @@
 import { isFail, isSuccess } from '@35up/tslib-utils';
 import { expect } from 'chai';
 import fetch from 'jest-fetch-mock';
-import { TSdkConfig } from '../../types';
+import { SdkConfig } from '../../types';
 import { getProduct } from './products';
 import { getMockProductDetails } from './product-mock-data';
 
 
-const sdkConfig: TSdkConfig = {
+const sdkConfig: SdkConfig = {
   session: 'the-session',
   lang: 'en',
   country: 'de',

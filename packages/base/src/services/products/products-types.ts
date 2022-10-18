@@ -70,7 +70,7 @@ type TTax = {
   included: boolean;
 }
 
-export interface TProduct {
+export interface Product {
   sku: string;
   vendor: TVendor;
   name: string;
@@ -85,4 +85,4 @@ export interface TProduct {
   taxes: TTax[];
 }
 
-export type TServerProductDetails = {product: TProduct};
+export type TServerProductDetails = {product: Product};

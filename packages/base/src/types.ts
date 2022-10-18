@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention
 type mixed = boolean | string | number | Record<string, unknown>;
 
-export interface TBaseProduct {
+export interface BaseProduct {
   title: string;
   price?: number;
   value?: number;
@@ -11,7 +11,7 @@ export interface TBaseProduct {
   [x: string]: unknown;
 }
 
-export interface TCustomer {
+export interface Customer {
   age?: number | [number, number];
   gender?: string;
   postcode?: number;
@@ -20,7 +20,7 @@ export interface TCustomer {
   [x: string]: unknown;
 }
 
-export interface TSdkInitConfig {
+export interface SdkInitConfig {
   seller: string;
   /**
    * A unique session ID which is used to connect several requests over time.
@@ -37,61 +37,61 @@ export interface TSdkInitConfig {
   country?: string;
 }
 
-export interface TSdkConfig extends TSdkInitConfig {
+export interface SdkConfig extends SdkInitConfig {
   session: string;
   apiUrl: string;
 }
 
-export interface TInputParams {
+export interface InputParams {
   session?: string;
 }
 
-export interface TGetRecommendationsParams extends TInputParams {
-  baseProduct: TBaseProduct;
-  customer?: TCustomer;
+export interface GetRecommendationsParams extends InputParams {
+  baseProduct: BaseProduct;
+  customer?: Customer;
   lang?: string;
   country?: string;
   limit?: number;
 }
 
-export interface TGetProductDetailsParams {
+export interface GetProductDetailsParams {
   sku: string,
   lang?: string;
   country?: string;
 }
 
-export interface TLogo {
+export interface Logo {
   square: string;
   landscape: string;
 }
 
-export interface TVendor {
+export interface Vendor {
   id: string;
   name: string;
   legalName: string;
-  logo: TLogo;
+  logo: Logo;
 }
 
-export interface TPrice {
+export interface Price {
   value: number;
   currency: string;
   formatted: string;
   label?: string;
 }
 
-export interface TImages {
+export interface Images {
   thumbnail: string;
   small?: string;
   medium?: string;
   large?: string;
 }
 
-export interface TDescriptions {
+export interface Descriptions {
   short: string;
   long: string;
 }
 
-export interface TActions {
+export interface Actions {
   singleClickCheckout?: string;
   addToCart: string;
   deleteFromCart: string;
@@ -99,38 +99,38 @@ export interface TActions {
   goToCheckout: string;
 }
 
-export interface TValueWithUnit {
+export interface ValueWithUnit {
   unit: string;
   value: number;
 }
 
-export interface TDelivery {
+export interface Delivery {
   timeMin?: number;
   timeMax?: number;
   package?: {
-    weight?: TValueWithUnit;
-    width?: TValueWithUnit;
-    height?: TValueWithUnit;
-    length?: TValueWithUnit;
+    weight?: ValueWithUnit;
+    width?: ValueWithUnit;
+    height?: ValueWithUnit;
+    length?: ValueWithUnit;
   }
 }
 
-export interface TSpecs {
+export interface Specs {
   type: string;
   materials?: string[];
   color?: string;
-  weight?: TValueWithUnit;
-  width?: TValueWithUnit;
-  height?: TValueWithUnit;
-  length?: TValueWithUnit;
+  weight?: ValueWithUnit;
+  width?: ValueWithUnit;
+  height?: ValueWithUnit;
+  length?: ValueWithUnit;
   contract?: {
-    duration?: TValueWithUnit;
+    duration?: ValueWithUnit;
   }
 }
 
-export interface TGtin { [k: string]: string; }
+export interface Gtin { [k: string]: string; }
 
-export interface TTax {
+export interface Tax {
   code: string;
   type: string;
   base: string;
@@ -138,24 +138,24 @@ export interface TTax {
   included: boolean;
 }
 
-export interface TProductRecommendation {
+export interface ProductRecommendation {
   sku: string;
-  vendor: TVendor;
+  vendor: Vendor;
   name: string;
-  images: TImages;
-  descriptions: TDescriptions;
-  specs: TSpecs;
-  delivery?: TDelivery;
-  price?: TPrice;
-  gtin?: TGtin;
-  taxes?: TTax[];
+  images: Images;
+  descriptions: Descriptions;
+  specs: Specs;
+  delivery?: Delivery;
+  price?: Price;
+  gtin?: Gtin;
+  taxes?: Tax[];
   urls?: Record<string, string>;
-  actions?: TActions;
+  actions?: Actions;
   details?: Record<string, unknown>;
   categories?: string[];
   tags?: string[];
 }
 
-export interface TRecommendationsData {
-  recommendations: TProductRecommendation[],
+export interface RecommendationsData {
+  recommendations: ProductRecommendation[],
 }

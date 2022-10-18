@@ -1,13 +1,13 @@
 import {
-  type TSdkConfig,
+  type SdkConfig,
   type TRemoteRecommendations,
-  type TGetRecommendationsParams,
-  type TGetProductDetailsParams,
+  type GetRecommendationsParams,
+  type GetProductDetailsParams,
   type TRemoteProduct,
   getProductRecommendationsService,
   getProductService,
 } from '@35up/js-sdk-base';
-import { TCreateOrderParams } from './types';
+import { CreateOrderParams } from './types';
 import {
   createOrder as createOrderService,
   TRemoteCreateOrderResult,
@@ -17,26 +17,26 @@ import {
 const configurationKey = Symbol('configuration');
 
 export class Sdk {
-  private [configurationKey]: TSdkConfig;
+  private [configurationKey]: SdkConfig;
 
-  constructor(configuration: TSdkConfig) {
+  constructor(configuration: SdkConfig) {
     this[configurationKey] = configuration;
   }
 
   async getProductRecommendations(
-    input: TGetRecommendationsParams,
+    input: GetRecommendationsParams,
   ): Promise<TRemoteRecommendations> {
     return getProductRecommendationsService(input, this[configurationKey]);
   }
 
   async getProductDetails(
-    input: TGetProductDetailsParams,
+    input: GetProductDetailsParams,
   ): Promise<TRemoteProduct> {
     return getProductService(input, this[configurationKey]);
   }
 
   async createOrder(
-    details: TCreateOrderParams,
+    details: CreateOrderParams,
   ): Promise<TRemoteCreateOrderResult> {
     return createOrderService(details, this[configurationKey]);
   }

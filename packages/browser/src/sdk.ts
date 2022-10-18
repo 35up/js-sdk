@@ -1,7 +1,7 @@
 import {
-  type TSdkConfig,
-  type TGetRecommendationsParams,
-  type TGetProductDetailsParams,
+  type SdkConfig,
+  type GetRecommendationsParams,
+  type GetProductDetailsParams,
   type TRemoteRecommendations,
   type TRemoteProduct,
   getProductRecommendationsService,
@@ -12,20 +12,20 @@ import {
 const configurationKey = Symbol('configuration');
 
 export class Sdk {
-  private [configurationKey]: TSdkConfig;
+  private [configurationKey]: SdkConfig;
 
-  constructor(configuration: TSdkConfig) {
+  constructor(configuration: SdkConfig) {
     this[configurationKey] = configuration;
   }
 
   async getProductRecommendations(
-    input: TGetRecommendationsParams,
+    input: GetRecommendationsParams,
   ): Promise<TRemoteRecommendations> {
     return getProductRecommendationsService(input, this[configurationKey]);
   }
 
   async getProductDetails(
-    input: TGetProductDetailsParams,
+    input: GetProductDetailsParams,
   ): Promise<TRemoteProduct> {
     return getProductService(input, this[configurationKey]);
   }

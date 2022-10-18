@@ -4,16 +4,16 @@ import {
   makeSuccess,
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
-import { TSdkConfig, TGetProductDetailsParams } from '../../types';
-import type { TProduct, TServerProductDetails } from './products-types';
+import { SdkConfig, GetProductDetailsParams } from '../../types';
+import type { Product, TServerProductDetails } from './products-types';
 import { validateProduct } from './products-validation';
 
 
-export type TRemoteProduct = ResolvedRemoteData<TProduct>;
+export type TRemoteProduct = ResolvedRemoteData<Product>;
 
 export async function getProduct(
-  params: TGetProductDetailsParams,
-  sdkConfig: TSdkConfig,
+  params: GetProductDetailsParams,
+  sdkConfig: SdkConfig,
 ): Promise<TRemoteProduct> {
   try {
     const { sku, ...restParams } = params;

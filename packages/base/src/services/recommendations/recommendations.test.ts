@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import fetch from 'jest-fetch-mock';
 import { makeSearchParams, getProductRecommendations } from './recommendations';
-import { TGetRecommendationsParams, TSdkConfig } from '../../types';
+import { GetRecommendationsParams, SdkConfig } from '../../types';
 import { getMockRecommendations } from './recommendations-mock-data';
 
 
-const input: TGetRecommendationsParams = {
+const input: GetRecommendationsParams = {
   lang: 'en',
   country: 'de',
   limit: 10,
@@ -22,14 +22,14 @@ const input: TGetRecommendationsParams = {
   },
 };
 
-const sdkConfigWithoutUrl: Omit<TSdkConfig, 'apiUrl'> = {
+const sdkConfigWithoutUrl: Omit<SdkConfig, 'apiUrl'> = {
   lang: 'de',
   country: 'au',
   seller: 'seller-7',
   session: 'sess-12',
 };
 
-const sdkConfig: TSdkConfig = {
+const sdkConfig: SdkConfig = {
   ...sdkConfigWithoutUrl,
   apiUrl: 'https://api.fake.io/v1',
 };

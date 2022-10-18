@@ -1,7 +1,7 @@
-import { TProduct } from './products-types';
+import { Product } from './products-types';
 
 
-export const getMockProductDetails = (): TProduct => ({
+export const getMockProductDetails = (): Product => ({
   name: 'Galaxy S10 HardCase, "Release" by Dan May',
   sku: 'caseable/HCI60XX114014XXAPIP60',
   categories: [

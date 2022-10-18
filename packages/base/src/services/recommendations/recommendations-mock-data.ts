@@ -1,7 +1,7 @@
-import { TProductRecommendation, TRecommendationsData } from '../../types';
+import { ProductRecommendation, RecommendationsData } from '../../types';
 
 
-function getMockRecommendation(): TProductRecommendation {
+function getMockRecommendation(): ProductRecommendation {
   return {
     name: 'Galaxy S500 HardCase, "Realism" by Dan Say',
     sku: 'caseable/BCI60XX114014XXAPIP67',
@@ -107,7 +107,7 @@ function getMockRecommendation(): TProductRecommendation {
   };
 }
 
-export const getMockRecommendations = (): TRecommendationsData => ({
+export const getMockRecommendations = (): RecommendationsData => ({
   recommendations: [
     getMockRecommendation(),
     getMockRecommendation(),

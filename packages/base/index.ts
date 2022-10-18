@@ -1,4 +1,4 @@
-import { TSdkInitConfig, TSdkConfig } from './src/types';
+import { SdkInitConfig, SdkConfig } from './src/types';
 
 
 export { parseUnixTimestamp } from './src/utils';
@@ -13,22 +13,22 @@ export {
 } from './src/services/products';
 
 export type {
-  TSdkInitConfig,
-  TSdkConfig,
-  TInputParams,
-  TGetRecommendationsParams,
-  TGetProductDetailsParams,
-  TProductRecommendation,
-  TBaseProduct,
-  TActions,
-  TCustomer,
-  TDelivery,
-  TDescriptions,
-  TImages,
-  TLogo,
-  TPrice,
-  TVendor,
-  TSpecs,
-  TGtin,
-  TTax,
+  SdkInitConfig,
+  SdkConfig,
+  InputParams,
+  GetRecommendationsParams,
+  GetProductDetailsParams,
+  ProductRecommendation,
+  BaseProduct,
+  Actions,
+  Customer,
+  Delivery,
+  Descriptions,
+  Images,
+  Logo,
+  Price,
+  Vendor,
+  Specs,
+  Gtin,
+  Tax,
 } from './src/types';

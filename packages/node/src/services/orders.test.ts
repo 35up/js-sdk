@@ -4,17 +4,17 @@ import { HttpError } from '@35up/http-client';
 import {
   parseUnixTimestamp,
   type BadParamsError,
-  type TSdkConfig,
+  type SdkConfig,
 } from '@35up/js-sdk-base';
 import {
-  TCreateOrderParams,
-  TCreateOrderResult,
+  CreateOrderParams,
+  CreateOrderResult,
   ORDER_STATUS,
 } from '../types';
 import { createOrder } from './orders';
 
 
-const config: TSdkConfig = {
+const config: SdkConfig = {
   session: 'the-session',
   lang: 'en',
   country: 'de',
@@ -24,7 +24,7 @@ const config: TSdkConfig = {
 
 describe('orders service', () => {
   describe('createOrders', () => {
-    const details: TCreateOrderParams = {
+    const details: CreateOrderParams = {
       reference: 'some-reference',
       customer: {
         firstName: 'Joe',
@@ -117,7 +117,7 @@ describe('orders service', () => {
           expect(isFail(result)).to.be.true;
           expect(result.error).to.be.a('Error');
           const badParamErrors = result.error as BadParamsError<
-            TCreateOrderResult
+            CreateOrderResult
           >;
           expect(badParamErrors.details).to.deep.equal(errors);
         });
