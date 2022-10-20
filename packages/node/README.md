@@ -40,6 +40,81 @@ Full configuration parameters list:
 
 [Reference for cross-environment methods](../base/README.md#methods)
 
+#### `createOrder`
+Places an order on the 35up marketplace
+
+##### Input
+```ts
+  interface CreateOrderParams {
+    reference: string;
+    customer: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      phone?: string;
+    };
+    shippingAddress?: {
+      firstName?: string;
+      lastName?: string;
+      email?: string;
+      phone?: string;
+      company?: string;
+      street: string;
+      streetNumber: string;
+      extra?: string;
+      city: string;
+      postcode: string;
+      state?: string;
+      country: string;
+    };
+    items: {
+      sku: string;
+      qty: number;
+      config?: Record<string, string>;
+    }[];
+  }
+
+  const details: CreateOrderDetails = {
+    reference: '45883SKU34',
+    customer: {
+      firstName: 'Peter',
+      lastName: 'Pan',
+      email: 'peter@pan.com',
+    },
+    shippingAddress: {
+      street: 'Home Unter the Ground',
+      streetNumber: '3',
+      city: 'Neverland',
+      country: 'XX',
+      postcode: '1911',
+      phone: '+1123123123',
+    },
+    items: [
+      {sku: 'HCI60XX114014XXAPIP60', qty: 9},
+      {sku: 'FEI60XX114014XXAPIP80', qty: 1, config: {size: 'M'}},
+    ],
+  };
+```
+
+#### Output
+```ts
+  interface CreateOrderResponse {
+    id: string;
+    // New orders are always placed in "pending" state unless specified
+    // in the request.
+    status: string;
+    updatedAt: string;
+    createdAt: string;
+  }
+
+  const response: CreateOrderResponse = {
+    id: '42346434',
+    status: 'pending',
+    createdAt: '1579685580',
+    updatedAt: '1579685589',
+  }
+```
+
 ## Requirements
 
 [Reference for cross-environment requirements](../base/README.md#requirements)
