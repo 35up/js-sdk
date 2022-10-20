@@ -1,62 +1,15 @@
 # 35up Javascript SDK - base
 
-This library provides common functionality that are used in both browser and
-node environments.
+This library is used as a dependency for `js-sdk-browser` and `js-sdk-node`
+packages. It exposes common functionality that are used in both environments.
 
-## Installation
-You can install this package by executing the following command:
-```$xslt
-npm i -S @35up/js-sdk-base
-```
+## Methods
 
-or you can include it dynamically by adding it as your website asset and
-inserting the following tag into your HTML:
-```$xslt
-<script type="text/javascript" src="your-site-assets/35up-js-sdk.iife.min.js"></script>
-```
+### `getRecommendations`
+Returns a list of product recommendations based on the input
 
-In this case all the API will be available from the global object
-`thirtyFiveUp`
-
-## How to use
-
-### Call `initialise` function
-The library exposes `initialise` function that prepares and returns a 
-`Sdk` instance:
-
-```js
-  import { initialise } from '@35up/js-sdk';
-
-  const config = {
-    partner: 'your_partner_id',
-    lang: 'de',
-    country: 'de'
-  };
-
-  const sdk = initialise(config);
-```
-
-Full configuration parameters list:
-
-| Parameter | Description                                                             | Optional |
-|-----------|-------------------------------------------------------------------------|----------|
-| partner   | Your partner ID (contact 35up team to get one)                          | No       |
-| lang      | Language `ISO 639-1` code (i.e. `de`, `en`)                             | Yes      |
-| country   | Country `ISO 3166` code (i.e. `us`, `fr`)                               | Yes      |
-| session   | The ID of a session (use only if you want to generate session yourself) | Yes      |
-
-### Utilise desired SDK methods
-
-#### `getRecommendations`
-Sdk instance has a `getRecommendations` method that returns a list of product
-recommendations based on the input
-
-##### Input
+#### Input
 ```ts
-  import { initialise } from '@35up/js-sdk';
-
-  const sdk = initialise(config);
-
   interface RecommendationParams {
     baseProduct: {
       title: string,
@@ -95,14 +48,12 @@ recommendations based on the input
       cities: ['Berlin', 'Frankfurt am Main'],
     },
   };
-
-  const recommendations = await sdk.getRecommendations(params, config);
 ```
 
 Note that `getRecommendations` is an asynchronous function and returns a 
 `Promise`.
 
-##### Output
+#### Output
 
 ```ts
   interface Recommendation {
@@ -175,6 +126,7 @@ Note that `getRecommendations` is an asynchronous function and returns a
     categories?: string[];
     tags?: string[];
   }
+
   const recommendations: Recommendation[] = [{
     name: 'Galaxy S500 HardCase, "Realism" by Dan Say',
     sku: 'caseable/BCI60XX114014XXAPIP67',
@@ -250,14 +202,10 @@ Note that `getRecommendations` is an asynchronous function and returns a
 ```
 
 #### `getProduct`
-Sdk instance has a `getProduct` method that returns details of given product
+Returns details of a given product
 
-##### Input
+#### Input
 ```ts
-  import { initialise } from '@35up/js-sdk';
-
-  const sdk = initialise(config);
-
   interface ProductParams {
     lang?: string;
     country?: string;
@@ -267,14 +215,12 @@ Sdk instance has a `getProduct` method that returns details of given product
     lang: 'en',
     country: 'uk',
   };
-
-  const recommendations = await sdk.getProduct('product-sku', config, params);
 ```
 
 Note that `getProduct` is an asynchronous function and returns a 
 `Promise`.
 
-##### Output
+#### Output
 
 ```ts
   interface Product {
