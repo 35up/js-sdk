@@ -1,4 +1,4 @@
-import { InputParams } from '@35up/js-sdk-base';
+import { BaseInputParams } from '@35up/js-sdk-base';
 
 
 export enum ORDER_STATUS {
@@ -100,7 +100,7 @@ export interface CreateOrderItem {
   config?: Record<string, string>;
 }
 
-export interface CreateOrderParams extends InputParams {
+export interface CreateOrderParams extends BaseInputParams {
   /**
    * This field accepts an arbitrary string sent by the seller to assist
    * tracking the order and relating it to a base order. Although this field is

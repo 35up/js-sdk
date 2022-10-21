@@ -15,7 +15,7 @@ export {
 export type {
   SdkInitConfig,
   SdkConfig,
-  InputParams,
+  BaseInputParams,
   GetRecommendationsParams,
   GetProductDetailsParams,
   ProductRecommendation,
