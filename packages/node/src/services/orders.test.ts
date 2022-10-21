@@ -7,7 +7,7 @@ import {
   type SdkConfig,
 } from '@35up/js-sdk-base';
 import {
-  CreateOrderDetails,
+  CreateOrderParams,
   CreateOrderResult,
   ORDER_STATUS,
 } from '../types';
@@ -18,13 +18,13 @@ const config: SdkConfig = {
   session: 'the-session',
   lang: 'en',
   country: 'de',
-  partner: 'store',
+  seller: 'store',
   apiUrl: 'https://api.fake.io/v1',
 };
 
 describe('orders service', () => {
   describe('createOrders', () => {
-    const details: CreateOrderDetails = {
+    const details: CreateOrderParams = {
       reference: 'some-reference',
       customer: {
         firstName: 'Joe',

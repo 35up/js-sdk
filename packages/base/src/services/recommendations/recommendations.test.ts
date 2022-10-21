@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import fetch from 'jest-fetch-mock';
 import { makeSearchParams, getProductRecommendations } from './recommendations';
-import { RecommendationParams, SdkConfig } from '../types';
-import { getMockRecommendations } from './recommendations-data';
+import { GetRecommendationsParams, SdkConfig } from '../../types';
+import { getMockRecommendations } from './recommendations-mock-data';
 
 
-const input: RecommendationParams = {
+const input: GetRecommendationsParams = {
   lang: 'en',
   country: 'de',
   limit: 10,
@@ -25,7 +25,7 @@ const input: RecommendationParams = {
 const sdkConfigWithoutUrl: Omit<SdkConfig, 'apiUrl'> = {
   lang: 'de',
   country: 'au',
-  partner: 'partner-7',
+  seller: 'seller-7',
   session: 'sess-12',
 };
 
@@ -39,7 +39,7 @@ const productRecommendations = getMockRecommendations();
 describe('service - recommendations', () => {
   describe('makeSearchParams', () => {
     it('converts object to search string', () => {
-      const expected = 'lang=en&country=de&partner=partner-7&session=sess-12'
+      const expected = 'lang=en&country=de&seller=seller-7&session=sess-12'
         + '&limit=10&baseProduct.title=Cocobolo%20desk&baseProduct.category'
         + '=Furniture&baseProduct.extra.foo=ba-da%20boo%5E%3F&customer.age='
         + '20-30&customer.cities=Berlin,Frankfurt%20am%20Main';

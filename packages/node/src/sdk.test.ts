@@ -2,13 +2,20 @@ import { expect } from 'chai';
 import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
-  RecommendationParams,
   SdkConfig,
   getProductRecommendationsService,
+  getProductService,
+  type GetRecommendationsParams,
+  type GetProductDetailsParams,
 } from '@35up/js-sdk-base';
-import { ORDER_STATUS, CreateOrderDetails } from './types';
+import { ORDER_STATUS, CreateOrderParams } from './types';
 import { createOrder as createOrderService } from './services/orders';
-import { getMockRecommendations } from '../../base/src/services/recommendations-data';
+import {
+  getMockRecommendations,
+} from '../../base/src/services/recommendations/recommendations-mock-data';
+import {
+  getMockProductDetails,
+} from '../../base/src/services/products/product-mock-data';
 import { Sdk } from './sdk';
 
 
@@ -16,11 +23,14 @@ jest.mock('./services/orders');
 const getProductRecommendationsMock = makeTypedMockFn(
   getProductRecommendationsService,
 );
+const getProductServiceMock = makeTypedMockFn(
+  getProductService,
+);
 const createOrderMock = makeTypedMockFn(createOrderService);
 
 const configuration: SdkConfig = {
   apiUrl: 'https://fake.api/v1',
-  partner: 'partner-id',
+  seller: 'seller-id',
   session: 'session-id',
   country: 'de',
   lang: 'en',
@@ -36,7 +46,7 @@ describe('Sdk', () => {
       );
     });
 
-    const input: RecommendationParams = {
+    const input: GetRecommendationsParams = {
       lang: 'fr',
       baseProduct: {
         title: 'Cocobolo desk',
@@ -64,6 +74,32 @@ describe('Sdk', () => {
     });
   });
 
+  describe('getProductDetails', () => {
+    const productDetails = getMockProductDetails();
+    beforeEach(() => {
+      getProductServiceMock.reset();
+      getProductServiceMock.resolves(
+        makeSuccess(productDetails),
+      );
+    });
+
+    const input: GetProductDetailsParams = {
+      sku: '123',
+    };
+
+    it('gets product details using provided params and the sdk configuration', async () => {
+      const instance = new Sdk(configuration);
+
+      expect(
+        await instance.getProductDetails(input),
+      ).to.be.deep.equal(makeSuccess(productDetails));
+      expect(getProductServiceMock).to.have.been.calledWith(
+        input,
+        configuration,
+      );
+    });
+  });
+
   describe('createOrder', () => {
     const createOrderResult = {
       id: 'abcd1234',
@@ -77,7 +113,7 @@ describe('Sdk', () => {
       createOrderMock.resolves(makeSuccess(createOrderResult));
     });
 
-    const input: CreateOrderDetails = {
+    const input: CreateOrderParams = {
       reference: 'blabla',
       customer: {
         email: 'john@doe.qq',

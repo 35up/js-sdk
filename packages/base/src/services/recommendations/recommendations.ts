@@ -6,16 +6,16 @@ import {
 import { get } from '@35up/http-client';
 import {
   ProductRecommendation,
-  RecommendationParams,
+  GetRecommendationsParams,
   RecommendationsData,
   SdkConfig,
-} from '../types';
+} from '../../types';
 
 
 export type TRemoteRecommendations = ResolvedRemoteData<
   ProductRecommendation[]
 >;
-type TParams = Omit<SdkConfig, 'apiUrl'> & RecommendationParams;
+type TParams = Omit<SdkConfig, 'apiUrl'> & GetRecommendationsParams;
 
 
 function flattenInput(
@@ -58,7 +58,7 @@ export function makeSearchParams(input: TParams): string {
 }
 
 export async function getProductRecommendations(
-  params: RecommendationParams,
+  params: GetRecommendationsParams,
   sdkConfig: SdkConfig,
 ): Promise<TRemoteRecommendations> {
   const { apiUrl, ...finalParams } = {...sdkConfig, ...params};

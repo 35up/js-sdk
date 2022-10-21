@@ -5,8 +5,8 @@ import { Sdk } from './src/sdk';
 
 export function initialise(configuration: SdkInitConfig): Sdk {
   // Not everybody using this uses typescript
-  if (!('partner' in configuration)) {
-    throw new TypeError('Cannot initialise the 35up SDK without a partner ID');
+  if (!('seller' in configuration)) {
+    throw new TypeError('Cannot initialise the 35up SDK without a seller ID');
   }
 
   if (!('lang' in configuration) || !('country' in configuration)) {
@@ -23,7 +23,7 @@ export function initialise(configuration: SdkInitConfig): Sdk {
 
 export type {
   SdkInitConfig as SdkConfig,
-  RecommendationParams,
+  GetRecommendationsParams,
   ProductRecommendation,
   BaseProduct,
   Actions,
@@ -41,7 +41,7 @@ export type {
 
 export {
   ORDER_STATUS,
-  type CreateOrderDetails,
+  type CreateOrderParams,
   type CreateOrderResult,
 } from './src/types';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

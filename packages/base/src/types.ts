@@ -21,7 +21,7 @@ export interface Customer {
 }
 
 export interface SdkInitConfig {
-  partner: string;
+  seller: string;
   /**
    * A unique session ID which is used to connect several requests over time.
    * The unique session ID can be any unique string.
@@ -33,8 +33,8 @@ export interface SdkInitConfig {
    * server, a proxy, or a mock implementation, by specifying another url
    */
   apiUrl?: string;
-  lang: string;
-  country: string;
+  lang?: string;
+  country?: string;
 }
 
 export interface SdkConfig extends SdkInitConfig {
@@ -42,12 +42,22 @@ export interface SdkConfig extends SdkInitConfig {
   apiUrl: string;
 }
 
-export interface RecommendationParams {
+export interface BaseInputParams {
+  session?: string;
+}
+
+export interface GetRecommendationsParams extends BaseInputParams {
   baseProduct: BaseProduct;
   customer?: Customer;
   lang?: string;
   country?: string;
   limit?: number;
+}
+
+export interface GetProductDetailsParams {
+  sku: string,
+  lang?: string;
+  country?: string;
 }
 
 export interface Logo {
