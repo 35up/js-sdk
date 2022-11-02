@@ -1,32 +1,62 @@
 import {
-  type SdkConfig,
-  type GetRecommendationsParams,
   type GetProductDetailsParams,
-  type TRemoteRecommendations,
-  type TRemoteProduct,
   getProductRecommendationsService,
   getProductService,
+  type GetRecommendationsParams,
+  type SdkConfig,
+  type TRemoteProduct,
+  type TRemoteRecommendations,
 } from '@35up/js-sdk-base';
+import { nanoid } from 'nanoid';
 
+interface BrowserSdkConfig extends Omit<SdkConfig, 'session'> {
+  session?: string;
+}
 
-const configurationKey = Symbol('configuration');
+export const SESSION_LOCAL_STORAGE_KEY = '35up-session';
+
+export const configurationKey = Symbol('configuration');
 
 export class Sdk {
-  private [configurationKey]: SdkConfig;
+  private [configurationKey]: BrowserSdkConfig;
 
-  constructor(configuration: SdkConfig) {
+  constructor(configuration: BrowserSdkConfig) {
     this[configurationKey] = configuration;
+  }
+
+  private getDefaultSession() {
+    let sessionId = window.localStorage.getItem(SESSION_LOCAL_STORAGE_KEY);
+
+    if (!sessionId) {
+      sessionId = nanoid(32);
+      window.localStorage.setItem(SESSION_LOCAL_STORAGE_KEY, sessionId);
+    }
+
+    return sessionId;
+  }
+
+  private getConfig(): SdkConfig {
+    const { session, ...otherConfig } = this[configurationKey];
+
+    return {
+      ...otherConfig,
+      session: session || this.getDefaultSession(),
+    };
+  }
+
+  resetSession(): void {
+    window.localStorage.removeItem(SESSION_LOCAL_STORAGE_KEY);
   }
 
   async getProductRecommendations(
     input: GetRecommendationsParams,
   ): Promise<TRemoteRecommendations> {
-    return getProductRecommendationsService(input, this[configurationKey]);
+    return getProductRecommendationsService(input, this.getConfig());
   }
 
   async getProductDetails(
     input: GetProductDetailsParams,
   ): Promise<TRemoteProduct> {
-    return getProductService(input, this[configurationKey]);
+    return getProductService(input, this.getConfig());
   }
 }
