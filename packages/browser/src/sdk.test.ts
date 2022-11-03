@@ -69,9 +69,9 @@ describe('Sdk', () => {
     it('gets recommendations using provided params and the sdk configuration', async () => {
       const instance = new Sdk(configuration);
 
-      expect(
-        await instance.getProductRecommendations(input),
-      ).to.be.deep.equal(makeSuccess(recommendations));
+      const result = await instance.getProductRecommendations(input);
+
+      expect(result).to.be.deep.equal(makeSuccess(recommendations));
       expect(getProductRecommendationsMock).to.have.been.calledWith(
         input,
         configuration,
@@ -95,9 +95,9 @@ describe('Sdk', () => {
     it('gets product details using provided params and the sdk configuration', async () => {
       const instance = new Sdk(configuration);
 
-      expect(
-        await instance.getProductDetails(input),
-      ).to.be.deep.equal(makeSuccess(productDetails));
+      const result = await instance.getProductDetails(input);
+
+      expect(result).to.be.deep.equal(makeSuccess(productDetails));
       expect(getProductServiceMock).to.have.been.calledWith(
         input,
         configuration,
@@ -109,9 +109,11 @@ describe('Sdk', () => {
     it('uses the provided session', async () => {
       const instance = new Sdk(configuration);
 
-      expect(await instance.getProductRecommendations({
+      const result = await instance.getProductRecommendations({
         baseProduct: {title: 'title'},
-      })).to.be.deep.equal(makeSuccess(recommendations));
+      });
+
+      expect(result).to.be.deep.equal(makeSuccess(recommendations));
       expect(getProductRecommendationsMock).to.have.been.calledWith(
         sinon.match.any,
         sinon.match({session: configuration.session}),
@@ -129,9 +131,11 @@ describe('Sdk', () => {
           window.localStorage.getItem(SESSION_LOCAL_STORAGE_KEY),
         ).to.be.null;
 
-        expect(await instance.getProductRecommendations({
+        const result = await instance.getProductRecommendations({
           baseProduct: {title: 'title'},
-        })).to.be.deep.equal(makeSuccess(recommendations));
+        });
+
+        expect(result).to.be.deep.equal(makeSuccess(recommendations));
         expect(
           window.localStorage.getItem(SESSION_LOCAL_STORAGE_KEY),
         ).to.be.not.empty;
@@ -153,9 +157,11 @@ describe('Sdk', () => {
         it('uses session from storage', async () => {
           const instance = new Sdk(configWithoutSession);
 
-          expect(await instance.getProductRecommendations({
+          const result = await instance.getProductRecommendations({
             baseProduct: {title: 'title'},
-          })).to.be.deep.equal(makeSuccess(recommendations));
+          });
+
+          expect(result).to.be.deep.equal(makeSuccess(recommendations));
           expect(getProductRecommendationsMock).to.have.been.calledWith(
             sinon.match.any,
             sinon.match({session: storedSession}),
