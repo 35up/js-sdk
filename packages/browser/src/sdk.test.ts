@@ -125,7 +125,7 @@ describe('Sdk', () => {
         window.localStorage.clear();
       });
 
-      it('provides a new session and stores it in localStorage', async () => {
+      it('generates a new session and stores it in localStorage', async () => {
         const instance = new Sdk(configWithoutSession);
         expect(
           window.localStorage.getItem(SESSION_LOCAL_STORAGE_KEY),
