@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import { SdkInitConfig } from '@35up/js-sdk-base';
 import { Sdk } from './src/sdk';
 
@@ -16,7 +15,6 @@ export function initialise(configuration: SdkInitConfig): Sdk {
 
   return new Sdk({
     ...configuration,
-    session: configuration.session || nanoid(),
     apiUrl: configuration.apiUrl || 'https://api.35up.io/v1',
   });
 }

@@ -52,3 +52,11 @@ Full configuration parameters list:
 ## Requirements
 
 [Reference for cross-environment requirements](../base/README.md#requirements)
+
+## About sessions
+
+When a session is not provided we generate a unique session id which will
+be stored in the browser `localStorage` and used between client sessions.
+
+The _Sdk_ exposes a `resetSession` method that removes the session from
+`localStorage`, in case a new session id is desired.
