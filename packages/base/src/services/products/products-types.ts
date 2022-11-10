@@ -62,7 +62,7 @@ type TSpecs = {
   length?: TMeasurement;
 };
 
-type TTax = {
+export type TTax = {
   code: string;
   type: string;
   base: string;

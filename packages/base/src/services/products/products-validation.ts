@@ -6,7 +6,7 @@ import {
   validateRequired,
   validateObjectMap,
 } from '@35up/tslib-utils';
-import type { Product } from './products-types';
+import type { Product, TTax } from './products-types';
 
 
 const validateLogo = validateRecord<Product['vendor']['logo']>({
@@ -78,7 +78,7 @@ const validateDelivery = validateRecord<Product['delivery']>({
   }),
 });
 
-const validateTax = validateRecord<Product['taxes'][0]>({
+const validateTax = validateRecord<TTax>({
   type: validateRequired(''),
   base: validateRequired(''),
   code: validateRequired(''),
@@ -114,7 +114,7 @@ export const validateProduct = validateRecord<Product>({
   images: validateImages,
   delivery: validateDelivery,
   categories: validateRequired<string[]>([]),
-  taxes: validateList(validateTax),
+  taxes: validateList<TTax>(validateTax),
   gtin: validateObjectMap<string>(
     validateRequired(''),
   ),
