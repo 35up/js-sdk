@@ -42,7 +42,8 @@ Full configuration parameters list:
 
 ### Methods
 
-[Reference for cross-environment methods](../base/README.md#methods)
+In addition to [cross-environment methods](../base/README.md#methods) this 
+package provides the following ones:
 
 #### `createOrder`
 Places an order on the 35up marketplace

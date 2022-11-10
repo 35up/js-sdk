@@ -52,6 +52,7 @@ Full configuration parameters list:
 
 ### Methods
 
+This package provides following methods:
 [Reference for cross-environment methods](../base/README.md#methods)
 
 ## Requirements
