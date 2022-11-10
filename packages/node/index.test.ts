@@ -33,39 +33,4 @@ describe('initialise', () => {
       initialise({lang: 'en', country: 'de', session: 'session-id'});
     }).to.throw('Cannot initialise the 35up SDK without a seller ID');
   });
-
-  it('throws an error when no language information is provided', () => {
-    expect(() => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      initialise({seller: 'seller-id', lang: 'en', session: 'session-id'});
-    }).to.throw(
-      'Cannot initialise the 35up SDK without a language and country',
-    );
-  });
-
-  it('throws an error when no country information is provided', () => {
-    expect(() => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      initialise({
-        seller: 'seller-id',
-        country: 'de',
-        session: 'session-id',
-      });
-    }).to.throw(
-      'Cannot initialise the 35up SDK without a language and country',
-    );
-  });
-
-  it('throws an error when no language and country'
-    + 'information is provided', () => {
-    expect(() => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      initialise({seller: 'seller-id', session: 'session-id'});
-    }).to.throw(
-      'Cannot initialise the 35up SDK without a language and country',
-    );
-  });
 });
