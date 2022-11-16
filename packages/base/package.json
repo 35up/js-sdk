@@ -32,7 +32,8 @@
     "@35up/http-client": "^2.1.4",
     "@35up/tslib-utils": "^2.0.1",
     "nanoid": "^3.3.4",
-    "tslib": "^2.4.0"
+    "tslib": "^2.4.1",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@35up/eslint-config-35up-base": "^4.0.2",
@@ -62,7 +63,7 @@
     "sinon": "^14.0.0",
     "sinon-chai": "^3.7.0",
     "ts-jest": "^28.0.8",
-    "typescript": "^4.8.2"
+    "typescript": "^4.9.3"
   },
   "iife": "dist/35up-js-sdk.iife.min.js",
   "main": "dist/35up-js-sdk.cjs.js",

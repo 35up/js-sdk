@@ -1,8 +1,6 @@
-import { SdkInitConfig, SdkConfig } from './src/types';
-
-
 export { parseUnixTimestamp } from './src/utils';
 export { handleApiError, type BadParamsError } from './src/errors';
+export * as validators from './src/validators';
 export {
   getProductRecommendations as getProductRecommendationsService,
   type TRemoteRecommendations,
