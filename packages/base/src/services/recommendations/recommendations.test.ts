@@ -78,6 +78,44 @@ describe('service - recommendations', () => {
       expect(recommendations.error).to.be.null;
     });
 
+    describe('some of the recommendations are invalid', () => {
+      const {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        specs,
+        ...invalidRecommendation
+      } = productRecommendations.recommendations[1];
+      const recommendationsWithInvalid = {
+        recommendations: [
+          productRecommendations.recommendations[0],
+          invalidRecommendation,
+          productRecommendations.recommendations[2],
+          productRecommendations.recommendations[3],
+        ],
+      };
+
+      beforeEach(() => {
+        fetch.resetMocks();
+        fetch.mockResponse(
+          JSON.stringify(recommendationsWithInvalid),
+          {headers: {'Content-Type': 'application/json'}},
+        );
+      });
+
+      it('returns recommendations', async () => {
+        const recommendations = await getProductRecommendations(
+          input,
+          sdkConfig,
+        );
+
+        expect(recommendations.data).to.deep.equal([
+          productRecommendations.recommendations[0],
+          productRecommendations.recommendations[2],
+          productRecommendations.recommendations[3],
+        ]);
+        expect(recommendations.error).to.be.null;
+      });
+    });
+
     it('returns err when request fails', async () => {
       const error = new Error('fail');
       fetch.mockReject(error);

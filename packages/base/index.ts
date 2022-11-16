@@ -16,17 +16,19 @@ export type {
   BaseInputParams,
   GetRecommendationsParams,
   GetProductDetailsParams,
-  ProductRecommendation,
   BaseProduct,
-  Actions,
   Customer,
+} from './src/types';
+export type {
+  ProductRecommendation,
+  Tax,
+  Gtin,
+  Specs,
   Delivery,
+  Actions,
   Descriptions,
   Images,
-  Logo,
   Price,
   Vendor,
-  Specs,
-  Gtin,
-  Tax,
-} from './src/types';
+  Logo,
+} from './src/services/recommendations';

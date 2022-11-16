@@ -5,11 +5,11 @@ import {
 } from '@35up/tslib-utils';
 import { get } from '@35up/http-client';
 import {
-  ProductRecommendation,
   GetRecommendationsParams,
-  RecommendationsData,
   SdkConfig,
 } from '../../types';
+import { ProductRecommendation } from './types';
+import { recommendationsData } from './validators';
 
 
 export type TRemoteRecommendations = ResolvedRemoteData<
@@ -64,9 +64,9 @@ export async function getProductRecommendations(
   const { apiUrl, ...finalParams } = {...sdkConfig, ...params};
 
   try {
-    const data: RecommendationsData = await get(
+    const data = recommendationsData.parse(await get(
       `${apiUrl}/recommendations?${makeSearchParams(finalParams)}`,
-    );
+    ));
     return makeSuccess(data.recommendations);
   } catch (e) {
     return makeFail(e);
