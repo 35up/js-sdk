@@ -9,7 +9,7 @@ import {
   SdkConfig,
 } from '../../types';
 import { ProductRecommendation } from './types';
-import { recommendationsData } from './validators';
+import { recommendationsData } from './validations';
 
 
 export type TRemoteRecommendations = ResolvedRemoteData<

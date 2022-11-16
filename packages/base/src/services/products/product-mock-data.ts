@@ -1,4 +1,4 @@
-import { Product } from './products-types';
+import { Product } from './types';
 
 
 export const getMockProductDetails = (): Product => ({
@@ -44,19 +44,12 @@ export const getMockProductDetails = (): Product => ({
   delivery: {
     timeMax: 4,
     timeMin: 2,
-    package: undefined,
   },
   taxes: [],
   gtin: {
     ian: 'asdfb',
   },
   specs: {
-    height: undefined,
-    weight: undefined,
-    width: undefined,
-    length: undefined,
-    color: undefined,
     type: 'phone hard case',
-    materials: undefined,
   },
 });

@@ -1,6 +1,6 @@
 export { parseUnixTimestamp } from './src/utils';
 export { handleApiError, type BadParamsError } from './src/errors';
-export * as validators from './src/validators';
+export * as validation from './src/validators';
 export {
   getProductRecommendations as getProductRecommendationsService,
   type TRemoteRecommendations,
@@ -18,17 +18,15 @@ export type {
   GetProductDetailsParams,
   BaseProduct,
   Customer,
-} from './src/types';
-export type {
-  ProductRecommendation,
+  Vendor,
+  Logo,
+  Descriptions,
+  Images,
   Tax,
   Gtin,
   Specs,
   Delivery,
   Actions,
-  Descriptions,
-  Images,
   Price,
-  Vendor,
-  Logo,
-} from './src/services/recommendations';
+} from './src/types';
+export type { ProductRecommendation } from './src/services/recommendations';
