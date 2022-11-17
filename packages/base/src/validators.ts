@@ -106,7 +106,7 @@ export const delivery = z.object({
 
 export const specs = z.object({
   type: z.string(),
-  materials: z.array(z.string()).optional(),
+  materials: z.string().array().optional(),
   color: z.string().optional(),
   weight: valueWithUnit.optional(),
   width: valueWithUnit.optional(),

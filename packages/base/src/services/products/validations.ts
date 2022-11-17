@@ -22,8 +22,8 @@ export const product: ZodType<Product, ZodTypeDef, unknown> = z.object({
   descriptions,
   images,
   delivery,
-  categories: z.array(z.string()),
-  taxes: z.array(tax),
+  categories: z.string().array(),
+  taxes: tax.array(),
   gtin: gtin.optional(),
   specs: specs.optional(),
 });
