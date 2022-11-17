@@ -40,7 +40,7 @@ export const getRecommendationsParams = baseInputParams.extend({
   customer: customer.optional(),
   lang: z.string().optional(),
   country: z.string().optional(),
-  limit: z.string().optional(),
+  limit: z.number().optional(),
 });
 
 export const getProductDetailsParams = z.object({
