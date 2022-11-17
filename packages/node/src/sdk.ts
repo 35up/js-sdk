@@ -6,7 +6,7 @@ import {
   type TRemoteProduct,
   getProductRecommendationsService,
   getProductService,
-  validation,
+  validations,
   ArgumentValidationError,
 } from '@35up/js-sdk-base';
 import { makeFail } from '@35up/tslib-utils';
@@ -31,7 +31,7 @@ export class Sdk {
   async getProductRecommendations(
     input: GetRecommendationsParams,
   ): Promise<TRemoteRecommendations> {
-    const validated = validation.getRecommendationsParams.safeParse(input);
+    const validated = validations.getRecommendationsParams.safeParse(input);
 
     if (!validated.success) {
       return makeFail(new ArgumentValidationError(validated.error));
@@ -46,7 +46,7 @@ export class Sdk {
   async getProductDetails(
     input: GetProductDetailsParams,
   ): Promise<TRemoteProduct> {
-    const validated = validation.getProductDetailsParams.safeParse(input);
+    const validated = validations.getProductDetailsParams.safeParse(input);
 
     if (!validated.success) {
       return makeFail(new ArgumentValidationError(validated.error));

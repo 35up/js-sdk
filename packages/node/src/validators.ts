@@ -1,4 +1,4 @@
-import { validation } from '@35up/js-sdk-base';
+import { validations } from '@35up/js-sdk-base';
 import { z } from 'zod';
 import { ORDER_STATUS } from './types';
 
@@ -33,7 +33,7 @@ export const createOrderItem = z.object({
   config: z.record(z.string(), z.string()).optional(),
 });
 
-export const createOrderParams = validation.baseInputParams.extend({
+export const createOrderParams = validations.baseInputParams.extend({
   reference: z.string(),
   customer: createOrderCustomer,
   shippingAddress: createOrderShippingAddress.optional(),

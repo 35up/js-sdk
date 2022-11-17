@@ -4,7 +4,7 @@ import {
   type GetProductDetailsParams,
   getProductRecommendationsService,
   getProductService,
-  validation,
+  validations,
   type GetRecommendationsParams,
   type SdkConfig,
   type TRemoteProduct,
@@ -55,7 +55,7 @@ export class Sdk {
   async getProductRecommendations(
     input: GetRecommendationsParams,
   ): Promise<TRemoteRecommendations> {
-    const validated = validation.getRecommendationsParams.safeParse(input);
+    const validated = validations.getRecommendationsParams.safeParse(input);
 
     if (!validated.success) {
       return makeFail(new ArgumentValidationError(validated.error));
@@ -70,7 +70,7 @@ export class Sdk {
   async getProductDetails(
     input: GetProductDetailsParams,
   ): Promise<TRemoteProduct> {
-    const validated = validation.getProductDetailsParams.safeParse(input);
+    const validated = validations.getProductDetailsParams.safeParse(input);
 
     if (!validated.success) {
       return makeFail(new ArgumentValidationError(validated.error));

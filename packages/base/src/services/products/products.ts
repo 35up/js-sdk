@@ -7,7 +7,7 @@ import {
 } from '@35up/tslib-utils';
 import { SdkConfig, GetProductDetailsParams } from '../../types';
 import type { Product } from './types';
-import * as validation from './validations';
+import * as validations from './validations';
 import { ValidationError } from '../../errors';
 
 
@@ -23,9 +23,9 @@ export async function getProduct(
       seller: sdkConfig.seller,
       ...restParams,
     });
-    const { product } = z.object({product: validation.product}).parse(await get(
-      `${sdkConfig.apiUrl}/products/${encodeURIComponent(sku)}?${searchParams}`,
-    ));
+    const { product } = z.object({product: validations.product}).parse(
+      await get(`${sdkConfig.apiUrl}/products/${encodeURIComponent(sku)}?${searchParams}`),
+    );
 
     return makeSuccess(product);
   } catch (e) {

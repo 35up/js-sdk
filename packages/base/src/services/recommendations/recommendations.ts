@@ -10,7 +10,7 @@ import {
   SdkConfig,
 } from '../../types';
 import { ProductRecommendation } from './types';
-import { recommendationsData } from './validations';
+import * as validations from './validations';
 import { ValidationError } from '../../errors';
 
 
@@ -66,7 +66,7 @@ export async function getProductRecommendations(
   const { apiUrl, ...finalParams } = {...sdkConfig, ...params};
 
   try {
-    const data = recommendationsData.parse(await get(
+    const data = validations.recommendationsData.parse(await get(
       `${apiUrl}/recommendations?${makeSearchParams(finalParams)}`,
     ));
     return makeSuccess(data.recommendations);

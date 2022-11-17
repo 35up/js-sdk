@@ -1,4 +1,4 @@
-import { z, ZodType, ZodTypeDef } from 'zod';
+import { z } from 'zod';
 import {
   actions,
   delivery,
@@ -10,10 +10,9 @@ import {
   tax,
   vendor,
 } from '../../validators';
-import type { Product } from './types';
 
 
-export const product: ZodType<Product, ZodTypeDef, unknown> = z.object({
+export const product = z.object({
   name: z.string(),
   sku: z.string(),
   vendor,
