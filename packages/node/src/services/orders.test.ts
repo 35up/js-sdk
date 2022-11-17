@@ -5,6 +5,7 @@ import {
   parseUnixTimestamp,
   type BadParamsError,
   type SdkConfig,
+  ValidationError,
 } from '@35up/js-sdk-base';
 import { ZodError } from 'zod';
 import {
@@ -100,7 +101,9 @@ describe('orders service', () => {
           const result = await createOrder(details, config);
 
           expect(isFail(result)).to.be.true;
-          expect(result.error).to.be.instanceof(ZodError);
+          expect(result.error).to.be.instanceof(ValidationError);
+          expect(result.error).to.have.property('validationError')
+            .instanceof(ZodError);
         });
       });
 
@@ -122,7 +125,9 @@ describe('orders service', () => {
           const result = await createOrder(details, config);
 
           expect(isFail(result)).to.be.true;
-          expect(result.error).to.be.instanceof(ZodError);
+          expect(result.error).to.be.instanceof(ValidationError);
+          expect(result.error).to.have.property('validationError')
+            .instanceof(ZodError);
         });
       });
     });

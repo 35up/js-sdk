@@ -7,6 +7,7 @@ import {
   getProductRecommendationsService,
   getProductService,
   validation,
+  ArgumentValidationError,
 } from '@35up/js-sdk-base';
 import { makeFail } from '@35up/tslib-utils';
 import { CreateOrderParams } from './types';
@@ -33,7 +34,7 @@ export class Sdk {
     const validated = validation.getRecommendationsParams.safeParse(input);
 
     if (!validated.success) {
-      return makeFail(validated.error);
+      return makeFail(new ArgumentValidationError(validated.error));
     }
 
     return getProductRecommendationsService(
@@ -48,7 +49,7 @@ export class Sdk {
     const validated = validation.getProductDetailsParams.safeParse(input);
 
     if (!validated.success) {
-      return makeFail(validated.error);
+      return makeFail(new ArgumentValidationError(validated.error));
     }
 
     return getProductService(validated.data, this[configurationKey]);
@@ -60,7 +61,7 @@ export class Sdk {
     const validated = createOrderParams.safeParse(details);
 
     if (!validated.success) {
-      return makeFail(validated.error);
+      return makeFail(new ArgumentValidationError(validated.error));
     }
 
     return createOrderService(details, this[configurationKey]);

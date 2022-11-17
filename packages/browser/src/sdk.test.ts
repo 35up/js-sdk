@@ -8,6 +8,7 @@ import {
   type GetProductDetailsParams,
   getProductRecommendationsService,
   getProductService,
+  ArgumentValidationError,
 } from '@35up/js-sdk-base';
 import sinon from 'sinon';
 import {
@@ -88,7 +89,9 @@ describe('Sdk', () => {
       const result = await instance.getProductRecommendations(invalidInput);
 
       expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ZodError);
+      expect(result.error).to.be.instanceof(ArgumentValidationError);
+      expect(result.error).to.have.property('validationError')
+        .instanceof(ZodError);
     });
   });
 
@@ -125,7 +128,9 @@ describe('Sdk', () => {
       const result = await instance.getProductDetails(invalidInput);
 
       expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ZodError);
+      expect(result.error).to.be.instanceof(ArgumentValidationError);
+      expect(result.error).to.have.property('validationError')
+        .instanceof(ZodError);
     });
   });
 

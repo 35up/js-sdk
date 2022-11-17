@@ -4,12 +4,14 @@ import {
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
 import { get } from '@35up/http-client';
+import { ZodError } from 'zod';
 import {
   GetRecommendationsParams,
   SdkConfig,
 } from '../../types';
 import { ProductRecommendation } from './types';
 import { recommendationsData } from './validations';
+import { ValidationError } from '../../errors';
 
 
 export type TRemoteRecommendations = ResolvedRemoteData<
@@ -69,6 +71,13 @@ export async function getProductRecommendations(
     ));
     return makeSuccess(data.recommendations);
   } catch (e) {
+    if (e instanceof ZodError) {
+      return makeFail(new ValidationError(
+        'Data from the API is not what we expected. Please contact support,',
+        e,
+      ));
+    }
+
     return makeFail(e);
   }
 }

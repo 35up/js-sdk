@@ -1,4 +1,6 @@
+/* eslint-disable max-classes-per-file */
 import { HttpError } from '@35up/http-client';
+import { ZodError } from 'zod';
 
 
 export type TParamErrorDetail<T> = string | {
@@ -8,6 +10,18 @@ export type TParamErrorDetail<T> = string | {
 export class BadParamsError<T> extends Error {
   constructor(message: string, public readonly details?: TParamErrorDetail<T>) {
     super(message);
+  }
+}
+
+export class ValidationError<T = unknown> extends Error {
+  constructor(message: string, public readonly validationError: ZodError<T>) {
+    super(message);
+  }
+}
+
+export class ArgumentValidationError<T = unknown> extends ValidationError<T> {
+  constructor(validationError: ZodError<T>) {
+    super('Arguments provided do not math expected structure', validationError);
   }
 }
 

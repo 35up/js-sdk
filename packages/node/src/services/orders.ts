@@ -4,7 +4,12 @@ import {
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
 import { post } from '@35up/http-client';
-import { SdkConfig, handleApiError, parseUnixTimestamp } from '@35up/js-sdk-base';
+import {
+  SdkConfig,
+  ValidationError,
+  handleApiError,
+  parseUnixTimestamp,
+} from '@35up/js-sdk-base';
 import { z } from 'zod';
 import { CreateOrderParams, CreateOrderResult } from '../types';
 import { orderStatus } from '../validators';
@@ -36,7 +41,10 @@ export async function createOrder(
     ));
 
     if (!result.success) {
-      return makeFail(result.error);
+      return makeFail(new ValidationError(
+        'Data from the API is not what we expected. Please contact support,',
+        result.error,
+      ));
     }
 
     return makeSuccess(result.data);

@@ -6,7 +6,7 @@ import {
   getProductRecommendationsService,
   getProductService,
   type GetRecommendationsParams,
-  type GetProductDetailsParams,
+  type GetProductDetailsParams, ArgumentValidationError,
 } from '@35up/js-sdk-base';
 import { ZodError } from 'zod';
 import { ORDER_STATUS, CreateOrderParams } from './types';
@@ -83,7 +83,9 @@ describe('Sdk', () => {
       const result = await instance.getProductRecommendations(invalidInput);
 
       expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ZodError);
+      expect(result.error).to.be.instanceof(ArgumentValidationError);
+      expect(result.error).to.have.property('validationError')
+        .instanceof(ZodError);
     });
   });
 
@@ -120,7 +122,9 @@ describe('Sdk', () => {
       const result = await instance.getProductDetails(invalidInput);
 
       expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ZodError);
+      expect(result.error).to.be.instanceof(ArgumentValidationError);
+      expect(result.error).to.have.property('validationError')
+        .instanceof(ZodError);
     });
   });
 
@@ -165,7 +169,9 @@ describe('Sdk', () => {
       const result = await instance.createOrder(invalidInput);
 
       expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ZodError);
+      expect(result.error).to.be.instanceof(ArgumentValidationError);
+      expect(result.error).to.have.property('validationError')
+        .instanceof(ZodError);
     });
   });
 });

@@ -5,6 +5,7 @@ import { ZodError } from 'zod';
 import { SdkConfig } from '../../types';
 import { getProduct } from './products';
 import { getMockProductDetails } from './product-mock-data';
+import { ValidationError } from '../../errors';
 
 
 const sdkConfig: SdkConfig = {
@@ -75,7 +76,9 @@ describe('Products Service', () => {
       const result = await getProduct({sku, ...optionalParams}, sdkConfig);
 
       expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ZodError);
+      expect(result.error).to.be.instanceof(ValidationError);
+      expect(result.error).to.have.property('validationError')
+        .instanceof(ZodError);
     });
 
     describe('when request fails', () => {

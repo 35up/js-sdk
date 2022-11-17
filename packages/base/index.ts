@@ -1,5 +1,10 @@
 export { parseUnixTimestamp } from './src/utils';
-export { handleApiError, type BadParamsError } from './src/errors';
+export {
+  handleApiError,
+  BadParamsError,
+  ValidationError,
+  ArgumentValidationError,
+} from './src/errors';
 export * as validation from './src/validators';
 export {
   getProductRecommendations as getProductRecommendationsService,
