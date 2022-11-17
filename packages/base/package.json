@@ -68,5 +68,5 @@
   "main": "dist/35up-js-sdk.cjs.js",
   "amd": "dist/35up-js-sdk.amd.min.js",
   "module": "dist/35up-js-sdk.esm.js",
-  "types": "dist/types"
+  "types": "dist/index.d.ts"
 }
