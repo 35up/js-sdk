@@ -12,13 +12,13 @@ export class BadParamsError<T> extends Error {
 }
 
 export function handleApiError<TParams>(
-  e: HttpError,
+  e: HttpError<{errors: TParamErrorDetail<TParams>} | undefined>,
 ): BadParamsError<TParams> | undefined {
   if (e.responseStatus === 400) {
     return new BadParamsError<TParams>(
       'Bad request body',
       (typeof e.data === 'object' && e.data && 'errors' in e.data)
-        ? (e.data as {errors: TParamErrorDetail<TParams>}).errors
+        ? e.data.errors
         : undefined,
     );
   }
