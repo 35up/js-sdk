@@ -17,7 +17,7 @@ export function handleApiError<TParams>(
   if (e.responseStatus === 400) {
     return new BadParamsError<TParams>(
       'Bad request body',
-      'errors' in e.data
+      (typeof e.data === 'object' && e.data && 'errors' in e.data)
         ? (e.data as {errors: TParamErrorDetail<TParams>}).errors
         : undefined,
     );

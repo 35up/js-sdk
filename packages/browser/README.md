@@ -21,32 +21,38 @@ In this case all the API will be available from the global object
 ## How to use
 
 ### Call `initialise` function
-The library exposes `initialise` function that prepares and returns a 
-`Sdk` instance:
+The library exposes `initialise` function that prepares and returns an
+`Sdk` instance that has several methods:
 
 ```js
   import { initialise } from '@35up/js-sdk-browser';
 
   const config = {
-    partner: 'your_partner_id',
+    seller: 'your_seller_id',
     lang: 'de',
     country: 'de'
   };
-
+  
   const sdk = initialise(config);
+  
+  // Getting recommendations
+  const result = await sdk.getProductRecommendations({
+    baseProduct: {title: 'Samsung Galaxy S20 Cosmic grey'},
+  });
 ```
 
 Full configuration parameters list:
 
 | Parameter | Description                                                             | Optional |
 |-----------|-------------------------------------------------------------------------|----------|
-| partner   | Your partner ID (contact 35up team to get one)                          | No       |
+| seller    | Your seller ID (contact 35up team to get one)                           | No       |
 | lang      | Language `ISO 639-1` code (i.e. `de`, `en`)                             | Yes      |
 | country   | Country `ISO 3166` code (i.e. `us`, `fr`)                               | Yes      |
 | session   | The ID of a session (use only if you want to generate session yourself) | Yes      |
 
 ### Methods
 
+This package provides following methods:
 [Reference for cross-environment methods](../base/README.md#methods)
 
 ## Requirements

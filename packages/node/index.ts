@@ -9,11 +9,6 @@ export function initialise(configuration: SdkInitConfig): Sdk {
     throw new TypeError('Cannot initialise the 35up SDK without a seller ID');
   }
 
-  if (!('lang' in configuration) || !('country' in configuration)) {
-    throw new TypeError('Cannot initialise the 35up SDK without '
-      + 'a language and country');
-  }
-
   return new Sdk({
     ...configuration,
     session: configuration.session || nanoid(),

@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/35up/js-sdk#readme",
   "dependencies": {
-    "@35up/http-client": "^2.1.0",
+    "@35up/http-client": "^2.1.4",
     "@35up/js-sdk-base": "^0.5.1",
     "@35up/tslib-utils": "^2.0.1",
     "nanoid": "^3.3.4",
