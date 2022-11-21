@@ -9,7 +9,7 @@ import {
   specs,
   tax,
   vendor,
-} from '../../validators';
+} from '../../validations';
 
 
 export const product = z.object({

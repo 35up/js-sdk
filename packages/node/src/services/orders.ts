@@ -12,7 +12,7 @@ import {
 } from '@35up/js-sdk-base';
 import { z } from 'zod';
 import { CreateOrderParams, CreateOrderResult } from '../types';
-import { orderStatus } from '../validators';
+import { orderStatus } from '../validations';
 
 
 const NUMBER_REGEX = /^\d+$/;

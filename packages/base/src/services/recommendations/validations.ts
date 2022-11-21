@@ -9,7 +9,7 @@ import {
   specs,
   tax,
   vendor,
-} from '../../validators';
+} from '../../validations';
 import { RecommendationsData } from './types';
 
 

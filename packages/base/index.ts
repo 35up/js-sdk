@@ -5,7 +5,7 @@ export {
   ValidationError,
   ArgumentValidationError,
 } from './src/errors';
-export * as validations from './src/validators';
+export * as validations from './src/validations';
 export {
   getProductRecommendations as getProductRecommendationsService,
   type TRemoteRecommendations,

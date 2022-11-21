@@ -15,7 +15,7 @@ import {
   createOrder as createOrderService,
   TRemoteCreateOrderResult,
 } from './services/orders';
-import { createOrderParams } from './validators';
+import { createOrderParams } from './validations';
 
 
 const configurationKey = Symbol('configuration');
