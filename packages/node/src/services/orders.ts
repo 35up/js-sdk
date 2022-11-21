@@ -42,7 +42,7 @@ export async function createOrder(
 
     if (!result.success) {
       return makeFail(new ValidationError(
-        'Data from the API is not what we expected. Please contact support,',
+        'The API response does not match the expected scheme. Please contact support',
         result.error,
       ));
     }
