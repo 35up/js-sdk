@@ -9,6 +9,5 @@
     "strictNullChecks": true,
     "declaration": true,
     "declarationDir": "./dist",
-
   }
 }
