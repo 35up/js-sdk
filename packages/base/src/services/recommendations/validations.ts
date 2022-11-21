@@ -13,7 +13,7 @@ import {
 import { RecommendationsData } from './types';
 
 
-function invalidDroppingArray<T>(
+function arrayWithInvalidItemsDropped<T>(
   schema: ZodType<T>,
 ): ZodType<T[], ZodTypeDef, unknown> {
   return z.unknown().array().transform(
@@ -59,5 +59,5 @@ export const recommendationsData: ZodType<
   ZodTypeDef,
   unknown
 > = z.object({
-  recommendations: invalidDroppingArray(productRecommendation),
+  recommendations: arrayWithInvalidItemsDropped(productRecommendation),
 });
