@@ -12,14 +12,14 @@ import {
 } from '@35up/js-sdk-base';
 import { z } from 'zod';
 import { CreateOrderParams, CreateOrderResult } from '../types';
-import { orderStatus } from '../validations';
+import * as validations from '../validations';
 
 
 const NUMBER_REGEX = /^\d+$/;
 
 export const createOrderResult = z.object({
   id: z.string(),
-  status: orderStatus,
+  status: validations.orderStatus,
   updatedAt: z.string().regex(NUMBER_REGEX).transform(parseUnixTimestamp),
   createdAt: z.string().regex(NUMBER_REGEX).transform(parseUnixTimestamp),
 });
