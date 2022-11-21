@@ -101,7 +101,7 @@ describe('service - recommendations', () => {
         );
       });
 
-      it('returns recommendations', async () => {
+      it('returns only valid recommendations', async () => {
         const recommendations = await getProductRecommendations(
           input,
           sdkConfig,
