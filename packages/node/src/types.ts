@@ -1,4 +1,4 @@
-import { BaseInputParams } from '@35up/js-sdk-base';
+import { BaseInputParams, SdkConfig, SdkInitConfig } from '@35up/js-sdk-base';
 
 
 export enum ORDER_STATUS {
@@ -138,4 +138,17 @@ export interface CreateOrderResult {
    * Defines date and time when order was created.
    */
   createdAt: Date;
+}
+
+export interface Credentials {
+  username: string;
+  password: string;
+}
+
+export interface NodeSdkConfig extends SdkConfig {
+  credentials?: Credentials,
+}
+
+export interface NodeSdkInitConfig extends SdkInitConfig {
+  credentials?: Credentials,
 }

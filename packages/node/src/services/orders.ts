@@ -1,17 +1,17 @@
-import {
-  makeFail,
-  makeSuccess,
-  ResolvedRemoteData,
-} from '@35up/tslib-utils';
+import { makeFail, makeSuccess, ResolvedRemoteData } from '@35up/tslib-utils';
 import { post } from '@35up/http-client';
+import { z } from 'zod';
 import {
-  SdkConfig,
-  ValidationError,
   handleApiError,
   parseUnixTimestamp,
+  ValidationError,
 } from '@35up/js-sdk-base';
-import { z } from 'zod';
-import { CreateOrderParams, CreateOrderResult } from '../types';
+import {
+  CreateOrderParams,
+  CreateOrderResult,
+  NodeSdkConfig,
+} from '../types';
+import { makeBasicAuthHeaders } from '../utils/make-basic-auth-headers';
 import * as validations from '../validations';
 
 
@@ -32,12 +32,17 @@ export type TRemoteCreateOrderResult = ResolvedRemoteData<CreateOrderResult>;
  */
 export async function createOrder(
   details: CreateOrderParams,
-  config: SdkConfig,
+  { apiUrl, credentials, session }: NodeSdkConfig,
 ): Promise<TRemoteCreateOrderResult> {
+  if (!credentials) {
+    return makeFail(new Error('Credentials are not present in configuration'));
+  }
+
   try {
     const result = createOrderResult.safeParse(await post(
-      `${config.apiUrl}/orders?session=${encodeURIComponent(config.session)}`,
+      `${apiUrl}/orders`,
       details,
+      {params: {session}, headers: makeBasicAuthHeaders(credentials)},
     ));
 
     if (!result.success) {

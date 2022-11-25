@@ -1,5 +1,4 @@
 import {
-  type SdkConfig,
   type TRemoteRecommendations,
   type GetRecommendationsParams,
   type GetProductDetailsParams,
@@ -7,7 +6,7 @@ import {
   getProductRecommendationsService,
   getProductService,
 } from '@35up/js-sdk-base';
-import { CreateOrderParams } from './types';
+import { CreateOrderParams, NodeSdkConfig } from './types';
 import {
   createOrder as createOrderService,
   TRemoteCreateOrderResult,
@@ -17,9 +16,9 @@ import {
 const configurationKey = Symbol('configuration');
 
 export class Sdk {
-  private [configurationKey]: SdkConfig;
+  private [configurationKey]: NodeSdkConfig;
 
-  constructor(configuration: SdkConfig) {
+  constructor(configuration: NodeSdkConfig) {
     this[configurationKey] = configuration;
   }
 

@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid';
-import { SdkInitConfig } from '@35up/js-sdk-base';
 import { Sdk } from './src/sdk';
+import { NodeSdkInitConfig } from './src/types';
 
 
-export function initialise(configuration: SdkInitConfig): Sdk {
+export function initialise(configuration: NodeSdkInitConfig): Sdk {
   // Not everybody using this uses typescript
   if (!('seller' in configuration)) {
     throw new TypeError('Cannot initialise the 35up SDK without a seller ID');
