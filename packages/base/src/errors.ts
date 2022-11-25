@@ -21,7 +21,10 @@ export class ValidationError<T = unknown> extends Error {
 
 export class ArgumentValidationError<T = unknown> extends ValidationError<T> {
   constructor(validationError: ZodError<T>) {
-    super('Arguments provided do not math expected structure', validationError);
+    super(
+      'Arguments provided do not match expected structure',
+      validationError,
+    );
   }
 }
 
