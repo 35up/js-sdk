@@ -1,14 +1,13 @@
 import { expect } from 'chai';
-import { makeSuccess, isFail } from '@35up/tslib-utils';
+import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
   SdkConfig,
   getProductRecommendationsService,
   getProductService,
   type GetRecommendationsParams,
-  type GetProductDetailsParams, ArgumentValidationError,
+  type GetProductDetailsParams,
 } from '@35up/js-sdk-base';
-import { ZodError } from 'zod';
 import { ORDER_STATUS, CreateOrderParams } from './types';
 import { createOrder as createOrderService } from './services/orders';
 import {
@@ -73,20 +72,6 @@ describe('Sdk', () => {
         configuration,
       );
     });
-
-    it('returns an error if the provided params do not match params types', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { baseProduct, ...invalidInput } = input;
-      const instance = new Sdk(configuration);
-
-      // @ts-ignore
-      const result = await instance.getProductRecommendations(invalidInput);
-
-      expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ArgumentValidationError);
-      expect(result.error).to.have.property('validationError')
-        .instanceof(ZodError);
-    });
   });
 
   describe('getProductDetails', () => {
@@ -112,19 +97,6 @@ describe('Sdk', () => {
         input,
         configuration,
       );
-    });
-
-    it('returns an error if the provided params do not match params types', async () => {
-      const invalidInput = {lang: 'de'};
-      const instance = new Sdk(configuration);
-
-      // @ts-ignore
-      const result = await instance.getProductDetails(invalidInput);
-
-      expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ArgumentValidationError);
-      expect(result.error).to.have.property('validationError')
-        .instanceof(ZodError);
     });
   });
 
@@ -158,20 +130,6 @@ describe('Sdk', () => {
       expect(result).to.be.deep.equal(makeSuccess(createOrderResult));
       expect(createOrderMock)
         .to.have.been.calledWith(input, configuration);
-    });
-
-    it('returns an error if the provided params do not match params types', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { customer, ...invalidInput } = input;
-      const instance = new Sdk(configuration);
-
-      // @ts-ignore
-      const result = await instance.createOrder(invalidInput);
-
-      expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ArgumentValidationError);
-      expect(result.error).to.have.property('validationError')
-        .instanceof(ZodError);
     });
   });
 });

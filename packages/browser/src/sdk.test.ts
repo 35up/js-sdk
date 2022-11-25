@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import { ZodError } from 'zod';
-import { makeSuccess, isFail } from '@35up/tslib-utils';
+import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
   SdkConfig,
@@ -8,7 +7,6 @@ import {
   type GetProductDetailsParams,
   getProductRecommendationsService,
   getProductService,
-  ArgumentValidationError,
 } from '@35up/js-sdk-base';
 import sinon from 'sinon';
 import {
@@ -79,20 +77,6 @@ describe('Sdk', () => {
         configuration,
       );
     });
-
-    it('returns an error if the provided params do not match params types', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { baseProduct, ...invalidInput } = input;
-      const instance = new Sdk(configuration);
-
-      // @ts-ignore
-      const result = await instance.getProductRecommendations(invalidInput);
-
-      expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ArgumentValidationError);
-      expect(result.error).to.have.property('validationError')
-        .instanceof(ZodError);
-    });
   });
 
   describe('getProductDetails', () => {
@@ -118,19 +102,6 @@ describe('Sdk', () => {
         input,
         configuration,
       );
-    });
-
-    it('returns an error if the provided params do not match params types', async () => {
-      const invalidInput = {lang: 'de'};
-      const instance = new Sdk(configuration);
-
-      // @ts-ignore
-      const result = await instance.getProductDetails(invalidInput);
-
-      expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ArgumentValidationError);
-      expect(result.error).to.have.property('validationError')
-        .instanceof(ZodError);
     });
   });
 

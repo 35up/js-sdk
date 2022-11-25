@@ -1,15 +1,12 @@
 import { nanoid } from 'nanoid';
-import { makeFail } from '@35up/tslib-utils';
 import {
   type GetProductDetailsParams,
   getProductRecommendationsService,
   getProductService,
-  validations,
   type GetRecommendationsParams,
   type SdkConfig,
   type TRemoteProduct,
   type TRemoteRecommendations,
-  ArgumentValidationError,
 } from '@35up/js-sdk-base';
 
 
@@ -55,27 +52,12 @@ export class Sdk {
   async getProductRecommendations(
     input: GetRecommendationsParams,
   ): Promise<TRemoteRecommendations> {
-    const validated = validations.getRecommendationsParams.safeParse(input);
-
-    if (!validated.success) {
-      return makeFail(new ArgumentValidationError(validated.error));
-    }
-
-    return getProductRecommendationsService(
-      validated.data,
-      this.getConfig(),
-    );
+    return getProductRecommendationsService(input, this.getConfig());
   }
 
   async getProductDetails(
     input: GetProductDetailsParams,
   ): Promise<TRemoteProduct> {
-    const validated = validations.getProductDetailsParams.safeParse(input);
-
-    if (!validated.success) {
-      return makeFail(new ArgumentValidationError(validated.error));
-    }
-
-    return getProductService(validated.data, this.getConfig());
+    return getProductService(input, this.getConfig());
   }
 }
