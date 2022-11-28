@@ -1,3 +1,4 @@
+import { z, ZodError } from 'zod';
 import { get } from '@35up/http-client';
 import {
   makeFail,
@@ -5,8 +6,9 @@ import {
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
 import { SdkConfig, GetProductDetailsParams } from '../../types';
-import type { Product, TServerProductDetails } from './products-types';
-import { validateProduct } from './products-validation';
+import type { Product } from './types';
+import * as validations from './validations';
+import { ValidationError } from '../../errors';
 
 
 export type TRemoteProduct = ResolvedRemoteData<Product>;
@@ -21,12 +23,19 @@ export async function getProduct(
       seller: sdkConfig.seller,
       ...restParams,
     });
-    const { product }: TServerProductDetails = await get(
-      `${sdkConfig.apiUrl}/products/${encodeURIComponent(sku)}?${searchParams}`,
+    const { product } = z.object({product: validations.product}).parse(
+      await get(`${sdkConfig.apiUrl}/products/${encodeURIComponent(sku)}?${searchParams}`),
     );
 
-    return makeSuccess(validateProduct(product));
+    return makeSuccess(product);
   } catch (e) {
+    if (e instanceof ZodError) {
+      return makeFail(new ValidationError(
+        'The API response does not match the expected scheme. Please contact support',
+        e,
+      ));
+    }
+
     return makeFail(e as Error);
   }
 }

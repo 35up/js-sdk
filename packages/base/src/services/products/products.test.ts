@@ -1,9 +1,11 @@
 import { isFail, isSuccess } from '@35up/tslib-utils';
 import { expect } from 'chai';
 import fetch from 'jest-fetch-mock';
+import { ZodError } from 'zod';
 import { SdkConfig } from '../../types';
 import { getProduct } from './products';
 import { getMockProductDetails } from './product-mock-data';
+import { ValidationError } from '../../errors';
 
 
 const sdkConfig: SdkConfig = {
@@ -59,18 +61,24 @@ describe('Products Service', () => {
       );
     });
 
-    it('returns validated product details', async () => {
-      fetch.mockResponse(
-        JSON.stringify({product: {...getMockProductDetails(), name: null}}),
-        init,
-      );
+    it('returns product details', async () => {
       const result = await getProduct({sku, ...optionalParams}, sdkConfig);
 
       expect(isSuccess(result)).to.be.true;
-      expect(result.data).to.deep.equal(
-        {...getMockProductDetails(), name: ''},
-      );
+      expect(result.data).to.deep.equal(getMockProductDetails());
       expect(result.error).to.be.null;
+    });
+
+    it('returns error when product is invalid', async () => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { name, ...product } = getMockProductDetails();
+      fetch.mockResponse(JSON.stringify({product}), init);
+      const result = await getProduct({sku, ...optionalParams}, sdkConfig);
+
+      expect(isFail(result)).to.be.true;
+      expect(result.error).to.be.instanceof(ValidationError);
+      expect(result.error).to.have.property('validationError')
+        .instanceof(ZodError);
     });
 
     describe('when request fails', () => {

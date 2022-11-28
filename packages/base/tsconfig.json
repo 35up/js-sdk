@@ -1,12 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": true
-  },
-  "exclude": ["node_modules", "dist"]
+  "extends": "./tsconfig.base.json",
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "./__mocks__/**/*.ts"]
 }

@@ -1,4 +1,4 @@
-import { ProductRecommendation, RecommendationsData } from '../../types';
+import { ProductRecommendation, RecommendationsData } from './types';
 
 
 function getMockRecommendation(): ProductRecommendation {

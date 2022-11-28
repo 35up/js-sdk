@@ -4,20 +4,26 @@ import {
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
 import { post } from '@35up/http-client';
-import { SdkConfig, handleApiError, parseUnixTimestamp } from '@35up/js-sdk-base';
 import {
-  CreateOrderParams,
-  CreateOrderResult,
-  ORDER_STATUS,
-} from '../types';
+  SdkConfig,
+  ValidationError,
+  handleApiError,
+  parseUnixTimestamp,
+} from '@35up/js-sdk-base';
+import { z } from 'zod';
+import { CreateOrderParams, CreateOrderResult } from '../types';
+import * as validations from '../validations';
 
 
-type TCreateOrderResultRaw = {
-  id: string;
-  status: ORDER_STATUS;
-  updatedAt: string;
-  createdAt: string;
-};
+const NUMBER_REGEX = /^\d+$/;
+
+export const createOrderResult = z.object({
+  id: z.string(),
+  status: validations.orderStatus,
+  updatedAt: z.string().regex(NUMBER_REGEX).transform(parseUnixTimestamp),
+  createdAt: z.string().regex(NUMBER_REGEX).transform(parseUnixTimestamp),
+});
+
 export type TRemoteCreateOrderResult = ResolvedRemoteData<CreateOrderResult>;
 
 /**
@@ -29,17 +35,19 @@ export async function createOrder(
   config: SdkConfig,
 ): Promise<TRemoteCreateOrderResult> {
   try {
-    const result: TCreateOrderResultRaw = await post(
+    const result = createOrderResult.safeParse(await post(
       `${config.apiUrl}/orders?session=${encodeURIComponent(config.session)}`,
       details,
-    );
+    ));
 
-    return makeSuccess({
-      id: result.id,
-      status: result.status,
-      updatedAt: parseUnixTimestamp(result.updatedAt),
-      createdAt: parseUnixTimestamp(result.createdAt),
-    });
+    if (!result.success) {
+      return makeFail(new ValidationError(
+        'The API response does not match the expected scheme. Please contact support',
+        result.error,
+      ));
+    }
+
+    return makeSuccess(result.data);
   } catch (e) {
     if (e.response) {
       return makeFail(handleApiError<CreateOrderParams>(e) || e);

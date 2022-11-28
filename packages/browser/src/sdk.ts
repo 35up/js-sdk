@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import {
   type GetProductDetailsParams,
   getProductRecommendationsService,
@@ -7,7 +8,7 @@ import {
   type TRemoteProduct,
   type TRemoteRecommendations,
 } from '@35up/js-sdk-base';
-import { nanoid } from 'nanoid';
+
 
 interface BrowserSdkConfig extends Omit<SdkConfig, 'session'> {
   session?: string;

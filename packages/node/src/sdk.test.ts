@@ -64,9 +64,9 @@ describe('Sdk', () => {
     it('gets recommendations using provided params and the sdk configuration', async () => {
       const instance = new Sdk(configuration);
 
-      expect(
-        await instance.getProductRecommendations(input),
-      ).to.be.deep.equal(makeSuccess(recommendations));
+      const result = await instance.getProductRecommendations(input);
+
+      expect(result).to.be.deep.equal(makeSuccess(recommendations));
       expect(getProductRecommendationsMock).to.have.been.calledWith(
         input,
         configuration,
@@ -90,9 +90,9 @@ describe('Sdk', () => {
     it('gets product details using provided params and the sdk configuration', async () => {
       const instance = new Sdk(configuration);
 
-      expect(
-        await instance.getProductDetails(input),
-      ).to.be.deep.equal(makeSuccess(productDetails));
+      const result = await instance.getProductDetails(input);
+
+      expect(result).to.be.deep.equal(makeSuccess(productDetails));
       expect(getProductServiceMock).to.have.been.calledWith(
         input,
         configuration,

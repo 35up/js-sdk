@@ -1,8 +1,11 @@
-import { SdkInitConfig, SdkConfig } from './src/types';
-
-
 export { parseUnixTimestamp } from './src/utils';
-export { handleApiError, type BadParamsError } from './src/errors';
+export {
+  handleApiError,
+  BadParamsError,
+  ValidationError,
+  ArgumentValidationError,
+} from './src/errors';
+export * as validations from './src/validations';
 export {
   getProductRecommendations as getProductRecommendationsService,
   type TRemoteRecommendations,
@@ -18,17 +21,17 @@ export type {
   BaseInputParams,
   GetRecommendationsParams,
   GetProductDetailsParams,
-  ProductRecommendation,
   BaseProduct,
-  Actions,
   Customer,
-  Delivery,
+  Vendor,
+  Logo,
   Descriptions,
   Images,
-  Logo,
-  Price,
-  Vendor,
-  Specs,
-  Gtin,
   Tax,
+  Gtin,
+  Specs,
+  Delivery,
+  Actions,
+  Price,
 } from './src/types';
+export type { ProductRecommendation } from './src/services/recommendations';

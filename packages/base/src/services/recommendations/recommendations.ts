@@ -4,12 +4,14 @@ import {
   ResolvedRemoteData,
 } from '@35up/tslib-utils';
 import { get } from '@35up/http-client';
+import { ZodError } from 'zod';
 import {
-  ProductRecommendation,
   GetRecommendationsParams,
-  RecommendationsData,
   SdkConfig,
 } from '../../types';
+import { ProductRecommendation } from './types';
+import * as validations from './validations';
+import { ValidationError } from '../../errors';
 
 
 export type TRemoteRecommendations = ResolvedRemoteData<
@@ -64,11 +66,18 @@ export async function getProductRecommendations(
   const { apiUrl, ...finalParams } = {...sdkConfig, ...params};
 
   try {
-    const data: RecommendationsData = await get(
+    const data = validations.recommendationsData.parse(await get(
       `${apiUrl}/recommendations?${makeSearchParams(finalParams)}`,
-    );
+    ));
     return makeSuccess(data.recommendations);
   } catch (e) {
+    if (e instanceof ZodError) {
+      return makeFail(new ValidationError(
+        'The API response does not match the expected scheme. Please contact support',
+        e,
+      ));
+    }
+
     return makeFail(e);
   }
 }

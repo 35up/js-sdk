@@ -72,11 +72,14 @@ export interface Vendor {
   logo: Logo;
 }
 
-export interface Price {
+export interface ValueWithUnit {
+  unit: string;
   value: number;
-  currency: string;
-  formatted: string;
-  label?: string;
+}
+
+export interface Descriptions {
+  short: string;
+  long: string;
 }
 
 export interface Images {
@@ -86,9 +89,11 @@ export interface Images {
   large?: string;
 }
 
-export interface Descriptions {
-  short: string;
-  long: string;
+export interface Price {
+  value: number;
+  currency: string;
+  formatted: string;
+  label?: string;
 }
 
 export interface Actions {
@@ -97,11 +102,6 @@ export interface Actions {
   deleteFromCart: string;
   goToCart?: string;
   goToCheckout: string;
-}
-
-export interface ValueWithUnit {
-  unit: string;
-  value: number;
 }
 
 export interface Delivery {
@@ -128,7 +128,9 @@ export interface Specs {
   }
 }
 
-export interface Gtin { [k: string]: string; }
+export interface Gtin {
+  [k: string]: string;
+}
 
 export interface Tax {
   code: string;
@@ -136,26 +138,4 @@ export interface Tax {
   base: string;
   rate: number;
   included: boolean;
-}
-
-export interface ProductRecommendation {
-  sku: string;
-  vendor: Vendor;
-  name: string;
-  images: Images;
-  descriptions: Descriptions;
-  specs: Specs;
-  delivery?: Delivery;
-  price?: Price;
-  gtin?: Gtin;
-  taxes?: Tax[];
-  urls?: Record<string, string>;
-  actions?: Actions;
-  details?: Record<string, unknown>;
-  categories?: string[];
-  tags?: string[];
-}
-
-export interface RecommendationsData {
-  recommendations: ProductRecommendation[],
 }

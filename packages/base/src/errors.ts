@@ -1,4 +1,6 @@
+/* eslint-disable max-classes-per-file */
 import { HttpError } from '@35up/http-client';
+import { ZodError } from 'zod';
 
 
 export type TParamErrorDetail<T> = string | {
@@ -11,14 +13,29 @@ export class BadParamsError<T> extends Error {
   }
 }
 
+export class ValidationError<T = unknown> extends Error {
+  constructor(message: string, public readonly validationError: ZodError<T>) {
+    super(message);
+  }
+}
+
+export class ArgumentValidationError<T = unknown> extends ValidationError<T> {
+  constructor(validationError: ZodError<T>) {
+    super(
+      'Arguments provided do not match expected structure',
+      validationError,
+    );
+  }
+}
+
 export function handleApiError<TParams>(
-  e: HttpError,
+  e: HttpError<{errors: TParamErrorDetail<TParams>} | undefined>,
 ): BadParamsError<TParams> | undefined {
   if (e.responseStatus === 400) {
     return new BadParamsError<TParams>(
       'Bad request body',
       (typeof e.data === 'object' && e.data && 'errors' in e.data)
-        ? (e.data as {errors: TParamErrorDetail<TParams>}).errors
+        ? e.data.errors
         : undefined,
     );
   }

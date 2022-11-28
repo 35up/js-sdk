@@ -63,11 +63,12 @@
     "sinon": "^14.0.0",
     "sinon-chai": "^3.7.0",
     "ts-jest": "^28.0.8",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "zod": "^3.19.1"
   },
   "iife": "dist/35up-js-sdk.iife.min.js",
   "main": "dist/35up-js-sdk.cjs.js",
   "amd": "dist/35up-js-sdk.amd.min.js",
   "module": "dist/35up-js-sdk.esm.js",
-  "types": "dist/types"
+  "types": "dist/index.d.ts"
 }

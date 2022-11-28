@@ -5,7 +5,9 @@ import {
   parseUnixTimestamp,
   type BadParamsError,
   type SdkConfig,
+  ValidationError,
 } from '@35up/js-sdk-base';
+import { ZodError } from 'zod';
 import {
   CreateOrderParams,
   CreateOrderResult,
@@ -79,6 +81,53 @@ describe('orders service', () => {
           status: ORDER_STATUS.PENDING,
           createdAt: parseUnixTimestamp('12345678'),
           updatedAt: parseUnixTimestamp('23456789'),
+        });
+      });
+
+      describe('the info of the created order is missing fields', () => {
+        beforeEach(() => {
+          fetchMock.resetMocks();
+          fetchMock.mockResponseOnce(
+            JSON.stringify({
+              id: '3wdasfdfg',
+              createdAt: '12345678',
+              updatedAt: '23456789',
+            }),
+            {headers: {'Content-Type': 'application/json'}},
+          );
+        });
+
+        it('returns an error', async () => {
+          const result = await createOrder(details, config);
+
+          expect(isFail(result)).to.be.true;
+          expect(result.error).to.be.instanceof(ValidationError);
+          expect(result.error).to.have.property('validationError')
+            .instanceof(ZodError);
+        });
+      });
+
+      describe('the info of the created order has invalid timestamps', () => {
+        beforeEach(() => {
+          fetchMock.resetMocks();
+          fetchMock.mockResponseOnce(
+            JSON.stringify({
+              id: '3wdasfdfg',
+              status: ORDER_STATUS.PENDING,
+              createdAt: '1234567wwq8',
+              updatedAt: '',
+            }),
+            {headers: {'Content-Type': 'application/json'}},
+          );
+        });
+
+        it('returns an error', async () => {
+          const result = await createOrder(details, config);
+
+          expect(isFail(result)).to.be.true;
+          expect(result.error).to.be.instanceof(ValidationError);
+          expect(result.error).to.have.property('validationError')
+            .instanceof(ZodError);
         });
       });
     });
