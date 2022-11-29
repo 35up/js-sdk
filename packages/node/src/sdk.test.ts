@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
@@ -7,6 +7,7 @@ import {
   type GetRecommendationsParams,
   type GetProductDetailsParams,
 } from '@35up/js-sdk-base';
+import { isFail } from '@35up/tslib-utils/build/tslib-utils.cjs';
 import { ORDER_STATUS, CreateOrderParams, NodeSdkConfig } from './types';
 import { createOrder as createOrderService } from './services/orders';
 import {
@@ -142,6 +143,22 @@ describe('Sdk', () => {
         expect(createOrderMock).to.have.been.calledWith(input, {
           ...configuration,
           credentials: newCredentials,
+        });
+      });
+
+      describe('credentials are invalid', () => {
+        it('returns an error result', async () => {
+          const newCredentials = {username: 'c'};
+          const instance = new Sdk(configuration);
+
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          const result = await instance.createOrder(input, newCredentials);
+          assert(isFail(result));
+          expect(result.error.message).to.equal(
+            'Invalid credentials provided. `username`'
+            + ' and `password` must be present',
+          );
         });
       });
     });

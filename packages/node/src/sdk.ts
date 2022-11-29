@@ -6,11 +6,13 @@ import {
   getProductRecommendationsService,
   getProductService,
 } from '@35up/js-sdk-base';
+import { makeFail } from '@35up/tslib-utils/build/tslib-utils.cjs';
 import { CreateOrderParams, Credentials, NodeSdkConfig } from './types';
 import {
   createOrder as createOrderService,
   TRemoteCreateOrderResult,
 } from './services/orders';
+import { validateCredentials } from './utils/validate-credentials';
 
 
 const configurationKey = Symbol('configuration');
@@ -39,6 +41,12 @@ export class Sdk {
     credentials?: Credentials,
   ): Promise<TRemoteCreateOrderResult> {
     const config = this[configurationKey];
+
+    if (credentials) {
+      const error = validateCredentials(credentials);
+
+      if (error) return makeFail(error);
+    }
 
     return createOrderService(
       details,
