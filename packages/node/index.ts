@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { Sdk } from './src/sdk';
 import { NodeSdkInitConfig } from './src/types';
+import { validateCredentials } from './src/utils/validate-credentials';
 
 
 export function initialise(configuration: NodeSdkInitConfig): Sdk {
@@ -8,6 +9,13 @@ export function initialise(configuration: NodeSdkInitConfig): Sdk {
   if (!('seller' in configuration)) {
     throw new TypeError('Cannot initialise the 35up SDK without a seller ID');
   }
+
+  if (configuration.credentials) {
+    const error = validateCredentials(configuration.credentials);
+
+    if (error) throw error;
+  }
+
 
   return new Sdk({
     ...configuration,
