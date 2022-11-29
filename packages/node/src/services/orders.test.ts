@@ -68,6 +68,9 @@ describe('orders service', () => {
       const result = await createOrder(details, configWithoutCredentials);
 
       assert(isFail(result));
+      expect(result.error.message).to.equal(
+        'Credentials are not present in configuration',
+      );
     });
 
     it('makes the request to the orders endpoint', async () => {
