@@ -6,7 +6,7 @@ import {
   getProductRecommendationsService,
   getProductService,
 } from '@35up/js-sdk-base';
-import { CreateOrderParams, NodeSdkConfig } from './types';
+import { CreateOrderParams, Credentials, NodeSdkConfig } from './types';
 import {
   createOrder as createOrderService,
   TRemoteCreateOrderResult,
@@ -36,7 +36,13 @@ export class Sdk {
 
   async createOrder(
     details: CreateOrderParams,
+    credentials?: Credentials,
   ): Promise<TRemoteCreateOrderResult> {
-    return createOrderService(details, this[configurationKey]);
+    const config = this[configurationKey];
+
+    return createOrderService(
+      details,
+      credentials ? {...config, credentials} : config,
+    );
   }
 }
