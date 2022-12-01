@@ -89,7 +89,9 @@ SDK initialization, they don't need to be provided here.
     username: string;
     password: string;
   }
+```
 
+```ts
   const details: CreateOrderDetails = {
     reference: '45883SKU34',
     customer: {
