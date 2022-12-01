@@ -37,12 +37,12 @@ describe('initialise', () => {
 
   it('throws an error when invalid credentials are provided', () => {
     expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       initialise({
         lang: 'en',
         country: 'de',
         seller: 'seller-id',
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         credentials: {username: 'a'},
       });
     }).to.throw(

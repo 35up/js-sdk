@@ -54,3 +54,10 @@ export class Sdk {
     );
   }
 }
+
+export interface SdkWithoutCredentials extends Sdk {
+  createOrder(
+    details: CreateOrderParams,
+    credentials: Credentials,
+  ): Promise<TRemoteCreateOrderResult>;
+}
