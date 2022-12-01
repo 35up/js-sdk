@@ -20,7 +20,11 @@ The library exposes `initialise` function that prepares and returns an
   const config = {
     seller: 'your_seller_id',
     lang: 'de',
-    country: 'de'
+    country: 'de',
+    credentials: {
+      username: 'example-user',
+      password: 'example-password',
+    }
   };
 
   const sdk = initialise(config);
@@ -33,20 +37,22 @@ The library exposes `initialise` function that prepares and returns an
 
 Full configuration parameters list:
 
-| Parameter | Description                                                             | Optional |
-|-----------|-------------------------------------------------------------------------|----------|
-| seller    | Your seller ID (contact 35up team to get one)                           | No       |
-| lang      | Language `ISO 639-1` code (i.e. `de`, `en`)                             | Yes      |
-| country   | Country `ISO 3166` code (i.e. `us`, `fr`)                               | Yes      |
-| session   | The ID of a session (use only if you want to generate session yourself) | Yes      |
+| Parameter   | Description                                                                     | Optional |
+|-------------|---------------------------------------------------------------------------------|----------|
+| seller      | Your seller ID (contact 35up team to get one)                                   | No       |
+| lang        | Language `ISO 639-1` code (i.e. `de`, `en`)                                     | Yes      |
+| country     | Country `ISO 3166` code (i.e. `us`, `fr`)                                       | Yes      |
+| session     | The ID of a session (use only if you want to generate session yourself)         | Yes      |
+| credentials | Object containing `username` and `password` for basic authentication in the API | Yes      |
 
 ### Methods
 
 In addition to [cross-environment methods](../base/README.md#methods) this 
 package provides the following ones:
 
-#### `createOrder`
-Places an order on the 35up marketplace
+#### `createOrder(details, credentials)`
+Places an order on the 35up marketplace. If credentials where provided in the
+SDK initialization, they don't need to be provided here.
 
 ##### Input
 ```ts
@@ -78,6 +84,11 @@ Places an order on the 35up marketplace
       config?: Record<string, string>;
     }[];
   }
+  
+  interface Credentials {
+    username: string;
+    password: string;
+  }
 
   const details: CreateOrderDetails = {
     reference: '45883SKU34',
@@ -99,6 +110,11 @@ Places an order on the 35up marketplace
       {sku: 'FEI60XX114014XXAPIP80', qty: 1, config: {size: 'M'}},
     ],
   };
+
+  const credentials: Credentials = {
+    username: 'example-user',
+    password: 'example-password',
+  }
 ```
 
 #### Output
