@@ -11,6 +11,7 @@ describe('initialise', () => {
       lang: 'en',
       country: 'de',
       apiUrl: 'https://api.35up.io/v1',
+      credentials: {username: 'a', password: 'b'},
     });
 
     expect(actualObject).to.be.instanceOf(Sdk);
@@ -32,5 +33,21 @@ describe('initialise', () => {
       // @ts-ignore
       initialise({lang: 'en', country: 'de', session: 'session-id'});
     }).to.throw('Cannot initialise the 35up SDK without a seller ID');
+  });
+
+  it('throws an error when invalid credentials are provided', () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      initialise({
+        lang: 'en',
+        country: 'de',
+        seller: 'seller-id',
+        credentials: {username: 'a'},
+      });
+    }).to.throw(
+      'Invalid credentials provided. `username`'
+      + ' and `password` must be present',
+    );
   });
 });

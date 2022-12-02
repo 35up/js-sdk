@@ -1,14 +1,14 @@
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
-  SdkConfig,
   getProductRecommendationsService,
   getProductService,
   type GetRecommendationsParams,
   type GetProductDetailsParams,
 } from '@35up/js-sdk-base';
-import { ORDER_STATUS, CreateOrderParams } from './types';
+import { isFail } from '@35up/tslib-utils/build/tslib-utils.cjs';
+import { ORDER_STATUS, CreateOrderParams, NodeSdkConfig } from './types';
 import { createOrder as createOrderService } from './services/orders';
 import {
   getMockRecommendations,
@@ -28,12 +28,13 @@ const getProductServiceMock = makeTypedMockFn(
 );
 const createOrderMock = makeTypedMockFn(createOrderService);
 
-const configuration: SdkConfig = {
+const configuration: NodeSdkConfig = {
   apiUrl: 'https://fake.api/v1',
   seller: 'seller-id',
   session: 'session-id',
   country: 'de',
   lang: 'en',
+  credentials: {username: 'a', password: 'b'},
 };
 
 describe('Sdk', () => {
@@ -130,6 +131,36 @@ describe('Sdk', () => {
       expect(result).to.be.deep.equal(makeSuccess(createOrderResult));
       expect(createOrderMock)
         .to.have.been.calledWith(input, configuration);
+    });
+
+    describe('credentials are provided', () => {
+      it('uses new credentials', async () => {
+        const newCredentials = {username: 'c', password: 'd'};
+        const instance = new Sdk(configuration);
+
+        const result = await instance.createOrder(input, newCredentials);
+        expect(result).to.be.deep.equal(makeSuccess(createOrderResult));
+        expect(createOrderMock).to.have.been.calledWith(input, {
+          ...configuration,
+          credentials: newCredentials,
+        });
+      });
+
+      describe('credentials are invalid', () => {
+        it('returns an error result', async () => {
+          const newCredentials = {username: 'c'};
+          const instance = new Sdk(configuration);
+
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          const result = await instance.createOrder(input, newCredentials);
+          assert(isFail(result));
+          expect(result.error.message).to.equal(
+            'Invalid credentials provided. `username`'
+            + ' and `password` must be present',
+          );
+        });
+      });
     });
   });
 });

@@ -1,11 +1,10 @@
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import { isFail, isSuccess } from '@35up/tslib-utils';
 import { HttpError } from '@35up/http-client';
 import {
   parseUnixTimestamp,
-  type BadParamsError,
-  type SdkConfig,
   ValidationError,
+  type BadParamsError,
 } from '@35up/js-sdk-base';
 import { ZodError } from 'zod';
 import {
@@ -16,12 +15,17 @@ import {
 import { createOrder } from './orders';
 
 
-const config: SdkConfig = {
+const configWithoutCredentials = {
   session: 'the-session',
   lang: 'en',
   country: 'de',
   seller: 'store',
   apiUrl: 'https://api.fake.io/v1',
+};
+
+const config = {
+  ...configWithoutCredentials,
+  credentials: {username: 'test', password: 'abcd1234'},
 };
 
 describe('orders service', () => {
@@ -60,15 +64,27 @@ describe('orders service', () => {
       );
     });
 
+    it('fails when credentials are not present', async () => {
+      const result = await createOrder(details, configWithoutCredentials);
+
+      assert(isFail(result));
+      expect(result.error.message).to.equal(
+        'Credentials are not present in configuration',
+      );
+    });
+
     it('makes the request to the orders endpoint', async () => {
       await createOrder(details, config);
 
       expect(fetchMock.mock.calls[0][0]).to.equal(
         `${config.apiUrl}/orders?session=${config.session}`,
       );
-      expect(fetchMock.mock.calls[0][1]).to.include({
-        body: JSON.stringify(details),
-      });
+      expect(fetchMock.mock.calls[0][1])
+        .to.have.property('body', JSON.stringify(details));
+      expect(fetchMock.mock.calls[0][1]).to.have.property('headers')
+        .that.include({authorization: `Basic ${Buffer.from(
+          `${config.credentials.username}:${config.credentials.password}`,
+        ).toString('base64')}`});
     });
 
     describe('the request succeeds', () => {

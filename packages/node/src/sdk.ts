@@ -1,5 +1,4 @@
 import {
-  type SdkConfig,
   type TRemoteRecommendations,
   type GetRecommendationsParams,
   type GetProductDetailsParams,
@@ -7,19 +6,21 @@ import {
   getProductRecommendationsService,
   getProductService,
 } from '@35up/js-sdk-base';
-import { CreateOrderParams } from './types';
+import { makeFail } from '@35up/tslib-utils/build/tslib-utils.cjs';
+import { CreateOrderParams, Credentials, NodeSdkConfig } from './types';
 import {
   createOrder as createOrderService,
   TRemoteCreateOrderResult,
 } from './services/orders';
+import { validateCredentials } from './utils/validate-credentials';
 
 
 const configurationKey = Symbol('configuration');
 
 export class Sdk {
-  private [configurationKey]: SdkConfig;
+  private [configurationKey]: NodeSdkConfig;
 
-  constructor(configuration: SdkConfig) {
+  constructor(configuration: NodeSdkConfig) {
     this[configurationKey] = configuration;
   }
 
@@ -37,7 +38,26 @@ export class Sdk {
 
   async createOrder(
     details: CreateOrderParams,
+    credentials?: Credentials,
   ): Promise<TRemoteCreateOrderResult> {
-    return createOrderService(details, this[configurationKey]);
+    const config = this[configurationKey];
+
+    if (credentials) {
+      const error = validateCredentials(credentials);
+
+      if (error) return makeFail(error);
+    }
+
+    return createOrderService(
+      details,
+      credentials ? {...config, credentials} : config,
+    );
   }
+}
+
+export interface SdkWithoutCredentials extends Sdk {
+  createOrder(
+    details: CreateOrderParams,
+    credentials: Credentials,
+  ): Promise<TRemoteCreateOrderResult>;
 }
