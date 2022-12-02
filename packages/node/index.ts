@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid';
+import { SdkInitConfig } from '@35up/js-sdk-base';
 import { Sdk, SdkWithoutCredentials } from './src/sdk';
 import { NodeSdkInitConfig } from './src/types';
 import { validateCredentials } from './src/utils/validate-credentials';
-import { SdkInitConfig } from '@35up/js-sdk-base';
 
 
 export function initialise(configuration: SdkInitConfig): SdkWithoutCredentials;
