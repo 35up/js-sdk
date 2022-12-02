@@ -91,6 +91,8 @@ SDK initialization, they don't need to be provided here.
   }
 ```
 
+##### Input example
+
 ```ts
   const details: CreateOrderDetails = {
     reference: '45883SKU34',
