@@ -19,7 +19,7 @@ export interface Product {
   images: Images;
   descriptions: Descriptions;
   categories: string[];
-  actions: Actions;
+  actions?: Actions;
   delivery: Delivery;
   specs?: Specs;
   gtin?: Gtin;
