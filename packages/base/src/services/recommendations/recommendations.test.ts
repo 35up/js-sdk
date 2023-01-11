@@ -20,6 +20,7 @@ const input: GetRecommendationsParams = {
     age: [20, 30],
     cities: ['Berlin', 'Frankfurt am Main'],
   },
+  session: undefined,
 };
 
 const sdkConfigWithoutUrl: Omit<SdkConfig, 'apiUrl'> = {
