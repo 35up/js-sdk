@@ -87,10 +87,10 @@ export const descriptions = z.object({
 
 export const actions = z.object({
   singleClickCheckout: z.string().optional(),
-  addToCart: z.string(),
-  deleteFromCart: z.string(),
+  addToCart: z.string().optional(),
+  deleteFromCart: z.string().optional(),
   goToCart: z.string().optional(),
-  goToCheckout: z.string(),
+  goToCheckout: z.string().optional(),
 });
 
 export const delivery = z.object({

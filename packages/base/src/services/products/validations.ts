@@ -17,7 +17,7 @@ export const product = z.object({
   sku: z.string(),
   vendor,
   price: price.optional(),
-  actions,
+  actions: actions.optional(),
   descriptions,
   images,
   delivery,
