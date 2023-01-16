@@ -4,6 +4,7 @@ import {
   makeFail,
   makeSuccess,
   ResolvedRemoteData,
+  stripUndefined,
 } from '@35up/tslib-utils';
 import { SdkConfig, GetProductDetailsParams } from '../../types';
 import type { Product } from './types';
@@ -21,7 +22,7 @@ export async function getProduct(
     const { sku, ...restParams } = params;
     const searchParams = new URLSearchParams({
       seller: sdkConfig.seller,
-      ...restParams,
+      ...stripUndefined(restParams),
     });
     const { product } = z.object({product: validations.product}).parse(
       await get(`${sdkConfig.apiUrl}/products/${encodeURIComponent(sku)}?${searchParams}`),

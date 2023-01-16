@@ -98,10 +98,10 @@ export interface Price {
 
 export interface Actions {
   singleClickCheckout?: string;
-  addToCart: string;
-  deleteFromCart: string;
+  addToCart?: string;
+  deleteFromCart?: string;
   goToCart?: string;
-  goToCheckout: string;
+  goToCheckout?: string;
 }
 
 export interface Delivery {

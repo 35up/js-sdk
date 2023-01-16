@@ -49,11 +49,16 @@ describe('Products Service', () => {
     });
 
     it('encodes sku param', async () => {
+      const lang = 'de';
       await getProduct(
-        {sku: 'caseable/6f0c51a33cdc48a'},
+        {
+          sku: 'caseable/6f0c51a33cdc48a',
+          lang,
+          country: undefined,
+        },
         sdkConfig,
       );
-      const params = new URLSearchParams({seller});
+      const params = new URLSearchParams({seller, lang});
 
       expect(fetch.mock.calls).to.have.lengthOf(1);
       expect(fetch.mock.calls[0][0]).to.be.equal(

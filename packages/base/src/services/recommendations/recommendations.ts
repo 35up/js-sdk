@@ -2,6 +2,7 @@ import {
   makeFail,
   makeSuccess,
   ResolvedRemoteData,
+  stripUndefined,
 } from '@35up/tslib-utils';
 import { get } from '@35up/http-client';
 import { ZodError } from 'zod';
@@ -54,7 +55,7 @@ function flattenInput(
 }
 
 export function makeSearchParams(input: TParams): string {
-  return flattenInput({...input})
+  return flattenInput(stripUndefined(input))
     .map(([ key, value ]) => (`${key}=${value}`))
     .join('&');
 }
@@ -63,7 +64,10 @@ export async function getProductRecommendations(
   params: GetRecommendationsParams,
   sdkConfig: SdkConfig,
 ): Promise<TRemoteRecommendations> {
-  const { apiUrl, ...finalParams } = {...sdkConfig, ...params};
+  const { apiUrl, ...finalParams } = {
+    ...sdkConfig,
+    ...stripUndefined(params),
+  };
 
   try {
     const data = validations.recommendationsData.parse(await get(
