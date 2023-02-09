@@ -16,7 +16,7 @@
 <script type="text/javascript" src="../packages/browser/dist/35up-js-sdk.iife.min.js"></script>
 <script>
     const container = document.getElementById('cart-wrapper');
-    const sdk = window.thirtyFiveUp.initialise(
+    const tfup = window.thirtyFiveUp.initialise(
       {seller: '35up-test', lang: 'de', country: 'de'},
     );
 
@@ -27,7 +27,7 @@
         }
       };
 
-      sdk.getProductRecommendations(input)
+      tfup.getProductRecommendations(input)
         .then((recommendations) => {
           container.innerText = JSON.stringify(recommendations.data);
         });

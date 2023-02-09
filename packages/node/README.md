@@ -27,10 +27,10 @@ The library exposes `initialise` function that prepares and returns an
     }
   };
 
-  const sdk = initialise(config);
+  const tfup = initialise(config);
   
   // Getting recommendations
-  const result = await sdk.getProductRecommendations({
+  const result = await tfup.getProductRecommendations({
     baseProduct: {title: 'Samsung Galaxy S20 Cosmic grey'},
   });
 ```
