@@ -17,7 +17,6 @@ export function initialise(configuration: SdkInitConfig): Sdk {
 export {
   BadParamsError,
   ValidationError,
-  ArgumentValidationError,
 } from '@35up/js-sdk-base';
 
 export type {
