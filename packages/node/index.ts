@@ -5,6 +5,8 @@ import { NodeSdkInitConfig } from './src/types';
 import { validateCredentials } from './src/utils/validate-credentials';
 
 
+// If initialize function is called without credentials, then returned instance
+// would require them for createOrder method
 export function initialise(configuration: SdkInitConfig): SdkWithoutCredentials;
 export function initialise(configuration: NodeSdkInitConfig): Sdk;
 export function initialise(configuration: NodeSdkInitConfig): Sdk {
@@ -30,7 +32,6 @@ export function initialise(configuration: NodeSdkInitConfig): Sdk {
 export {
   BadParamsError,
   ValidationError,
-  ArgumentValidationError,
 } from '@35up/js-sdk-base';
 
 export type {

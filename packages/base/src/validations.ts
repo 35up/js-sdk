@@ -23,32 +23,6 @@ export const customer = z.object({
   country: z.string().optional(),
 }).and(z.record(z.string(), z.unknown()));
 
-export const sdkInitConfig = z.object({
-  seller: z.string(),
-  session: z.string().optional(),
-  apiUrl: z.string().optional(),
-  lang: z.string().optional(),
-  country: z.string().optional(),
-});
-
-export const baseInputParams = z.object({
-  session: z.string().optional(),
-});
-
-export const getRecommendationsParams = baseInputParams.extend({
-  baseProduct,
-  customer: customer.optional(),
-  lang: z.string().optional(),
-  country: z.string().optional(),
-  limit: z.number().optional(),
-});
-
-export const getProductDetailsParams = z.object({
-  sku: z.string(),
-  lang: z.string().optional(),
-  country: z.string().optional(),
-});
-
 export const logo = z.object({
   square: z.string(),
   landscape: z.string(),

@@ -19,15 +19,6 @@ export class ValidationError<T = unknown> extends Error {
   }
 }
 
-export class ArgumentValidationError<T = unknown> extends ValidationError<T> {
-  constructor(validationError: ZodError<T>) {
-    super(
-      'Arguments provided do not match expected structure',
-      validationError,
-    );
-  }
-}
-
 export function handleApiError<TParams>(
   e: HttpError<{errors: TParamErrorDetail<TParams>} | undefined>,
 ): BadParamsError<TParams> | undefined {

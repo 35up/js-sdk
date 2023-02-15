@@ -3,7 +3,6 @@ export {
   handleApiError,
   BadParamsError,
   ValidationError,
-  ArgumentValidationError,
 } from './src/errors';
 export * as validations from './src/validations';
 export {

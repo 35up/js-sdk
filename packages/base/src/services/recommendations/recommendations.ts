@@ -36,10 +36,11 @@ function flattenInput(
           console.warn(
             `age range expects 2 values. Received: ${value.length}`,
           );
+        } else {
+          const from = encodeURIComponent(value[0]);
+          const to = encodeURIComponent(value[1]);
+          result.push([key, `${from}-${to}`]);
         }
-        const from = encodeURIComponent(value[0]);
-        const to = encodeURIComponent(value[1]);
-        result.push([key, `${from}-${to}`]);
       } else {
         result.push([key, value.map(encodeURIComponent).join(',')]);
       }
