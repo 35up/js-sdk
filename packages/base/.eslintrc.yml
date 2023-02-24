@@ -5,3 +5,5 @@ parserOptions:
   project:
     - tsconfig.json
     - tsconfig.test.json
+rules:
+  '@typescript-eslint/no-empty-interface': off
