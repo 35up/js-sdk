@@ -26,3 +26,4 @@ export const product = z.object({
   gtin: gtin.optional(),
   specs: specs.optional(),
 });
+export type TProduct = z.infer<typeof product>

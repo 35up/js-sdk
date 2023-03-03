@@ -10,7 +10,6 @@ import {
   tax,
   vendor,
 } from '../../validations';
-import { RecommendationsData } from './types';
 
 
 function arrayWithInvalidItemsDropped<T>(
@@ -53,11 +52,9 @@ export const productRecommendation = z.object({
   categories: z.string().array().optional(),
   tags: z.string().array().optional(),
 });
+export type TProductRecommendation = z.infer<typeof productRecommendation>
 
-export const recommendationsData: ZodType<
-  RecommendationsData,
-  ZodTypeDef,
-  unknown
-> = z.object({
+export const recommendationsData = z.object({
   recommendations: arrayWithInvalidItemsDropped(productRecommendation),
 });
+export type TRecommendationsData = z.infer<typeof recommendationsData>

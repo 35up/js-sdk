@@ -1,27 +1,4 @@
-import {
-  Actions,
-  Delivery,
-  Descriptions,
-  Gtin,
-  Images,
-  Price,
-  Specs,
-  Tax,
-  Vendor,
-} from '../../types';
+import { TProduct } from './validations';
 
 
-export interface Product {
-  sku: string;
-  vendor: Vendor;
-  name: string;
-  price?: Price;
-  images: Images;
-  descriptions: Descriptions;
-  categories: string[];
-  actions?: Actions;
-  delivery: Delivery;
-  specs?: Specs;
-  gtin?: Gtin;
-  taxes: Tax[];
-}
+export interface Product extends TProduct {}

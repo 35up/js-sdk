@@ -1,24 +1,45 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
-type mixed = boolean | string | number | Record<string, unknown>;
+import {
+  TActions,
+  TBaseProduct,
+  TCustomer,
+  TDelivery,
+  TDescriptions,
+  TGtin,
+  TImages,
+  TLogo,
+  TPrice,
+  TSpecs,
+  TTax,
+  TValueWithUnit,
+  TVender,
+} from './validations';
 
-export interface BaseProduct {
-  title: string;
-  price?: number;
-  value?: number;
-  color?: string;
-  category?: string;
-  tag?: mixed
-  [x: string]: unknown;
-}
 
-export interface Customer {
-  age?: number | [number, number];
-  gender?: string;
-  postcode?: number;
-  city?: string;
-  country?: string;
-  [x: string]: unknown;
-}
+export interface BaseProduct extends TBaseProduct {}
+
+export interface Customer extends TCustomer {}
+
+export interface Logo extends TLogo {}
+
+export interface Vendor extends TVender {}
+
+export interface ValueWithUnit extends TValueWithUnit {}
+
+export interface Descriptions extends TDescriptions {}
+
+export interface Images extends TImages {}
+
+export interface Price extends TPrice {}
+
+export interface Actions extends TActions {}
+
+export interface Delivery extends TDelivery {}
+
+export interface Specs extends TSpecs {}
+
+export interface Gtin extends TGtin {}
+
+export interface Tax extends TTax {}
 
 export interface SdkInitConfig {
   seller: string;
@@ -58,84 +79,4 @@ export interface GetProductDetailsParams {
   sku: string,
   lang?: string;
   country?: string;
-}
-
-export interface Logo {
-  square: string;
-  landscape: string;
-}
-
-export interface Vendor {
-  id: string;
-  name: string;
-  legalName: string;
-  logo: Logo;
-}
-
-export interface ValueWithUnit {
-  unit: string;
-  value: number;
-}
-
-export interface Descriptions {
-  short: string;
-  long: string;
-}
-
-export interface Images {
-  thumbnail: string;
-  small?: string;
-  medium?: string;
-  large?: string;
-}
-
-export interface Price {
-  value: number;
-  currency: string;
-  formatted: string;
-  label?: string;
-}
-
-export interface Actions {
-  singleClickCheckout?: string;
-  addToCart?: string;
-  deleteFromCart?: string;
-  goToCart?: string;
-  goToCheckout?: string;
-}
-
-export interface Delivery {
-  timeMin?: number;
-  timeMax?: number;
-  package?: {
-    weight?: ValueWithUnit;
-    width?: ValueWithUnit;
-    height?: ValueWithUnit;
-    length?: ValueWithUnit;
-  }
-}
-
-export interface Specs {
-  type: string;
-  materials?: string[];
-  color?: string;
-  weight?: ValueWithUnit;
-  width?: ValueWithUnit;
-  height?: ValueWithUnit;
-  length?: ValueWithUnit;
-  contract?: {
-    duration?: ValueWithUnit;
-  }
-}
-
-export interface Gtin {
-  [k: string]: string;
-}
-
-export interface Tax {
-  code: string;
-  type: string;
-  base: string;
-  rate: number;
-  included: boolean;
 }

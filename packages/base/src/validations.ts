@@ -14,6 +14,7 @@ export const baseProduct = z.object({
   category: z.string().optional(),
   tag: mixed.optional(),
 }).and(z.record(z.string(), z.unknown()));
+export type TBaseProduct = z.infer<typeof baseProduct>
 
 export const customer = z.object({
   age: z.number().or(z.tuple([z.number(), z.number()])).optional(),
@@ -22,11 +23,13 @@ export const customer = z.object({
   city: z.string().optional(),
   country: z.string().optional(),
 }).and(z.record(z.string(), z.unknown()));
+export type TCustomer = z.infer<typeof customer>
 
 export const logo = z.object({
   square: z.string(),
   landscape: z.string(),
 });
+export type TLogo = z.infer<typeof logo>
 
 export const vendor = z.object({
   id: z.string(),
@@ -34,11 +37,13 @@ export const vendor = z.object({
   legalName: z.string(),
   logo,
 });
+export type TVender = z.infer<typeof vendor>
 
 export const valueWithUnit = z.object({
   unit: z.string(),
   value: z.number(),
 });
+export type TValueWithUnit = z.infer<typeof valueWithUnit>
 
 export const price = z.object({
   value: z.number(),
@@ -46,6 +51,7 @@ export const price = z.object({
   formatted: z.string(),
   label: z.string().optional(),
 });
+export type TPrice = z.infer<typeof price>
 
 export const images = z.object({
   thumbnail: z.string(),
@@ -53,11 +59,13 @@ export const images = z.object({
   medium: z.string().optional(),
   large: z.string().optional(),
 });
+export type TImages = z.infer<typeof images>
 
 export const descriptions = z.object({
   short: z.string(),
   long: z.string(),
 });
+export type TDescriptions = z.infer<typeof descriptions>
 
 export const actions = z.object({
   singleClickCheckout: z.string().optional(),
@@ -66,6 +74,7 @@ export const actions = z.object({
   goToCart: z.string().optional(),
   goToCheckout: z.string().optional(),
 });
+export type TActions = z.infer<typeof actions>
 
 export const delivery = z.object({
   timeMin: z.number().optional(),
@@ -77,6 +86,7 @@ export const delivery = z.object({
     length: valueWithUnit,
   }).optional(),
 });
+export type TDelivery = z.infer<typeof delivery>
 
 export const specs = z.object({
   type: z.string(),
@@ -90,8 +100,10 @@ export const specs = z.object({
     duration: valueWithUnit,
   }).optional(),
 });
+export type TSpecs = z.infer<typeof specs>
 
 export const gtin = z.record(z.string(), z.string());
+export type TGtin = z.infer<typeof gtin>
 
 export const tax = z.object({
   code: z.string(),
@@ -100,3 +112,4 @@ export const tax = z.object({
   rate: z.number(),
   included: z.boolean(),
 });
+export type TTax = z.infer<typeof tax>

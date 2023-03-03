@@ -1,28 +1,14 @@
 import { makeFail, makeSuccess, ResolvedRemoteData } from '@35up/tslib-utils';
 import { post } from '@35up/http-client';
-import { z } from 'zod';
-import {
-  handleApiError,
-  parseUnixTimestamp,
-  ValidationError,
-} from '@35up/js-sdk-base';
+import { handleApiError, ValidationError } from '@35up/js-sdk-base';
 import {
   CreateOrderParams,
   CreateOrderResult,
   NodeSdkConfig,
 } from '../types';
 import { makeBasicAuthHeaders } from '../utils/make-basic-auth-headers';
-import * as validations from '../validations';
+import * as validations from './validations';
 
-
-const NUMBER_REGEX = /^\d+$/;
-
-export const createOrderResult = z.object({
-  id: z.string(),
-  status: validations.orderStatus,
-  updatedAt: z.string().regex(NUMBER_REGEX).transform(parseUnixTimestamp),
-  createdAt: z.string().regex(NUMBER_REGEX).transform(parseUnixTimestamp),
-});
 
 export type TRemoteCreateOrderResult = ResolvedRemoteData<CreateOrderResult>;
 
@@ -39,7 +25,7 @@ export async function createOrder(
   }
 
   try {
-    const result = createOrderResult.safeParse(await post(
+    const result = validations.createOrderResult.safeParse(await post(
       `${apiUrl}/orders`,
       details,
       {params: {session}, headers: makeBasicAuthHeaders(credentials)},
