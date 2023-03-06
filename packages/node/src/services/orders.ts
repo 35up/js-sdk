@@ -1,6 +1,6 @@
 import { makeFail, makeSuccess, ResolvedRemoteData } from '@35up/tslib-utils';
 import { post } from '@35up/http-client';
-import { handleApiError, ValidationError } from '@35up/js-sdk-base';
+import { transformApiError, ValidationError } from '@35up/js-sdk-base';
 import {
   CreateOrderParams,
   CreateOrderResult,
@@ -42,7 +42,7 @@ export async function createOrder(
     return makeSuccess(result.data);
   } catch (e) {
     if (e.response) {
-      return makeFail(handleApiError<CreateOrderParams>(e) || e);
+      return makeFail(transformApiError<CreateOrderParams>(e) || e);
     }
 
     return makeFail(e);

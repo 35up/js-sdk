@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import { HttpError } from '@35up/http-client';
-import { handleApiError } from './errors';
+import { transformApiError } from './errors';
 
 
 describe('errors', () => {
-  describe('handleApiError', () => {
+  describe('transformApiError', () => {
     describe('the status code is 400', () => {
       const error = new HttpError(
         {errors: 'bla'},
@@ -12,7 +12,7 @@ describe('errors', () => {
       );
 
       it('returns an Error with the errors data', async () => {
-        expect(handleApiError(error))
+        expect(transformApiError(error))
           .to.be.an.instanceof(Error)
           .and.to.have.property('details', error.data.errors);
       });
@@ -24,8 +24,8 @@ describe('errors', () => {
         new Response(null, {status: 500}),
       );
 
-      it('returns undefined', async () => {
-        expect(handleApiError(error)).to.be.undefined;
+      it('returns input error', async () => {
+        expect(transformApiError(error)).to.equal(error);
       });
     });
   });
