@@ -42,9 +42,7 @@ describe('Sdk', () => {
     const { recommendations } = getMockRecommendations();
     beforeEach(() => {
       getProductRecommendationsMock.reset();
-      getProductRecommendationsMock.resolves(
-        makeSuccess(recommendations),
-      );
+      getProductRecommendationsMock.resolves(recommendations);
     });
 
     const input: GetRecommendationsParams = {
@@ -67,7 +65,7 @@ describe('Sdk', () => {
 
       const result = await instance.getProductRecommendations(input);
 
-      expect(result).to.be.deep.equal(makeSuccess(recommendations));
+      expect(result).to.be.deep.equal(recommendations);
       expect(getProductRecommendationsMock).to.have.been.calledWith(
         input,
         configuration,
@@ -79,9 +77,7 @@ describe('Sdk', () => {
     const productDetails = getMockProductDetails();
     beforeEach(() => {
       getProductServiceMock.reset();
-      getProductServiceMock.resolves(
-        makeSuccess(productDetails),
-      );
+      getProductServiceMock.resolves(productDetails);
     });
 
     const input: GetProductDetailsParams = {
@@ -93,7 +89,7 @@ describe('Sdk', () => {
 
       const result = await instance.getProductDetails(input);
 
-      expect(result).to.be.deep.equal(makeSuccess(productDetails));
+      expect(result).to.be.deep.equal(productDetails);
       expect(getProductServiceMock).to.have.been.calledWith(
         input,
         configuration,

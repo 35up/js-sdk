@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { makeSuccess } from '@35up/tslib-utils';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
   SdkConfig,
@@ -44,9 +43,7 @@ describe('Sdk', () => {
   const { recommendations } = getMockRecommendations();
   beforeEach(() => {
     getProductRecommendationsMock.reset();
-    getProductRecommendationsMock.resolves(
-      recommendations,
-    );
+    getProductRecommendationsMock.resolves(recommendations);
   });
 
   describe('getProductRecommendations', () => {
@@ -71,7 +68,7 @@ describe('Sdk', () => {
 
       const result = await instance.getProductRecommendations(input);
 
-      expect(result).to.be.deep.equal(makeSuccess(recommendations));
+      expect(result).to.be.deep.equal(recommendations);
       expect(getProductRecommendationsMock).to.have.been.calledWith(
         input,
         configuration,
@@ -111,7 +108,7 @@ describe('Sdk', () => {
         baseProduct: {title: 'title'},
       });
 
-      expect(result).to.be.deep.equal(makeSuccess(recommendations));
+      expect(result).to.be.deep.equal(recommendations);
       expect(getProductRecommendationsMock).to.have.been.calledWith(
         sinon.match.any,
         sinon.match({session: configuration.session}),
@@ -133,7 +130,7 @@ describe('Sdk', () => {
           baseProduct: {title: 'title'},
         });
 
-        expect(result).to.be.deep.equal(makeSuccess(recommendations));
+        expect(result).to.be.deep.equal(recommendations);
         expect(
           window.localStorage.getItem(SESSION_LOCAL_STORAGE_KEY),
         ).to.be.not.empty;
@@ -159,7 +156,7 @@ describe('Sdk', () => {
             baseProduct: {title: 'title'},
           });
 
-          expect(result).to.be.deep.equal(makeSuccess(recommendations));
+          expect(result).to.be.deep.equal(recommendations);
           expect(getProductRecommendationsMock).to.have.been.calledWith(
             sinon.match.any,
             sinon.match({session: storedSession}),
