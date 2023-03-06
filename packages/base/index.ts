@@ -7,7 +7,6 @@ export {
 export * as validations from './src/validations';
 export {
   getProductRecommendations as getProductRecommendationsService,
-  type TRemoteRecommendations,
 } from './src/services/recommendations';
 export {
   getProduct as getProductService,

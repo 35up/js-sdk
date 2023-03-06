@@ -74,10 +74,9 @@ describe('service - recommendations', () => {
     it('returns recommendations', async () => {
       const recommendations = await getProductRecommendations(input, sdkConfig);
 
-      expect(recommendations.data).to.deep.equal(
+      expect(recommendations).to.deep.equal(
         productRecommendations.recommendations,
       );
-      expect(recommendations.error).to.be.null;
     });
 
     describe('some of the recommendations are invalid', () => {
@@ -109,23 +108,24 @@ describe('service - recommendations', () => {
           sdkConfig,
         );
 
-        expect(recommendations.data).to.deep.equal([
+        expect(recommendations).to.deep.equal([
           productRecommendations.recommendations[0],
           productRecommendations.recommendations[2],
           productRecommendations.recommendations[3],
         ]);
-        expect(recommendations.error).to.be.null;
       });
     });
 
-    it('returns err when request fails', async () => {
+    it('throws an error when request fails', async () => {
       const error = new Error('fail');
       fetch.mockReject(error);
 
-      const recommendations = await getProductRecommendations(input, sdkConfig);
-
-      expect(recommendations.data).to.be.null;
-      expect(recommendations.error).to.be.equal(error);
+      try {
+        await getProductRecommendations(input, sdkConfig);
+        expect.fail('should have thrown');
+      } catch (e) {
+        expect(e).to.be.equal(error);
+      }
     });
   });
 });

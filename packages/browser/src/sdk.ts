@@ -5,7 +5,7 @@ import {
   getProductService,
   type GetRecommendationsParams,
   type SdkConfig,
-  type TRemoteRecommendations,
+  type ProductRecommendation,
   type Product,
 } from '@35up/js-sdk-base';
 
@@ -51,7 +51,7 @@ export class Sdk {
 
   async getProductRecommendations(
     input: GetRecommendationsParams,
-  ): Promise<TRemoteRecommendations> {
+  ): Promise<ProductRecommendation[]> {
     return getProductRecommendationsService(input, this.getConfig());
   }
 
