@@ -91,6 +91,9 @@ SDK initialization, they don't need to be provided here.
   }
 ```
 
+Note that `createOrder` is an asynchronous function and returns a
+`Promise`.
+
 ##### Input example
 
 ```ts
