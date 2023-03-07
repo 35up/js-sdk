@@ -1,8 +1,6 @@
 import { z } from 'zod';
 import { get } from '@35up/http-client';
-import {
-  stripUndefined,
-} from '@35up/tslib-utils';
+import { stripUndefined } from '../../utils';
 import { SdkConfig, GetProductDetailsParams } from '../../types';
 import type { Product } from './types';
 import * as validations from './validations';

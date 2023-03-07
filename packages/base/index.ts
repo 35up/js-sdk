@@ -1,4 +1,4 @@
-export { parseUnixTimestamp } from './src/utils';
+export { parseUnixTimestamp, stripUndefined } from './src/utils';
 export {
   transformApiError,
   BadParamsError,

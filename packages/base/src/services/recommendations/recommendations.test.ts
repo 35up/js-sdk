@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import fetch from 'jest-fetch-mock';
-import { stripUndefined } from '@35up/tslib-utils';
+import { stripUndefined } from '../../utils';
 import { makeSearchParams, getProductRecommendations } from './recommendations';
 import { GetRecommendationsParams, SdkConfig } from '../../types';
 import { getMockRecommendations } from './recommendations-mock-data';

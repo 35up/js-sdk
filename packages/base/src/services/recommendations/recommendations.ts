@@ -1,11 +1,9 @@
-import {
-  stripUndefined,
-} from '@35up/tslib-utils';
 import { get } from '@35up/http-client';
 import {
   GetRecommendationsParams,
   SdkConfig,
 } from '../../types';
+import { stripUndefined } from '../../utils';
 import { ProductRecommendation } from './types';
 import * as validations from './validations';
 import { transformApiError } from '../../errors';
