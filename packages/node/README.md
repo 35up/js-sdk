@@ -44,6 +44,7 @@ Full configuration parameters list:
 | country     | Country `ISO 3166` code (i.e. `us`, `fr`)                                       | Yes      |
 | session     | The ID of a session (use only if you want to generate session yourself)         | Yes      |
 | credentials | Object containing `username` and `password` for basic authentication in the API | Yes      |
+| apiUrl      | Base api url. Specify a custom one here for testing purposes                    | Yes      |
 
 ### Methods
 
