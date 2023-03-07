@@ -131,7 +131,10 @@ SDK initialization, they don't need to be provided here.
     updatedAt: string;
     createdAt: string;
   }
+```
 
+Example:
+```ts
   const response: CreateOrderResponse = {
     id: '42346434',
     status: 'pending',

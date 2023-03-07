@@ -61,8 +61,9 @@ This package provides following methods:
 
 ## About sessions
 
-When a session is not provided we generate a unique session id which will
-be stored in the browser `localStorage` and used between client sessions.
+When a session is not provided the library automatically generates a unique
+session id which will be stored in the browser `localStorage` and used between 
+client sessions.
 
 The _Sdk_ exposes a `resetSession` method that removes the session from
 `localStorage`, in case a new session id is desired.
