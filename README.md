@@ -3,7 +3,7 @@
 This typescript library is a wrapper around 35up API for sellers that can be 
 used as a convenience tool.
 It has the following features:
-1. Provides with methods for dealing with recommendations, products and orders
+1. Provides methods for dealing with recommendations, products and orders
 2. It performs data validation that ensures integrity of the output data
 3. Provides typescript types for inputs and outputs. 
 

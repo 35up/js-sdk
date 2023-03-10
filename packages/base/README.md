@@ -3,7 +3,7 @@
 This library is used as a dependency for `js-sdk-browser` and `js-sdk-node`
 packages. It exposes common functionality that are used in both environments. 
 Do not install this package directly. Instead, use either 
-[browser](packages/browser/README.md) or [node](packages/node/README.md) one.
+[browser](packages/browser/README.md) or [node](packages/node/README.md).
 
 ## Methods
 
@@ -130,7 +130,7 @@ Note that `getRecommendations` is an asynchronous function and returns a
   }
 ```
 
-An example: 
+Example: 
 
 ```ts
   const recommendations: Recommendation[] = [{
@@ -292,7 +292,8 @@ Note that `getProduct` is an asynchronous function and returns a
   }
 ```
 
-An example:
+Example:
+
 ```ts
   const product: Product = {
     name: 'Galaxy S10 HardCase, "Release" by Dan May',

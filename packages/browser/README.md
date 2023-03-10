@@ -49,7 +49,7 @@ Full configuration parameters list:
 | lang      | Language `ISO 639-1` code (i.e. `de`, `en`)                             | Yes      |
 | country   | Country `ISO 3166` code (i.e. `us`, `fr`)                               | Yes      |
 | session   | The ID of a session (use only if you want to generate session yourself) | Yes      | 
-| apiUrl    | Base api url. Specify a custom one here for testing purposes            | Yes      |
+| apiUrl    | 35up API url. A custom url can be provided for testing purposes         | Yes      |
 
 
 ### Methods
