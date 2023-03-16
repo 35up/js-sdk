@@ -44,6 +44,7 @@ Full configuration parameters list:
 | country     | Country `ISO 3166` code (i.e. `us`, `fr`)                                       | Yes      |
 | session     | The ID of a session (use only if you want to generate session yourself)         | Yes      |
 | credentials | Object containing `username` and `password` for basic authentication in the API | Yes      |
+| apiUrl      | 35up API url. A custom url can be provided for testing purposes                 | Yes      |
 
 ### Methods
 
@@ -91,6 +92,9 @@ SDK initialization, they don't need to be provided here.
   }
 ```
 
+Note that `createOrder` is an asynchronous function and returns a
+`Promise`.
+
 ##### Input example
 
 ```ts
@@ -131,7 +135,10 @@ SDK initialization, they don't need to be provided here.
     updatedAt: string;
     createdAt: string;
   }
+```
 
+Example:
+```ts
   const response: CreateOrderResponse = {
     id: '42346434',
     status: 'pending',

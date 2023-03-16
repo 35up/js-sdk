@@ -19,7 +19,7 @@ export class ValidationError<T = unknown> extends Error {
   }
 }
 
-export function handleApiError<TParams>(
+export function transformApiError<TParams>(
   e: HttpError<{errors: TParamErrorDetail<TParams>} | undefined>,
 ): BadParamsError<TParams> | undefined {
   if (e.responseStatus === 400) {
@@ -31,5 +31,13 @@ export function handleApiError<TParams>(
     );
   }
 
-  return undefined;
+  if (e instanceof ZodError) {
+    throw new ValidationError(
+      'The API response does not match the expected scheme. '
+        + 'Please contact support',
+      e,
+    );
+  }
+
+  return e;
 }

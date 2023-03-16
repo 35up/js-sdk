@@ -1,6 +1,10 @@
 import { expect } from 'chai';
-import { parseUnixTimestamp } from './utils';
+import { parseUnixTimestamp, stripUndefined } from './utils';
 
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// @ts-ignore
+export function expectType<T>(value: T): void {}
 
 describe('utils', () => {
   describe('parseUnixTimestamp', () => {
@@ -10,6 +14,21 @@ describe('utils', () => {
       expect(
         parseUnixTimestamp(timestamp).toISOString(),
       ).to.equal(expectedTime);
+    });
+  });
+
+  describe('stripUndefined', () => {
+    it('removes all the keys with undefined value', () => {
+      const value = stripUndefined({
+        a: undefined,
+        b: 3 as 3 | undefined,
+        c: null,
+        d: 5 as 5 | null,
+        e: undefined as 6 | undefined,
+      });
+
+      expect(value).to.deep.equals({b: 3, c: null, d: 5});
+      expectType<{ b: 3, c: null, d: 5 | null}>(value);
     });
   });
 });

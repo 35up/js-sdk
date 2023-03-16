@@ -48,7 +48,9 @@ Full configuration parameters list:
 | seller    | Your seller ID (contact 35up team to get one)                           | No       |
 | lang      | Language `ISO 639-1` code (i.e. `de`, `en`)                             | Yes      |
 | country   | Country `ISO 3166` code (i.e. `us`, `fr`)                               | Yes      |
-| session   | The ID of a session (use only if you want to generate session yourself) | Yes      |
+| session   | The ID of a session (use only if you want to generate session yourself) | Yes      | 
+| apiUrl    | 35up API url. A custom url can be provided for testing purposes         | Yes      |
+
 
 ### Methods
 
@@ -61,8 +63,9 @@ This package provides following methods:
 
 ## About sessions
 
-When a session is not provided we generate a unique session id which will
-be stored in the browser `localStorage` and used between client sessions.
+When a session is not provided the library automatically generates a unique
+session id which will be stored in the browser `localStorage` and used between 
+client sessions.
 
 The _Sdk_ exposes a `resetSession` method that removes the session from
 `localStorage`, in case a new session id is desired.

@@ -1,25 +1,15 @@
-import {
-  makeFail,
-  makeSuccess,
-  ResolvedRemoteData,
-  stripUndefined,
-} from '@35up/tslib-utils';
 import { get } from '@35up/http-client';
-import { ZodError } from 'zod';
 import {
   GetRecommendationsParams,
   SdkConfig,
 } from '../../types';
+import { stripUndefined } from '../../utils';
 import { ProductRecommendation } from './types';
 import * as validations from './validations';
-import { ValidationError } from '../../errors';
+import { transformApiError } from '../../errors';
 
 
-export type TRemoteRecommendations = ResolvedRemoteData<
-  ProductRecommendation[]
->;
 type TParams = Omit<SdkConfig, 'apiUrl'> & GetRecommendationsParams;
-
 
 function flattenInput(
   input: Record<string, unknown>,
@@ -64,25 +54,18 @@ export function makeSearchParams(input: TParams): string {
 export async function getProductRecommendations(
   params: GetRecommendationsParams,
   sdkConfig: SdkConfig,
-): Promise<TRemoteRecommendations> {
+): Promise<ProductRecommendation[]> {
   const { apiUrl, ...finalParams } = {
     ...sdkConfig,
     ...stripUndefined(params),
   };
 
   try {
-    const data = validations.recommendationsData.parse(await get(
+    const result = await get(
       `${apiUrl}/recommendations?${makeSearchParams(finalParams)}`,
-    ));
-    return makeSuccess(data.recommendations);
+    );
+    return validations.recommendationsData.parse(result).recommendations;
   } catch (e) {
-    if (e instanceof ZodError) {
-      return makeFail(new ValidationError(
-        'The API response does not match the expected scheme. Please contact support',
-        e,
-      ));
-    }
-
-    return makeFail(e);
+    throw transformApiError(e);
   }
 }

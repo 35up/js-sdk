@@ -1,4 +1,3 @@
-import { isFail, isSuccess } from '@35up/tslib-utils';
 import { expect } from 'chai';
 import fetch from 'jest-fetch-mock';
 import { ZodError } from 'zod';
@@ -69,21 +68,22 @@ describe('Products Service', () => {
     it('returns product details', async () => {
       const result = await getProduct({sku, ...optionalParams}, sdkConfig);
 
-      expect(isSuccess(result)).to.be.true;
-      expect(result.data).to.deep.equal(getMockProductDetails());
-      expect(result.error).to.be.null;
+      expect(result).to.deep.equal(getMockProductDetails());
     });
 
-    it('returns error when product is invalid', async () => {
+    it('throws error when product is invalid', async () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { name, ...product } = getMockProductDetails();
       fetch.mockResponse(JSON.stringify({product}), init);
-      const result = await getProduct({sku, ...optionalParams}, sdkConfig);
 
-      expect(isFail(result)).to.be.true;
-      expect(result.error).to.be.instanceof(ValidationError);
-      expect(result.error).to.have.property('validationError')
-        .instanceof(ZodError);
+      try {
+        await getProduct({sku, ...optionalParams}, sdkConfig);
+        expect.fail('should have thrown');
+      } catch (e) {
+        expect(e).to.be.instanceof(ValidationError);
+        expect(e).to.have.property('validationError')
+          .instanceof(ZodError);
+      }
     });
 
     describe('when request fails', () => {
@@ -93,12 +93,13 @@ describe('Products Service', () => {
         fetch.mockReject(error);
       });
 
-      it('returns error when request fails', async () => {
-        const result = await getProduct({sku, ...optionalParams}, sdkConfig);
-
-        expect(isFail(result)).be.be.true;
-        expect(result.data).to.be.null;
-        expect(result.error).to.be.equal(error);
+      it('throws error when request fails', async () => {
+        try {
+          await getProduct({sku, ...optionalParams}, sdkConfig);
+          expect.fail('should have thrown');
+        } catch (e) {
+          expect(e).to.be.equal(error);
+        }
       });
     });
   });

@@ -1,5 +1,4 @@
-import { assert, expect } from 'chai';
-import { isFail, isSuccess } from '@35up/tslib-utils';
+import { expect } from 'chai';
 import { HttpError } from '@35up/http-client';
 import {
   parseUnixTimestamp,
@@ -64,13 +63,15 @@ describe('orders service', () => {
       );
     });
 
-    it('fails when credentials are not present', async () => {
-      const result = await createOrder(details, configWithoutCredentials);
-
-      assert(isFail(result));
-      expect(result.error.message).to.equal(
-        'Credentials are not present in configuration',
-      );
+    it('throws when credentials are not present', async () => {
+      try {
+        await createOrder(details, configWithoutCredentials);
+        expect.fail('should have thrown');
+      } catch (e) {
+        expect(e.message).to.equal(
+          'Credentials are not present in configuration',
+        );
+      }
     });
 
     it('makes the request to the orders endpoint', async () => {
@@ -91,8 +92,7 @@ describe('orders service', () => {
       it('returns info about the created order, transformed', async () => {
         const result = await createOrder(details, config);
 
-        expect(isSuccess(result)).to.be.true;
-        expect(result.data).to.deep.equal({
+        expect(result).to.deep.equal({
           id: '3wdasfdfg',
           status: ORDER_STATUS.PENDING,
           createdAt: parseUnixTimestamp('12345678'),
@@ -113,13 +113,15 @@ describe('orders service', () => {
           );
         });
 
-        it('returns an error', async () => {
-          const result = await createOrder(details, config);
-
-          expect(isFail(result)).to.be.true;
-          expect(result.error).to.be.instanceof(ValidationError);
-          expect(result.error).to.have.property('validationError')
-            .instanceof(ZodError);
+        it('throws an error', async () => {
+          try {
+            await createOrder(details, config);
+            expect.fail('should have thrown');
+          } catch (e) {
+            expect(e).to.be.instanceof(ValidationError);
+            expect(e).to.have.property('validationError')
+              .instanceof(ZodError);
+          }
         });
       });
 
@@ -137,13 +139,15 @@ describe('orders service', () => {
           );
         });
 
-        it('returns an error', async () => {
-          const result = await createOrder(details, config);
-
-          expect(isFail(result)).to.be.true;
-          expect(result.error).to.be.instanceof(ValidationError);
-          expect(result.error).to.have.property('validationError')
-            .instanceof(ZodError);
+        it('throws an error', async () => {
+          try {
+            await createOrder(details, config);
+            expect.fail('should have thrown');
+          } catch (e) {
+            expect(e).to.be.instanceof(ValidationError);
+            expect(e).to.have.property('validationError')
+              .instanceof(ZodError);
+          }
         });
       });
     });
@@ -157,12 +161,14 @@ describe('orders service', () => {
         });
       });
 
-      it('returns a failed result with the error', async () => {
-        const result = await createOrder(details, config);
-
-        expect(isFail(result)).to.be.true;
-        expect(result.error).to.be.a('Error');
-        expect((result.error as HttpError).responseStatus).to.equal(500);
+      it('throws an error', async () => {
+        try {
+          await createOrder(details, config);
+          expect.fail('should have thrown');
+        } catch (e) {
+          expect(e).to.be.a('Error');
+          expect((e as HttpError).responseStatus).to.equal(500);
+        }
       });
 
       describe('when it fails with 400', () => {
@@ -176,15 +182,17 @@ describe('orders service', () => {
           );
         });
 
-        it('returns an error with the error information', async () => {
-          const result = await createOrder(details, config);
-
-          expect(isFail(result)).to.be.true;
-          expect(result.error).to.be.a('Error');
-          const badParamErrors = result.error as BadParamsError<
-            CreateOrderResult
-          >;
-          expect(badParamErrors.details).to.deep.equal(errors);
+        it('throws an error with the error information', async () => {
+          try {
+            await createOrder(details, config);
+            expect.fail('should have thrown');
+          } catch (e) {
+            expect(e).to.be.a('Error');
+            const badParamErrors = e as BadParamsError<
+              CreateOrderResult
+            >;
+            expect(badParamErrors.details).to.deep.equal(errors);
+          }
         });
       });
     });

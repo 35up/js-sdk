@@ -1,17 +1,16 @@
-export { parseUnixTimestamp } from './src/utils';
+export { parseUnixTimestamp, stripUndefined } from './src/utils';
 export {
-  handleApiError,
+  transformApiError,
   BadParamsError,
   ValidationError,
 } from './src/errors';
 export * as validations from './src/validations';
 export {
   getProductRecommendations as getProductRecommendationsService,
-  type TRemoteRecommendations,
 } from './src/services/recommendations';
 export {
   getProduct as getProductService,
-  type TRemoteProduct,
+  type Product,
 } from './src/services/products';
 
 export type {

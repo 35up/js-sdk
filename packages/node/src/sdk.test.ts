@@ -1,5 +1,4 @@
-import { assert, expect } from 'chai';
-import { makeSuccess } from '@35up/tslib-utils';
+import { expect } from 'chai';
 import { makeTypedMockFn } from '@35up/tslib-test-utils';
 import {
   getProductRecommendationsService,
@@ -7,7 +6,6 @@ import {
   type GetRecommendationsParams,
   type GetProductDetailsParams,
 } from '@35up/js-sdk-base';
-import { isFail } from '@35up/tslib-utils/build/tslib-utils.cjs';
 import { ORDER_STATUS, CreateOrderParams, NodeSdkConfig } from './types';
 import { createOrder as createOrderService } from './services/orders';
 import {
@@ -42,9 +40,7 @@ describe('Sdk', () => {
     const { recommendations } = getMockRecommendations();
     beforeEach(() => {
       getProductRecommendationsMock.reset();
-      getProductRecommendationsMock.resolves(
-        makeSuccess(recommendations),
-      );
+      getProductRecommendationsMock.resolves(recommendations);
     });
 
     const input: GetRecommendationsParams = {
@@ -67,7 +63,7 @@ describe('Sdk', () => {
 
       const result = await instance.getProductRecommendations(input);
 
-      expect(result).to.be.deep.equal(makeSuccess(recommendations));
+      expect(result).to.be.deep.equal(recommendations);
       expect(getProductRecommendationsMock).to.have.been.calledWith(
         input,
         configuration,
@@ -79,9 +75,7 @@ describe('Sdk', () => {
     const productDetails = getMockProductDetails();
     beforeEach(() => {
       getProductServiceMock.reset();
-      getProductServiceMock.resolves(
-        makeSuccess(productDetails),
-      );
+      getProductServiceMock.resolves(productDetails);
     });
 
     const input: GetProductDetailsParams = {
@@ -93,7 +87,7 @@ describe('Sdk', () => {
 
       const result = await instance.getProductDetails(input);
 
-      expect(result).to.be.deep.equal(makeSuccess(productDetails));
+      expect(result).to.be.deep.equal(productDetails);
       expect(getProductServiceMock).to.have.been.calledWith(
         input,
         configuration,
@@ -111,7 +105,7 @@ describe('Sdk', () => {
 
     beforeEach(() => {
       createOrderMock.reset();
-      createOrderMock.resolves(makeSuccess(createOrderResult));
+      createOrderMock.resolves(createOrderResult);
     });
 
     const input: CreateOrderParams = {
@@ -128,7 +122,7 @@ describe('Sdk', () => {
       const instance = new Sdk(configuration);
 
       const result = await instance.createOrder(input);
-      expect(result).to.be.deep.equal(makeSuccess(createOrderResult));
+      expect(result).to.be.deep.equal(createOrderResult);
       expect(createOrderMock)
         .to.have.been.calledWith(input, configuration);
     });
@@ -139,7 +133,7 @@ describe('Sdk', () => {
         const instance = new Sdk(configuration);
 
         const result = await instance.createOrder(input, newCredentials);
-        expect(result).to.be.deep.equal(makeSuccess(createOrderResult));
+        expect(result).to.be.deep.equal(createOrderResult);
         expect(createOrderMock).to.have.been.calledWith(input, {
           ...configuration,
           credentials: newCredentials,
@@ -147,18 +141,21 @@ describe('Sdk', () => {
       });
 
       describe('credentials are invalid', () => {
-        it('returns an error result', async () => {
+        it('throws an error', async () => {
           const newCredentials = {username: 'c'};
           const instance = new Sdk(configuration);
 
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          const result = await instance.createOrder(input, newCredentials);
-          assert(isFail(result));
-          expect(result.error.message).to.equal(
-            'Invalid credentials provided. `username`'
-            + ' and `password` must be present',
-          );
+          try {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            await instance.createOrder(input, newCredentials);
+            expect.fail('should have thrown');
+          } catch (e) {
+            expect(e.message).to.equal(
+              'Invalid credentials provided. `username`'
+              + ' and `password` must be present',
+            );
+          }
         });
       });
     });

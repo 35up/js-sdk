@@ -1,7 +1,9 @@
 # 35up Javascript SDK - base
 
 This library is used as a dependency for `js-sdk-browser` and `js-sdk-node`
-packages. It exposes common functionality that are used in both environments.
+packages. It exposes common functionality that are used in both environments. 
+Do not install this package directly. Instead, use either 
+[browser](packages/browser/README.md) or [node](packages/node/README.md).
 
 ## Methods
 
@@ -126,7 +128,11 @@ Note that `getRecommendations` is an asynchronous function and returns a
     categories?: string[];
     tags?: string[];
   }
+```
 
+Example: 
+
+```ts
   const recommendations: Recommendation[] = [{
     name: 'Galaxy S500 HardCase, "Realism" by Dan Say',
     sku: 'caseable/BCI60XX114014XXAPIP67',
@@ -210,7 +216,10 @@ Returns details of a given product
     lang?: string;
     country?: string;
   }
+```
 
+Example: 
+```ts
   const params: ProductParams = {
     lang: 'en',
     country: 'uk',
@@ -281,7 +290,11 @@ Note that `getProduct` is an asynchronous function and returns a
       included: boolean;
     }[];
   }
+```
 
+Example:
+
+```ts
   const product: Product = {
     name: 'Galaxy S10 HardCase, "Release" by Dan May',
     sku: 'caseable/HCI60XX114014XXAPIP60',
@@ -331,6 +344,16 @@ Note that `getProduct` is an asynchronous function and returns a
     },
   };
 ```
+
+## Exceptions
+
+In case there is an issue while executing any of the methods the exception is 
+going to be thrown. In effect the promise returned by the method will be 
+rejected. In addition to the default js errors, the following can be thrown 
+(in case you want to handle them separately):
+- `BadParamsError`: in case provided input does not match the expected one
+- `ValidationError`: in case the response data is corrupted
+
 
 ## Requirements
 
