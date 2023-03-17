@@ -34,7 +34,11 @@ Returns a list of product recommendations based on the input
     country?: string,
     limit?: number,
   }
+```
 
+Example:
+
+```ts
   const params: RecommendationParams = {
     partner: 'partner-id',
     limit: 10,
@@ -212,7 +216,8 @@ Returns details of a given product
 
 #### Input
 ```ts
-  interface ProductParams {
+  interface GetProductDetailsParams {
+    sku: string,
     lang?: string;
     country?: string;
   }
@@ -220,7 +225,8 @@ Returns details of a given product
 
 Example: 
 ```ts
-  const params: ProductParams = {
+  const params: GetProductDetailsParams = {
+    sku: 'abcd1234',
     lang: 'en',
     country: 'uk',
   };
