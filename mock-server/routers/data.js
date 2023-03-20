@@ -34,10 +34,6 @@ const vendorCategories = {
   tabletCover: {name: 'Tablet Covers', param: 'tablet-cover'},
 };
 
-function makeProductSku() {
-  return `caseable/${faker.database.mongodbObjectId()}`;
-}
-
 function makePackageInfo() {
   return faker.datatype.boolean() ? undefined : {
     weight: {
@@ -66,7 +62,7 @@ function makeProduct(sku) {
   const deliveryPackage = makePackageInfo();
 
   return {
-    sku: sku || makeProductSku(),
+    sku: sku || faker.database.mongodbObjectId(),
     vendor: faker.helpers.arrayElement(vendors),
     name: faker.commerce.productName(),
     price: {
