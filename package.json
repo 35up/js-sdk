@@ -6,9 +6,11 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "test": "lerna run test",
-    "lint": "lerna run lint"
+    "lint": "lerna run lint",
+    "mock-server": "mock-server"
   },
   "devDependencies": {
+    "js-sdk-mock-server": "file:mock-server",
     "lerna": "^5.5.2",
     "nx": "^14.7.16"
   },

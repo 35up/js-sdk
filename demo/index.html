@@ -13,12 +13,21 @@
 <br/>
 <br/>
 <div id="cart-wrapper"></div>
+<style>
+  .code {
+    display: block;
+    word-break: break-all;
+  }
+</style>
 <script type="text/javascript" src="../packages/browser/dist/35up-js-sdk.iife.min.js"></script>
 <script>
     const container = document.getElementById('cart-wrapper');
-    const tfup = window.thirtyFiveUp.initialise(
-      {seller: '35up-test', lang: 'de', country: 'de'},
-    );
+    const tfup = window.thirtyFiveUp.initialise({
+      seller: '35up-test',
+      lang: 'de',
+      country: 'de',
+      apiUrl: 'http://localhost:4000',
+    });
 
     document.getElementsByTagName('button')[0].onclick = function() {
       const input = {
@@ -29,7 +38,14 @@
 
       tfup.getProductRecommendations(input)
         .then((recommendations) => {
-          container.innerText = JSON.stringify(recommendations.data);
+          JSON.stringify(recommendations.data, null, '\u00A0\u00A0')
+            .split('\n')
+            .forEach((code) => {
+              const codeElem = document.createElement('code');
+              codeElem.textContent = code;
+              codeElem.classList.add('code');
+              container.appendChild(codeElem);
+            });
         });
     };
 </script>
