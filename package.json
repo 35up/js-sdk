@@ -1,6 +1,5 @@
 {
   "name": "@35up/js-sdk--monorepo",
-  "private": "true",
   "scripts": {
     "bump-version": "lerna version --no-git-tag-version --no-push",
     "bootstrap": "lerna bootstrap",

@@ -22,7 +22,7 @@
     "bootstrap"
   ],
   "author": "35up GmbH <the.engineers@35up.com>",
-  "license": "UNLICENCED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/35up/js-sdk/issues"
   },
