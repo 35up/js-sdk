@@ -28,10 +28,3 @@ jobs:
         run: npm run build
       - name: Test
         run: npm run test
-      - uses: ./.github/actions/slack-notify
-        if: failure()
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.ACTIONS_SLACK_BOT_ID }}
-        with:
-          channel-id: C963N8H3J
-          job-status: ${{ job.status }}
