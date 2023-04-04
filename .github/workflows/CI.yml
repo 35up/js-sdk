@@ -14,18 +14,10 @@ jobs:
       NPM_CI: true
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
-        with:
-          repository: 35up/github-action-slack-notify
-          ref: v4
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
-          path: .github/actions/slack-notify
       - name: Setup NodeJS
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: Configure GitHub NPM Token
-        run: npm config set '//npm.pkg.github.com/:_authToken' "${{ secrets.NPM_TOKEN }}"
       - name: Configure npm registry
         run: make .npmrc
       - name: Clean
