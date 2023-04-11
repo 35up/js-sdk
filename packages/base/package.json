@@ -1,6 +1,6 @@
 {
   "name": "@35up/js-sdk-base",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "Javascript SDK library for integrating 35up into your web shop",
   "scripts": {
     "build": "ENV=production rollup --config rollup.config.js",
