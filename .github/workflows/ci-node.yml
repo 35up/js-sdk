@@ -40,7 +40,7 @@ jobs:
       - name: Generate jest-coverage-report
         uses: ArtiomTr/jest-coverage-report-action@v2.2.1
         with:
-          working-directory: common
+          working-directory: packages/node
           skip-step: all
           coverage-file: coverage/report.json
           base-coverage-file: coverage/report.json
