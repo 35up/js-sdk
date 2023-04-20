@@ -7,11 +7,11 @@
     "build:stage": "ENV=staging rollup --config rollup.config.js",
     "build:mock": "ENV=mock rollup --config rollup.config.js",
     "lint": "eslint --ext .js,.ts .",
+    "clean": "rm -rf ./dist",
     "prepublishOnly": "make ci",
     "test": "jest --passWithNoTests",
     "test:watch": "npm test -- --watch",
-    "test:coverage": "npm test -- --coverage",
-    "makeTypeDeclarations": "tsc -d --skipLibCheck --declarationDir dist/types --emitDeclarationOnly index.ts",
+    "test:coverage": "npm test -- --ci --json --coverage --testLocationInResults --outputFile=coverage/report.json",    "makeTypeDeclarations": "tsc -d --skipLibCheck --declarationDir dist/types --emitDeclarationOnly index.ts",
     "bump-version": "lerna version --no-git-tag-version --no-push",
     "bootstrap": "lerna bootstrap"
   },
