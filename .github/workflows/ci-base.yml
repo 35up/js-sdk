@@ -11,6 +11,7 @@ on:
     paths:
       - packages/base/**
       - ./.github/workflows/ci-base.yml
+
 jobs:
   ci-base:
     runs-on: ubuntu-latest
