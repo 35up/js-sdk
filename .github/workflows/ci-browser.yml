@@ -21,8 +21,6 @@ jobs:
     defaults:
       run:
         working-directory: "./packages/browser"
-    env:
-      NPM_CI: true
     steps:
       - name: Checkout
         uses: actions/checkout@v3

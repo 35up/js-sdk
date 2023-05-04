@@ -19,8 +19,6 @@ jobs:
     defaults:
       run:
         working-directory: "./packages/base"
-    env:
-      NPM_CI: true
     steps:
       - name: Checkout
         uses: actions/checkout@v3
