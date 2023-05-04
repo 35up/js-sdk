@@ -4,14 +4,14 @@ on:
   push:
     branches: [ master ]
     paths:
+      - packages/base/**
       - packages/node/**
-      - ./.github/workflows/ci-base.yml
       - ./.github/workflows/ci-node.yml
   pull_request:
     branches: [ master ]
     paths:
+      - packages/base/**
       - packages/node/**
-      - ./.github/workflows/ci-base.yml
       - ./.github/workflows/ci-node.yml
 
 jobs:
