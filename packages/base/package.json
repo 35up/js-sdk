@@ -11,7 +11,8 @@
     "prepublishOnly": "make ci",
     "test": "jest --passWithNoTests",
     "test:watch": "npm test -- --watch",
-    "test:coverage": "npm test -- --ci --json --coverage --testLocationInResults --outputFile=coverage/report.json",    "bump-version": "lerna version --no-git-tag-version --no-push",
+    "test:coverage": "npm test -- --ci --json --coverage --testLocationInResults --outputFile=coverage/report.json",
+    "bump-version": "lerna version --no-git-tag-version --no-push",
     "bootstrap": "lerna bootstrap"
   },
   "repository": {
