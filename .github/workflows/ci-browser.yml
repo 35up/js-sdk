@@ -36,6 +36,8 @@ jobs:
         run: npm run lint
       - name: Bootstrap
         run: cd ../.. && npm i && npm run bootstrap
+      - name: Build base
+        run: cd ../../packages/base && npm run build
       - name: Build
         run: npm run build
       - name: Test

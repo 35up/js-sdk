@@ -2,7 +2,7 @@
   "name": "@35up/js-sdk--monorepo",
   "scripts": {
     "bump-version": "lerna version --no-git-tag-version --no-push",
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --no-ci",
     "build": "lerna run build",
     "test": "lerna run test",
     "lint": "lerna run lint",
