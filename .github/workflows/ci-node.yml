@@ -1,0 +1,51 @@
+name: ci-node
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - packages/node/**
+      - packages/base/**
+      - ./.github/workflows/ci-node.yml
+  pull_request:
+    branches: [ master ]
+    paths:
+      - packages/node/**
+      - packages/base/**
+      - ./.github/workflows/ci-node.yml
+
+jobs:
+  ci-node:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: "./packages/node"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Clean
+        run: npm run clean
+      - name: Install node modules
+        run: npm i
+      - name: Lint
+        run: npm run lint
+      - name: Bootstrap
+        run: cd ../.. && npm i && npm run bootstrap
+      - name: Build base
+        run: cd ../../packages/base && npm run build
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm run test:coverage
+      - name: Generate jest-coverage-report
+        uses: ArtiomTr/jest-coverage-report-action@v2.2.1
+        with:
+          working-directory: packages/node
+          skip-step: all
+          coverage-file: coverage/report.json
+          base-coverage-file: coverage/report.json
