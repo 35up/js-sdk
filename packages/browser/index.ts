@@ -15,7 +15,9 @@ export function initialise(configuration: SdkInitConfig): Sdk {
 }
 
 export {
+  /* istanbul ignore next */
   BadParamsError,
+  /* istanbul ignore next */
   ValidationError,
 } from '@35up/js-sdk-base';
 
