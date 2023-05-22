@@ -30,7 +30,9 @@ export function initialise(configuration: NodeSdkInitConfig): Sdk {
 }
 
 export {
+  /* istanbul ignore next */
   BadParamsError,
+  /* istanbul ignore next */
   ValidationError,
 } from '@35up/js-sdk-base';
 
@@ -53,6 +55,7 @@ export type {
 } from '@35up/js-sdk-base';
 
 export {
+  /* istanbul ignore next */
   ORDER_STATUS,
   type CreateOrderParams,
   type CreateOrderResult,
