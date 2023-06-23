@@ -19,7 +19,7 @@
     word-break: break-all;
   }
 </style>
-<script type="text/javascript" src="../packages/browser/dist/35up-js-sdk.iife.min.js"></script>
+<script type="text/javascript" src="../dist/35up-js-sdk.iife.min.js"></script>
 <script>
     const container = document.getElementById('cart-wrapper');
     const tfup = window.thirtyFiveUp.initialise({
@@ -38,7 +38,7 @@
 
       tfup.getProductRecommendations(input)
         .then((recommendations) => {
-          JSON.stringify(recommendations.data, null, '\u00A0\u00A0')
+          JSON.stringify(recommendations, null, '\u00A0\u00A0')
             .split('\n')
             .forEach((code) => {
               const codeElem = document.createElement('code');
