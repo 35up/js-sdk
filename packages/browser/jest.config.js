@@ -4,7 +4,10 @@ const packagesToTranspile = [
 
 module.exports = {
   setupFilesAfterEnv: ['./src/setup-tests.ts'],
-  testPathIgnorePatterns: ['/node_modules/'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    ...(process.env.JEST_ACCEPTANCE ? [] : ['/demo/']),
+  ],
   coverageDirectory: './coverage',
   coverageThreshold: {
     global: {

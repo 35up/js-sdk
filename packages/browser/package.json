@@ -12,6 +12,8 @@
     "prepublishOnly": "npm run ci",
     "test": "jest --passWithNoTests",
     "test:watch": "npm test -- --watch",
+    "test-acceptance": "JEST_ACCEPTANCE=true jest demo/index.test.ts",
+    "test-acceptance:watch": "npm run test-acceptance -- --watch",
     "test:coverage": "npm test -- --ci --json --coverage --testLocationInResults --outputFile=coverage/report.json",
     "makeTypeDeclarations": "tsc -d --skipLibCheck --declarationDir dist/types --emitDeclarationOnly index.ts",
     "bootstrap": "lerna bootstrap"
