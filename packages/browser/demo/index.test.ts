@@ -59,7 +59,7 @@ describe('demo - acceptance test', () => {
     });
   });
 
-  describe('when recommendations are requeted', () => {
+  describe('when recommendations are requested', () => {
     it('renders recommendations', async () => {
       container.querySelector('button')?.click();
       await flushPromises();
