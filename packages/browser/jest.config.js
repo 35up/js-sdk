@@ -17,7 +17,7 @@ module.exports = {
       statements: 80,
     },
   },
-  collectCoverageFrom: ['**/*.ts'],
+  collectCoverageFrom: ['src/**/*.ts', 'index.ts'],
   moduleNameMapper: {
     nanoid: '<rootDir>/../../node_modules/nanoid/index.cjs',
   },
